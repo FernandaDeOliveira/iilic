@@ -40,5 +40,27 @@ namespace iilic.Repositorio
                 valorLog=(int)dr["log"]
             };
         }
+
+        public void Criar(Login pLogin)
+        {
+            ConexaoBD conn = new ConexaoBD();
+
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+
+            sql.Append("Insert into ");
+            sql.Append("logindb(@login,@senha,@log ) ");
+            sql.Append(" values(@login,@senha,@log) ");
+
+            cmd.Parameters.AddWithValue("@login", pLogin.login);
+            cmd.Parameters.AddWithValue("@senha", pLogin.senha);
+            cmd.Parameters.AddWithValue("@log", pLogin.valorLog);
+
+            cmd.CommandText = sql.ToString();
+
+            conn.executeSqlReader(cmd);
+
+           
+        }
     }
 }

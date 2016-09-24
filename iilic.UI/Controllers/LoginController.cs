@@ -59,5 +59,30 @@ namespace iilic.UI.Controllers
             }
             return View("Index");
         }
+
+        public ActionResult CriarLog()
+            ///ver se nao tem q passar id
+        {
+            return View("CriarLogin");
+        }
+
+        [HttpPost]
+        public ActionResult CriarLog(Login pLogin)
+        {
+            if (pLogin.valorLog == 1)
+            {
+                log.Criar(pLogin);
+                RedirectToAction("Index");
+            }else
+            {
+               
+            }
+            if (pLogin.valorLog == 2)
+            {
+                log.Criar(pLogin);
+                RedirectToAction("Index");
+            }
+                return View("Index");
+        }
     }
 }

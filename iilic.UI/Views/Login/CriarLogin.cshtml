@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "CriarLogin";
+}
+
+<h2>CriarLogin</h2>
+<head>
+    
+</head>
+<div class="col-lg-12" id="homePai">
+    <div class="col-lg-6" id="homeEsquerda">
+    </div>
+
+    <div class="col-lg-6" id="homeDireita">
+        <h3 class="alert-danger">@ViewBag.errouLogin</h3>
+        <!--class="homeDireita"-->
+        <form action="CriarLog" method="post">
+            <div>
+          
+                <div class="form-group ">
+                    <div class="form-group">
+                        <h3>Logar como:</h3>
+                        <il>
+                            <label><input type="radio" name="valorLog" checked="true" value="1">Administrador</label>
+                            <label><input type="radio" name="valorLog" value="2">Terapeuta</label>
+                        </il>
+                    </div>
+                    <div class="col-md-20">
+                        <input placeholder="Digite sua credencial" name="login" class="form-control input-md" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-20">
+                        <input placeholder="Digite sua senha" name="senha" class="form-control input-md" type="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Entrar" class="btn btn-primary active" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
