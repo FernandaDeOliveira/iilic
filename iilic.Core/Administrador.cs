@@ -10,10 +10,11 @@ namespace iilic.Core
     {
         public int idAdmin { get; set; }
         public string nomeAdmin { get; set; }
-        public string cpfVoluntario { get; set; }
+        public string cpf { get; set; }
         public DateTime dataNasc { get; set; }
         public string email { get; set; }
         public string sexo { get; set; }
+        public string telefone { get; set; }
 
 
         public Administrador()
@@ -21,15 +22,15 @@ namespace iilic.Core
 
         }
 
-        public Administrador(int idA,string nomeA, string cpfAd,DateTime dataNascA,string emailA, string sexoA)
+        public Administrador(int idA,string nomeA, string cpfAd,DateTime dataNascA,string emailA, string sexoA,string tel)
         {
             idAdmin = idA;
             nomeAdmin = nomeA;
-            cpfVoluntario = cpfAd;
+            cpf = cpfAd;
             dataNasc = dataNascA;
             email = emailA;
             sexo = sexoA;
-
+            telefone = tel;
         }
     }
 }

@@ -162,6 +162,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Terapeuta\IndexTer.cshtml" />
     <Content Include="Views\Login\CriarLogin.cshtml" />
+    <Content Include="Views\Administrador\Criar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
