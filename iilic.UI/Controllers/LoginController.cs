@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -17,6 +18,16 @@ namespace iilic.UI.Controllers
         {
             return View();
 
+        }
+        /// <summary>
+        /// tentativa de imagem
+        /// </summary>
+        public void GetImagem()
+        {
+            WebImage wbImage = new WebImage("~/Imagem/psi.jpg");
+            wbImage.Resize(300, 300);
+            wbImage.FileName = "psi.jpg";
+            wbImage.Write();
         }
 
         [HttpPost]
