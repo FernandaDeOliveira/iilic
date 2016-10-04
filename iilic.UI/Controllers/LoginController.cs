@@ -18,6 +18,13 @@ namespace iilic.UI.Controllers
         {
             return View();
 
+
+        }
+
+        public ActionResult teste()
+        {
+            return View();
+
         }
         /// <summary>
         /// tentativa de imagem
