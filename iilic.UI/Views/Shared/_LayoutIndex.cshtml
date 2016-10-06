@@ -1,0 +1,81 @@
+﻿@model iilic.Core.Login
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+
+    <link href="~/App_Theme/bootstrap.min.css" rel="stylesheet">
+</head>
+
+
+  <!--  <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                 
+                </button>
+                <a class="navbar-brand" style="color:white" href="#">IILIC</a>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"  style="color:white">Sobre</a></li>
+                    <li><a href="#" style="color:white">Criar Login</a></li>
+                    <!--class="homeDireita"--
+                    
+                    <a href="@Url.Action(" Login", "CriarLog" , "CriarLogin" )">Criar login</a>
+                    <a href="~/Login/CriarLogin/">AQUI</a> 
+                </ul>
+            </div>
+        </div>
+    </nav>-->
+
+
+<div class="container">
+    <h3 class="alert-danger">@ViewBag.errouLogin</h3>
+    <div class="col-md-6">
+        <div class="configdiv">
+            <img src="~/Imagem/ual00012.jpg" style="display:block" class="img-responsive img-rounded" alt="" />
+           
+        </div>
+    </div>
+    <div class="col-md-6" style="background-color:#A9D0F5">
+        <div class="configdiv">
+                 
+          <!-- <div class="login-panel panel panel-default">--> 
+                <div class="" >
+                  
+                 
+                   
+
+                    <form action="Autentica" method="post">
+                        <div>
+                            <div class="form-group " >
+                                <div class="form-group">
+                                    <h3>Logar como:</h3>
+                                    <il>
+                                        <label><input type="radio" name="valorLog" checked="true" value="1">Administrador</label>
+                                        <label><input type="radio" name="valorLog" value="2">Terapeuta</label>
+                                    </il>
+                                </div>
+                                <div class="col-md-20">
+                                    <input placeholder="Digite sua credencial" name="login" class="form-control input-md" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-20">
+                                    <input placeholder="Digite sua senha" name="senha" class="form-control input-md" type="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Entrar" class="btn btn-primary active" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+</div>
+</div>
+</div>
