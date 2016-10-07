@@ -78,7 +78,7 @@ namespace iilic.UI.Controllers
             return View("Index");
         }
 
-        public ActionResult CriarLog()
+        public ActionResult CriarLogin()
             ///ver se nao tem q passar id
         {
             return View("CriarLogin");

@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "IndexADM";
+}
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</head>
+<body>
+        <div class="form-control">
+            <div class="form-group text-right">
+                <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                            </button>
+                            <a class="navbar-brand" style="color:white" href="#">IILIC</a>
+                            <ul class="nav navbar-nav">
+                                <li><a href="#" style="color:white">Sair</a></li>
+                               
+
+                            </ul>
+                        </div>
+                    </div>                    
+                </nav>
+                </div>
+            </div>
+                <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+                    <div class="col-sm-3 col-lg-2 sidebar" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+                        <div class="col-sm-4 col-md-2 sidebar" style="background-color:dodgerblue" id="sidenav">
+                            <ul class="nav nav-sidebar">
+                                <li class="active"><a style="color:black" href="Criar">Perfil <span class="sr-only">(current)</span></a></li>
+                                <!--SNCORA-->
+                                <li><a style="color:black " href="~/Terapeuta/IndexTer">Terapeutas</a></li>
+                                <li><a style="color:black" onclick="IndexTer.html">Analytics</a></li>
+                                <li><a style="color:black" href="#">Export</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="container">
+
+                        @RenderBody()
+                    </div>
+                </div>
+    </body>
+</html>

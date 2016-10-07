@@ -48,9 +48,7 @@ namespace iilic.Repositorio
             MySqlCommand cmd = new MySqlCommand();
             StringBuilder sql = new StringBuilder();
 
-            sql.Append("Insert into ");
-            sql.Append("logindb(@login,@senha,@log ) ");
-            sql.Append(" values(@login,@senha,@log) ");
+            sql.Append("INSERT INTO logindb(login, senha, log ) VALUES (@login, @senha, @log) ");
 
             cmd.Parameters.AddWithValue("@login", pLogin.login);
             cmd.Parameters.AddWithValue("@senha", pLogin.senha);
