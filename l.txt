@@ -1,0 +1,13 @@
+  <div class="col-lg-12">
+            <div id="sidebar-collapse" class="col-lg-2" style="background-color:dodgerblue; height:750px; margin-left:0px;">
+                <ul class="nav menu">
+                    <br />
+                    <br />
+                    <br />
+                    <li class="active"><a style="color:black" href="Criar">Perfil <span class="sr-only">(current)</span></a></li>
+                    <!--SNCORA-->
+                    <li><a style="color:black" href="~/Terapeuta/IndexTer">Terapeutas</a></li>
+                    <li><a style="color:black" onclick="IndexTer.html">Analytics</a></li>
+                    <li><a style="color:black" href="#">Export</a></li>
+                </ul>
+            </div>

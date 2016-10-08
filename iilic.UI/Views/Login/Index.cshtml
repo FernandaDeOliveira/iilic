@@ -1,40 +1,51 @@
 ﻿@model iilic.Core.Login
 <h3 class="alert-danger">@ViewBag.errouLogin</h3>
-<div class="col-md-6">
-    <div class="configdiv">
-        <img src="~/Imagem/ual00012.jpg" style="display:block" class="img-responsive img-rounded" alt="" />
-    </div>
-</div>
-<div class="col-md-6" style="background-color:#A9D0F5">
-    <div>
-        <!-- <div class="login-panel panel panel-default">-->
-        <div class="">
-            <form action="Autentica" method="post">
-                <div>
-                    <div class="form-group">
-                        <div class="form-group">
-                            <h3>Logar como:</h3>
-                            <il>
-                                <label><input type="radio" name="valorLog" checked="true" value="1">Administrador</label>
-                                <label><input type="radio" name="valorLog" value="2">Terapeuta</label>
-                            </il>
-                        </div>
-                        <div class="col-md-20">
-                            <input placeholder="Digite sua credencial" name="login" class="form-control input-md" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-20">
-                            <input placeholder="Digite sua senha" name="senha" class="form-control input-md" type="password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Entrar" class="btn btn-primary active" />
-                        </div>
-                    </div>
+<div class="container" >
+    <!--  <div class="col-md-6">
+      <div class="configdiv">
+          <img src="~/Imagem/imag3.jpg" class="img-responsive img-rounded " alt="" />
+      </div>-->
+    <!--  <div class="col-lg-6" style="background-color:#A9D0F5">-->
+   
+    <div style="padding-top:120px">
+        
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 ">
+            <div class="login-panel panel panel-primary">
+                <div class="panel-heading">Login</div>
+                <div class="panel-body">
+                    <form action="Autentica" method="post">
+                        <h3 class="alert-danger">@ViewBag.errouLogin</h3><!--NAO TA FUNCIONANDO-->
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="form-group">
+                             
+                                    <il>
+                                        <label><input type="radio" name="valorLog" checked="true" value="1">Administrador</label>
+                                        <label><input type="radio" name="valorLog" value="2">Terapeuta</label>
+                                    </il>
+                                </div>
+                                <div class="col-md-20">
+                                    <input placeholder="Digite sua credencial" name="login" class="form-control input-md" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-20">
+                                    <input placeholder="Digite sua senha" name="senha" class="form-control input-md" type="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left:250px">
+                                    <button type="submit" class="btn btn-primary btn-lg" aria-label="Entrar">
+                                        <span class="glyphicon glyphicon-ok-sign"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
+
 </div>
