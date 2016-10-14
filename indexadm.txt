@@ -11,3 +11,12 @@
                     <li><a style="color:black" href="#">Export</a></li>
                 </ul>
             </div>
+
+http://www.tutorialwebdesign.com.br/criando-layout-em-bootstrap-parte1/
+https://pfprogramador.wordpress.com/2015/01/29/criar-menu-responsivo-com-bootstrap/
+https://www.adchsm.com/slidebars/downloads/
+https://webdesign.tutsplus.com/articles/a-simple-responsive-mobile-first-navigation--webdesign-6074
+http://tympanus.net/Blueprints/SlidePushMenus/
+https://startbootstrap.com/template-overviews/simple-sidebar/
+http://www.w3schools.com/howto/howto_js_sidenav.asp
+

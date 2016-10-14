@@ -33,5 +33,30 @@ namespace iilic.Repositorio
             cmd.CommandText = sql.ToString();
             conn.executeCommand(cmd);
         }
+
+        public IEnumerable<Terapeuta> getAll()
+        {
+
+            List<Terapeuta> terapeutas = new List<Terapeuta>();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT * FROM terapeutas ");
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = sql.ToString();
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            while (dr.Read())
+            {
+                terapeutas.Add(new Terapeuta
+                    (
+                        (int)dr["cgu"],
+                        (string)dr["name_studant"],
+                        (DateTime)dr["birth"],
+                        (string)dr["course"]
+
+                    ));
+            }
+            return studants;
+        }
     }
 }
