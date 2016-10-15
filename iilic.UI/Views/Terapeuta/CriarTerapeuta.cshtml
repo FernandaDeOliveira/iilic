@@ -1,0 +1,55 @@
+﻿@model iilic.Core.Terapeuta
+@{
+    ViewBag.Title = "CriarTerapeuta";
+}
+
+
+<form action="~/Terapeuta/CriarTerapeuta" method="Post">
+    <div class="form-group">
+
+        <div class="container-fluid">
+
+            <div class="col-lg-12">
+                <h2>Dados do terapeuta</h2>
+            </div>
+            <div class="form-group col-lg-6">
+                <label>Nome *</label>
+                <input class="form-control" type="text" name="nomeMed" required>
+            </div>
+            <!--VALIDARCPF-->
+            <div class="form-group  col-lg-4">
+                <label>CPF  *</label>
+                <input class="form-control" type="text" name="cpfMed" required>
+            </div>
+            <div class="form-group col-sm-4">
+                <label>Data de nascimento *</label>
+                <input class="form-control" type="date" name="dataNascMed">
+            </div>
+            <div class="form-group col-lg-4">
+                <label>Email *</label>
+                <input class="form-control" type="email" name="email" required>
+            </div>
+            <div class="form-group col-lg-4">
+                <label>Sexo *</label>
+                <div class="form-group">
+                    <label><input type="radio" name="sexo" value="masculino">Masculino</label>
+                    <label><input type="radio" name="sexo" value="feminino">Feminino</label>
+                </div>
+            </div>
+            <div class="form-group col-lg-4">
+                <label>Telefone *</label>
+                <input class="form-control" type="text" name="telefone" required>
+            </div>
+            <div class="form-group col-lg-4">
+                <label> CRM *</label>
+                <input class="form-control" type="text" name="crmM" required>
+            </div>
+            <div class="form-group col-lg-4">
+                <button class="btn btn-success form-group" type="submit">Cadastrar</button>
+                <button class="btn btn-danger form-group" type="reset">Limpar</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+

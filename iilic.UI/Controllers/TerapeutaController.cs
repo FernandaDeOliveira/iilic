@@ -1,4 +1,5 @@
-﻿using iilic.Repositorio;
+﻿using iilic.Core;
+using iilic.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,18 @@ namespace iilic.UI.Controllers
         {
             var tera = terapeutaRepositorio.getAll();
             return View(tera);
+        }
+
+        public ActionResult CriarTerapeuta()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CriarTerapeuta(Terapeuta pT)
+        {
+            terapeutaRepositorio.criar(pT);
+            return RedirectToAction("IndexTer");
         }
     }
 }

@@ -39,7 +39,7 @@ namespace iilic.Repositorio
 
             List<Terapeuta> terapeutas = new List<Terapeuta>();
             StringBuilder sql = new StringBuilder();
-            sql.Append("SELECT * FROM terapeutas ");
+            sql.Append("SELECT * FROM terapeuta ");
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.CommandText = sql.ToString();
@@ -49,14 +49,42 @@ namespace iilic.Repositorio
             {
                 terapeutas.Add(new Terapeuta
                     (
-                        (int)dr["cgu"],
-                        (string)dr["name_studant"],
-                        (DateTime)dr["birth"],
-                        (string)dr["course"]
+                        (int)dr["numMed"],
+                        (string)dr["nomeMed"],
+                        (string)dr["cpfMed"],
+                        (DateTime)dr["dataNascMed"],
+                        (string)dr["email"],
+                          (string)dr["sexo"],
+                        (string)dr["telefone"],
+                        (string)dr["crm"]
 
                     ));
             }
-            return studants;
+            return terapeutas;
+        }
+
+        public void criar(Terapeuta pTerapeuta)
+        {
+
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+
+            sql.Append("INSERT INTO terapeuta(nomeMed, cpfMed, dataNascMed, email, sexo, telefone, crm ) " +
+                "VALUES (@nomeMed, @cpfMed, @dataNascMed, @email, @sexo, @telefone, @crm) ");
+
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@nomeMed", pTerapeuta.nomeMed);
+            cmd.Parameters.AddWithValue("@cpfMed",pTerapeuta.cpfMed);
+            cmd.Parameters.AddWithValue("@dataNascMed", pTerapeuta.dataNascMed.ToString("yyyy-MM-dd"));
+            cmd.Parameters.AddWithValue("@email", pTerapeuta.email);
+            cmd.Parameters.AddWithValue("@sexo", pTerapeuta.sexo);
+            cmd.Parameters.AddWithValue("@telefone", pTerapeuta.telefone);
+            cmd.Parameters.AddWithValue("@crm", pTerapeuta.crmM);
+
+            cmd.CommandText = sql.ToString();
+
+            conn.executeSqlReader(cmd);
+
         }
     }
 }

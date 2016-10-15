@@ -50,12 +50,14 @@ namespace iilic.UI.Controllers
                     FormsAuthentication.SetAuthCookie(pLogin.login, false);
                     //redireciona para a mainpage
                     return RedirectToAction("IndexADM", "Administrador");
-                }
+                }else
+                    ViewBag.erroulogin = "Usuário ou senha não encontrados";
+                         return View("Index");
             }
             else
             {
-                ViewBag.erroulogin = "Usuário ou senha não encontrados";
-                return View("Index");
+             //   ViewBag.erroulogin = "Usuário ou senha não encontrados";
+               // return View("Index");
             }
             if (pLogin.valorLog == 2)
             {

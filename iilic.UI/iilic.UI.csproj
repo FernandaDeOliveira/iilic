@@ -170,6 +170,7 @@
     <Content Include="Views\Shared\_LayoutIndex.cshtml" />
     <Content Include="Views\Shared\_LayoutIndexADM.cshtml" />
     <Content Include="Views\Shared\_LayoutIndexTer.cshtml" />
+    <Content Include="Views\Terapeuta\CriarTerapeuta.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

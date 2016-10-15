@@ -1,0 +1,12 @@
+   <div class="row">
+                                            <div>
+                                                <div class="col-sm-3 col-lg-2 sidebar" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif " >
+                                                    <ul class="nav nav-sidebar" style="background-color:dodgerblue;height:750px;">
+                                                        <li class="active"><a style="color:black" href="Criar">Perfil <span class="sr-only">(current)</span></a></li>
+                                                        <li><a style="color:black" href="~/Terapeuta/IndexTer">Terapeutas</a></li>
+                                                        <li><a style="color:black" href="#">Analytics</a></li>
+                                                        <li><a style="color:black" href="#">Export</a></li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>

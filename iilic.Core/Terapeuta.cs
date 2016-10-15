@@ -15,14 +15,14 @@ namespace iilic.Core
         public string email { get; set; }
         public string sexo { get; set; }
         public string telefone { get; set; }
-        public int crmM { get; set; }
+        public string crmM { get; set; }
 
         public Terapeuta()
         {
 
         }
 
-        public Terapeuta(int numM,string nomeM,string cpfM,DateTime dataNascM,string emailM,string sexoM,string tel,int crm)
+        public Terapeuta(int numM,string nomeM,string cpfM,DateTime dataNascM,string emailM,string sexoM,string tel,string crm)
         {
             numMed = numM;
             nomeMed = nomeM;
@@ -30,7 +30,7 @@ namespace iilic.Core
             dataNascMed = dataNascM;
             email = emailM;
             sexo = sexoM;
-            telefone = telefone;
+            telefone = tel;
             crmM = crm;
         }
     }
