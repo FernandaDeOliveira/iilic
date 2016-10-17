@@ -48,8 +48,10 @@ namespace iilic.UI.Controllers
                 {
                     //grava o cookie do user
                     FormsAuthentication.SetAuthCookie(pLogin.login, false);
+                    TempData["idlogin"] = pLogin.idLogin;
                     //redireciona para a mainpage
                     return RedirectToAction("IndexADM", "Administrador");
+                    
                 }else
                     ViewBag.erroulogin = "Usuário ou senha não encontrados";
                          return View("Index");

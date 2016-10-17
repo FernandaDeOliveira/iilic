@@ -25,8 +25,8 @@ namespace iilic.Repositorio
             MySqlCommand cmd = new MySqlCommand();
             StringBuilder sql = new StringBuilder();
 
-            sql.Append("INSERT INTO administrador (nome, cpf, dataNasc, sexo, telefone,email) " +
-                "VALUES (@nome, @cpf, @dataNasc, @sexo,@telefone, @email)");
+            sql.Append("INSERT INTO administrador (nome, cpf, dataNasc, sexo, telefone,email, idLogin) " +
+                "VALUES (@nome, @cpf, @dataNasc, @sexo,@telefone, @email, @idLogin)");
 
             cmd.CommandText = sql.ToString();
             cmd.Parameters.AddWithValue("@nome", pAdmin.nomeAdmin);
@@ -35,6 +35,7 @@ namespace iilic.Repositorio
             cmd.Parameters.AddWithValue("@sexo", pAdmin.sexo);
             cmd.Parameters.AddWithValue("@telefone", pAdmin.telefone);
             cmd.Parameters.AddWithValue("@email", pAdmin.email);
+            cmd.Parameters.AddWithValue("@idLogin", pAdmin.idLogin);
 
             cmd.CommandText = sql.ToString();
             conn.executeCommand(cmd);

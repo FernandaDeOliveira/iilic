@@ -21,6 +21,7 @@ namespace iilic.Repositorio
             sql.Append("SELECT * from logindb ");
             sql.Append("WHERE login= @login and senha= @senha ");
 
+            cmd.CommandText = sql.ToString();
             cmd.Parameters.AddWithValue("@login", pLogin.login);
             cmd.Parameters.AddWithValue("@senha", pLogin.senha);
 

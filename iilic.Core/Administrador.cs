@@ -15,6 +15,7 @@ namespace iilic.Core
         public string email { get; set; }
         public string sexo { get; set; }
         public string telefone { get; set; }
+        public int idLogin { get; set; }
 
 
         public Administrador()
@@ -22,7 +23,7 @@ namespace iilic.Core
 
         }
 
-        public Administrador(int idA,string nomeA, string cpfAd,DateTime dataNascA,string emailA, string sexoA,string tel)
+        public Administrador(int idA,string nomeA, string cpfAd,DateTime dataNascA,string emailA, string sexoA,string tel, int idL)
         {
             idAdmin = idA;
             nomeAdmin = nomeA;
@@ -31,6 +32,7 @@ namespace iilic.Core
             email = emailA;
             sexo = sexoA;
             telefone = tel;
+            idLogin = idL;
         }
     }
 }
