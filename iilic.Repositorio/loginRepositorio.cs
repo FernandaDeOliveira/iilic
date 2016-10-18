@@ -33,6 +33,7 @@ namespace iilic.Repositorio
             if (!dr.HasRows)
                 return null;
 
+            sql.Clear();
             return new Login
             {   
                 idLogin = (int)dr["idLogin"],
@@ -40,6 +41,7 @@ namespace iilic.Repositorio
                 senha = (string)dr["senha"],
                 valorLog=(int)dr["log"]
             };
+            
         }
 
         public void Criar(Login pLogin)

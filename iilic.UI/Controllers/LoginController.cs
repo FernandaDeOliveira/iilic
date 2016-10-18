@@ -16,6 +16,7 @@ namespace iilic.UI.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            var idLogin = TempData.Peek("idLogin");
             return View();
 
 
@@ -48,7 +49,8 @@ namespace iilic.UI.Controllers
                 {
                     //grava o cookie do user
                     FormsAuthentication.SetAuthCookie(pLogin.login, false);
-                    TempData["idlogin"] = pLogin.idLogin;
+                    TempData["idLogin"] = userTryLogin.idLogin;
+                    TempData.Keep("idLogin");
                     //redireciona para a mainpage
                     return RedirectToAction("IndexADM", "Administrador");
                     
@@ -58,8 +60,7 @@ namespace iilic.UI.Controllers
             }
             else
             {
-             //   ViewBag.erroulogin = "Usuário ou senha não encontrados";
-               // return View("Index");
+           
             }
             if (pLogin.valorLog == 2)
             {
