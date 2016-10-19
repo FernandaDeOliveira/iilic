@@ -1,5 +1,12 @@
 ﻿@model iilic.Core.Login
 
+<script type="text/javascript">
+   $(function(){
+      $(".close").click(function(){
+         $("#myAlert").alert('close');
+      });
+   });
+</script> 
 <div class="container" >
     <!--  <div class="col-md-6">
       <div class="configdiv">
@@ -13,11 +20,17 @@
             <div class="login-panel panel panel-primary">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
+                    @if (@ViewBag.errouLogin != null)
+                    {
+                    <div id="myAlert" class="alert alert-warning alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h3>@ViewBag.errouLogin</h3>
+                    </div>
+                    }
                     <form action="Autentica" method="post">
-                        <div class="alert alert-danger" >
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                            <h3 >@ViewBag.errouLogin</h3>
-                        </div>
+                      
                       
                         <fieldset>
                             <div class="form-group">

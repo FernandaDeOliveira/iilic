@@ -12,11 +12,12 @@ namespace iilic.UI.Controllers
 {
     public class LoginController : Controller
     {
+        AdministradorController adm = new AdministradorController();
         loginRepositorio log = new loginRepositorio();
         // GET: Login
         public ActionResult Index()
         {
-            var idLogin = TempData.Peek("idLogin");
+
             return View();
 
 
@@ -49,8 +50,10 @@ namespace iilic.UI.Controllers
                 {
                     //grava o cookie do user
                     FormsAuthentication.SetAuthCookie(pLogin.login, false);
-                    TempData["idLogin"] = userTryLogin.idLogin;
-                    TempData.Keep("idLogin");
+                    string nome;
+                    TempData["login"] = userTryLogin.login;
+                    TempData.Keep("login");
+                    
                     //redireciona para a mainpage
                     return RedirectToAction("IndexADM", "Administrador");
                     

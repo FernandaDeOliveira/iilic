@@ -5,29 +5,33 @@
 }
 
 
-<div class="col-xs-12 .col-sm-6 .col-md-8">
     <form action="~/Administrador/Criar" method="Post">
-        <div class="container">
+        <div class="form-group">
+        <div class="container-fluid">
             
 
             <div class="col-lg-12">
-                <h2>Perfil</h2>
+                <h2>Seus dados</h2>
+
+                <h5>
+                    @TempData["idLogin"]
+                </h5>
             </div>
-            <div class="form-group col-lg-12">
+            <div class="form-group ">
                 <label>Nome *</label>
                 <input class="form-control" type="text" name="nomeAdmin">
             </div>
 
-            <div class="col-lg-4">
+            <div class="form-group  col-lg-4">
                 <label>CPF  *</label>
                 <input class="form-control" type="text" name="cpf">
             </div>
-            <div class="col-lg-4">
+            <div class="form-group  col-lg-4">
                 <label>Data de nascimento *</label>
                 <input class="form-control" type="date" name="dataNasc">
             </div>
 
-            <div class="col-lg-4">
+            <div class="form-group  col-lg-4">
                 <label>Sexo *</label>
                 <div class="form-group">
 
@@ -36,12 +40,12 @@
 
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="form-group  col-lg-4">
                 <label>Telefone *</label>
                 <input class="form-control" type="text" name="telefone">
             </div>
 
-            <div class="col-lg-4">
+            <div class="form-group col-lg-4">
                 <label> Email</label>
                 <input class="form-control" type="text" name="email">
             </div>
@@ -52,7 +56,7 @@
                 <button class="btn btn-danger form-group" type="reset">Limpar</button>
             </div>
         </div>
+            </div>
     </form>
-</div>  
-    
+   
 

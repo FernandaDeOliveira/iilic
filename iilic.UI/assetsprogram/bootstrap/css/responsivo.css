@@ -1,0 +1,19 @@
+﻿@media (max-width:768px) {
+    #id_a_ocultar_em_tablet {
+        display: none;
+    }
+
+    .classe_a_ocultar_em_tablet {
+        display: none;
+    }
+}
+
+@media (max-width:480px) {
+    #id_a_ocultar_em_smartphone {
+        display: none;
+    }
+
+    .classe_a_ocultar_em_smartphone {
+        display: none;
+    }
+}
