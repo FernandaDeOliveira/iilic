@@ -13,6 +13,7 @@ namespace iilic.UI.Controllers
         adminRepositorio adminRepositorio = new adminRepositorio();
         private string nome;
         // GET: Administrador
+        [Authorize]///so aparece se estiver logado
         public ActionResult IndexADM()
         {
             nome = (string)TempData.Peek("login");

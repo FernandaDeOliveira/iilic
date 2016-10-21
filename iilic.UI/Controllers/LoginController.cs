@@ -53,7 +53,11 @@ namespace iilic.UI.Controllers
                     string nome;
                     TempData["login"] = userTryLogin.login;
                     TempData.Keep("login");
-                    
+
+                    int id;
+                    TempData["valorLog"] = userTryLogin.valorLog;
+                    TempData.Keep("valorLog");
+
                     //redireciona para a mainpage
                     return RedirectToAction("IndexADM", "Administrador");
                     
@@ -73,6 +77,14 @@ namespace iilic.UI.Controllers
                 {
                     //grava o cookie do user
                     FormsAuthentication.SetAuthCookie(pLogin.login, false);
+                    string nome;
+                    TempData["login"] = userTryLogin.login;
+                    TempData.Keep("login");
+
+                    int id;
+                    TempData["valorLog"] = userTryLogin.valorLog;
+                    TempData.Keep("valorLog");
+
                     //redireciona para a mainpage
                     return RedirectToAction("IndexTer", "Terapeuta");
                 }

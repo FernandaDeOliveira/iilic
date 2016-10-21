@@ -41,10 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrador.cs" />
+    <Compile Include="CaracterisTica.cs" />
     <Compile Include="Doença.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Relaciona.cs" />
     <Compile Include="Terapeuta.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
