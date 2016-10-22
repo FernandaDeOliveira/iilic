@@ -20,9 +20,13 @@ namespace iilic.Core
 
         }
 
-      //  public Relaciona(int pId,int PIdDo,int pIdCa, )
-        //{
-
-        //}
+        public Relaciona(int id, int pIdD, int pIdC, Doença pDoença,CaracterisTica pCarac)
+        {
+            idRelaciona = id;
+            idDoença = pIdD;
+            idCaracteristica = pIdC;
+            Doença = pDoença;
+            Caracteristica = pCarac;
+        }
     }
 }

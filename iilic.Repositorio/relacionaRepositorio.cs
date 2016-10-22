@@ -44,8 +44,56 @@ namespace iilic.Repositorio
             conn.executeCommand(cmd);
         }
 
+        public List<Relaciona> getAll()
+        {
+            ConexaoBD conn = new ConexaoBD();
 
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+            List<Relaciona> listaDoenças = new List<Relaciona>();
 
+            sql.Append("SELECT d.idDoenca, d.nomeDoenca, c.idCaracteristica, c.nomeCaracteristica " +
+                "FROM doenca d " +
+                "INNER JOIN relaciona r ON r.IdDoenca= d.idDoenca " +
+                "INNER JOIN caracteristica c " +
+                "ON c.idCaracteristica = c.idCaracteristica " +
+                "WHERE d.idDoenca = d.idDoenca ");
 
+            cmd.CommandText = sql.ToString();
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+
+            if (dr.HasRows)
+            {
+            
+                while (dr.Read())
+                {
+                    listaDoenças.Add(new Relaciona
+                    {
+                       // idRelaciona = (int)dr["id"],
+                        idDoença = (int)dr["idDoenca"],
+                        idCaracteristica = (int)dr["idCaracteristica"],
+                        Doença = new Doença
+                        {
+                            nomeDoença = (string)dr["nomeDoenca"],
+                        },
+                        Caracteristica = new CaracterisTica
+                        {
+                            nomeCaracteristica = (string)dr["nomeCaracteristica"]
+                        }
+                    });
+                }
+            }
+            sql.Clear();
+            dr.Close();
+            dr.Dispose();
+
+            return listaDoenças;
+        }
+
+      
     }
+
+
+        }
 }

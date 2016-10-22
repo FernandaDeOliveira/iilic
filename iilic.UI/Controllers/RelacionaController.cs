@@ -14,7 +14,8 @@ namespace iilic.UI.Controllers
         // GET: Relaciona
         public ActionResult IndexDoença()
         {
-            return View();
+            var lista = relacionaRepositorio.getAll();
+            return View(lista);
         }
 
         public ActionResult Criar()

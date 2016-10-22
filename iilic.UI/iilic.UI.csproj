@@ -176,6 +176,7 @@
     <Content Include="Views\Relaciona\IndexDoença.cshtml" />
     <Content Include="Views\Shared\_LayoutIndexDoença.cshtml" />
     <Content Include="Views\Terapeuta\Index2.cshtml" />
+    <Content Include="Views\Relaciona\Criar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
