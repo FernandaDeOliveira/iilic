@@ -45,7 +45,7 @@ namespace iilic.Repositorio
             conn.executeCommand(cmd);
         }
 
-        public Administrador getOne(int pId)
+    /*    public Administrador getOne(int pId)
         {
             Administrador adm = new Administrador();
             StringBuilder sql = new StringBuilder();
@@ -69,7 +69,7 @@ namespace iilic.Repositorio
                     ));
             }
             return studant;
-        }
+        }*/
     }
 
 }

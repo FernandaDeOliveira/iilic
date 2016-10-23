@@ -1,5 +1,4 @@
-﻿@model iilic.Core.Relaciona
-<div class="content-wrapper">
+﻿<div class="content-wrapper">
     <section class="content-header">
         <h1>
             NOME DO PROGRAMA
@@ -18,36 +17,26 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!-- Mudando essa area muda o conteudo do site -->
-                        <form action="~/Relaciona/Criar" method="Post">
+                        <form action="~/Relaciona/Pergunta" method="Post">
                             <div class="form-group">
                                 <div class="container-fluid">
 
 
                                     <div class="col-lg-12">
-                                        <h2>Dados das Doenças</h2>
+                                        <h2>Gostaria de adicionar mais características?</h2>
                                     </div>
                                     <div class="form-group ">
-                                        <label>Nome *</label>
-                                        <input class="form-control" type="text" name="nomeDoenca">
+                                        <button class="btn btn-success form-group" type="submit" value="1" name="pId">Sim</button>
+
                                     </div>
-                                    
+
 
                                     <div class="form-group  col-lg-4">
-                                        <label>Nome da Característica *</label>
-                                        <input class="form-control" type="text" name="nomeCaracteristica">
-                                    </div>
-                                 
-
-                                    <div class="col-lg-4">
-                                        <a href="~/Relaciona/Pergunta" class="btn btn-info" role="button">Teste</a>
-                                        <button class="btn btn-success form-group" type="submit">Salvar</button>
-                                        <button class="btn btn-danger form-group" type="reset">Limpar</button>
+                                        <button class="btn btn-danger form-group" type="submit" value="2">Não</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-
-
                         <!-- Mudando essa area muda o conteudo do site -->
                     </div>
                 </div>
@@ -55,6 +44,3 @@
         </div>
     </section>
 </div>
-
-
-

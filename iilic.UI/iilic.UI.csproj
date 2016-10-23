@@ -178,6 +178,8 @@
     <Content Include="Views\Terapeuta\Index2.cshtml" />
     <Content Include="Views\Relaciona\Criar.cshtml" />
     <Content Include="Views\Administrador\Dados.cshtml" />
+    <Content Include="Views\Relaciona\Pergunta.cshtml" />
+    <Content Include="Views\Relaciona\Caracteristica.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
