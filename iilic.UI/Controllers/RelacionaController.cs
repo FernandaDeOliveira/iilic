@@ -35,10 +35,10 @@ namespace iilic.UI.Controllers
 
             relacionaRepositorio.criar(pRelaciona);
            
-            TempData["idDoenca"] = pRelaciona.Doença.idDoença;
+            TempData["idDoenca"] = pRelaciona.Doenca.idDoenca;
             TempData.Keep("idDoenca");  
 
-            return RedirectToAction("IndexDoença");
+            return RedirectToAction("Pergunta");
         }
 
         public ActionResult Pergunta()
@@ -65,15 +65,16 @@ namespace iilic.UI.Controllers
 
         public ActionResult Caracteristica()
         {
-        //    id = (int)TempData.Peek("idDoenca");
-          //  ViewBag.idDoenca = id;
+            id = (int)TempData.Peek("idDoenca");
+            ViewBag.idDoenca = id;
             return View();
         }
 
         [HttpPost]
         public ActionResult salvarCaracteristica(Relaciona pRelaciona)
         {
-            relacionaRepositorio.criar(pRelaciona);
+            relacionaRepositorio.criarCaracteristica(pRelaciona);
+            
                 return View("IndexDoença");
 
 
