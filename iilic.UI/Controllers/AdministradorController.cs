@@ -12,8 +12,8 @@ namespace iilic.UI.Controllers
     {
         adminRepositorio adminRepositorio = new adminRepositorio();
         private string nome;
+        private int id;
         // GET: Administrador
-        [Authorize]///so aparece se estiver logado
         public ActionResult IndexADM()
         {
             nome = (string)TempData.Peek("login");
@@ -23,15 +23,29 @@ namespace iilic.UI.Controllers
 
         public ActionResult Criar()
         {
-           // int idLogin = (int)TempData.Peek("idLogin");
-            return View();
+
+            if (id != null)
+            {
+                //vai carregar um getOne pra exibir os dados de quem ta logado
+                //vai armazenar numa 
+                return View("Dados");
+
+            }
+            else
+            {
+                id = (int)TempData.Peek("valorLog");
+                ViewBag.idLogin = id;
+            }
+                return View();
+            
+           
          }
 
 
         [HttpPost]
         public ActionResult Criar(Administrador pAdm)
         {
-//int idLogin = (int)TempData.Peek("idLogin");
+            
             adminRepositorio.criarADM(pAdm);
 
             return RedirectToAction("IndexADM");

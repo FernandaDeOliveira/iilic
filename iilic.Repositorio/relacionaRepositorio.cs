@@ -12,7 +12,7 @@ namespace iilic.Repositorio
     public class relacionaRepositorio
     {
         ConexaoBD conn = new ConexaoBD();
-
+        
         public void criar(Relaciona pRelaciona)
         {
             ConexaoBD conn = new ConexaoBD();
@@ -96,4 +96,4 @@ namespace iilic.Repositorio
 
 
         }
-}
+

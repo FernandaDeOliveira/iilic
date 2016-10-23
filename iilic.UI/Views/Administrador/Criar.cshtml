@@ -1,62 +1,88 @@
 ﻿@model iilic.Core.Administrador
 
 @{
-    ViewBag.Title = "Criar";
+    var idLogin = ViewBag.idLogin;
 }
 
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            NOME DO PROGRAMA
+            <small>texto menor</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> LOCAL</a></li>
+            <li class="active">NOME DA PAGINA QUE ESTA</li>
+        </ol>
+    </section>
+    <section class="content">
 
-    <form action="~/Administrador/Criar" method="Post">
-        <div class="form-group">
-        <div class="container-fluid">
-            
+        <!-- Principal -->
+        <div class="box box-solid">
+            <div class="box-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Mudando essa area muda o conteudo do site -->
+                        <form action="~/Administrador/Criar" method="Post">
+                            <div class="form-group">
+                                <div class="container-fluid">
 
-            <div class="col-lg-12">
-                <h2>Seus dados</h2>
 
-                <h5>
-                    @TempData["idLogin"]
-                </h5>
-            </div>
-            <div class="form-group ">
-                <label>Nome *</label>
-                <input class="form-control" type="text" name="nomeAdmin">
-            </div>
+                                    <div class="col-lg-12">
+                                        <h2>Seus dados</h2>
 
-            <div class="form-group  col-lg-4">
-                <label>CPF  *</label>
-                <input class="form-control" type="text" name="cpf">
-            </div>
-            <div class="form-group  col-lg-4">
-                <label>Data de nascimento *</label>
-                <input class="form-control" type="date" name="dataNasc">
-            </div>
+                                        <h5>
+                                            <input class="form-control" type="hidden" name="idLogin" value="@idLogin">
+                                        </h5>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Nome *</label>
+                                        <input class="form-control" type="text" name="nomeAdmin">
+                                    </div>
 
-            <div class="form-group  col-lg-4">
-                <label>Sexo *</label>
-                <div class="form-group">
+                                    <div class="form-group  col-lg-4">
+                                        <label>CPF  *</label>
+                                        <input class="form-control" type="text" name="cpf">
+                                    </div>
+                                    <div class="form-group  col-lg-4">
+                                        <label>Data de nascimento *</label>
+                                        <input class="form-control" type="date" name="dataNasc">
+                                    </div>
 
-                    <label><input type="radio" name="sexo" value="masculino">Masculino</label>
-                    <label><input type="radio" name="sexo" value="feminino">Feminino</label>
+                                    <div class="form-group  col-lg-4">
+                                        <label>Sexo *</label>
+                                        <div class="form-group">
 
+                                            <label><input type="radio" name="sexo" value="masculino">Masculino</label>
+                                            <label><input type="radio" name="sexo" value="feminino">Feminino</label>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-lg-4">
+                                        <label>Telefone *</label>
+                                        <input class="form-control" type="text" name="telefone">
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label> Email</label>
+                                        <input class="form-control" type="text" name="email">
+                                    </div>
+
+                                    <div class="col-lg-4">
+
+                                        <button class="btn btn-success form-group" type="submit">Cadastrar</button>
+                                        <button class="btn btn-danger form-group" type="reset">Limpar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Mudando essa area muda o conteudo do site -->
+                    </div>
                 </div>
             </div>
-            <div class="form-group  col-lg-4">
-                <label>Telefone *</label>
-                <input class="form-control" type="text" name="telefone">
-            </div>
-
-            <div class="form-group col-lg-4">
-                <label> Email</label>
-                <input class="form-control" type="text" name="email">
-            </div>
-
-            <div class="col-lg-4">
-
-                <button class="btn btn-success form-group" type="submit">Cadastrar</button>
-                <button class="btn btn-danger form-group" type="reset">Limpar</button>
-            </div>
         </div>
-            </div>
-    </form>
+    </section>
+</div>
    
 

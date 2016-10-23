@@ -25,21 +25,51 @@ namespace iilic.Repositorio
             MySqlCommand cmd = new MySqlCommand();
             StringBuilder sql = new StringBuilder();
 
-            sql.Append("INSERT INTO administrador (nome, cpf, dataNasc, sexo, telefone,email, idLogin) " +
-                "VALUES (@nome, @cpf, @dataNasc, @sexo,@telefone, @email, @idLogin)");
+            sql.Append("INSERT INTO administrador (nome, cpf, dataNasc, sexo, telefone,email, idLogin) ");
+            sql.Append("VALUES(@nome, @cpf, @dataNasc, @sexo, @telefone, @email, @idLogin) ");
+    
+
 
             cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@idLogin", pAdmin.idLogin);
+
             cmd.Parameters.AddWithValue("@nome", pAdmin.nomeAdmin);
             cmd.Parameters.AddWithValue("@cpf", pAdmin.cpf);
             cmd.Parameters.AddWithValue("@dataNasc",pAdmin.dataNasc.ToString("yyyy-MM-dd"));
             cmd.Parameters.AddWithValue("@sexo", pAdmin.sexo);
             cmd.Parameters.AddWithValue("@telefone", pAdmin.telefone);
             cmd.Parameters.AddWithValue("@email", pAdmin.email);
-            cmd.Parameters.AddWithValue("@idLogin", pAdmin.idLogin);
+          
 
-            cmd.CommandText = sql.ToString();
+            
             conn.executeCommand(cmd);
         }
 
+        public Administrador getOne(int pId)
+        {
+            Administrador adm = new Administrador();
+            StringBuilder sql = new StringBuilder();
+
+            sql.Append("SELECT * FROM administrador ");
+            sql.Append("WHERE cgu=@cgu");
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@cgu", pId);
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            while (dr.Read())
+            {
+                studant = (new Student
+                    (
+                        (int)dr["cgu"],
+                        (string)dr["name_studant"],
+                        (DateTime)dr["birth"],
+                        (string)dr["course"]
+                    ));
+            }
+            return studant;
+        }
     }
+
 }
