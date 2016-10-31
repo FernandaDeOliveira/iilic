@@ -11,7 +11,7 @@ namespace iilic.Core
         public int idRelaciona { get; set; }
         public int idDoença { get; set; }
         public int idCaracteristica { get; set; }
-        public Doença Doenca { get; set; }
+        public Doenca Doenca { get; set; }
         public CaracterisTica Caracteristica { get; set; }
         public int pId { get; set; }
 
@@ -21,7 +21,7 @@ namespace iilic.Core
 
         }
 
-        public Relaciona(int id, int pIdD, int pIdC, Doença pDoença,CaracterisTica pCarac)
+        public Relaciona(int id, int pIdD, int pIdC, Doenca pDoença,CaracterisTica pCarac)
         {
             idRelaciona = id;
             idDoença = pIdD;

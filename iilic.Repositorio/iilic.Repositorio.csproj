@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adminRepositorio.cs" />
+    <Compile Include="caracteristicaRepositorio.cs" />
+    <Compile Include="doencaRepositorio.cs" />
     <Compile Include="loginRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="relacionaRepositorio.cs" />

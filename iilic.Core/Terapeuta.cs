@@ -16,6 +16,7 @@ namespace iilic.Core
         public string sexo { get; set; }
         public string telefone { get; set; }
         public string crmM { get; set; }
+        public Login acesso { get; set; }
 
         public Terapeuta()
         {

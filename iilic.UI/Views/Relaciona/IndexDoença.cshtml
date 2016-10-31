@@ -1,4 +1,4 @@
-﻿ @model IEnumerable<iilic.Core.Relaciona>
+﻿ @model IEnumerable<iilic.Core.Doenca>
  
 
                 <div class="content-wrapper">
@@ -35,14 +35,14 @@
                                                         <table class="table table-hover">
                                                             <tr>
                                                                 <th>Nome da Doença</th>
-                                                                <th>Características</th>
+                                                               
 
                                                             </tr>
                                                             @foreach (var d in Model)
                                                             {
                                                                 <tr>
-                                                                    <td>@d.Doenca.nomeDoenca</td>
-                                                                    <td>@d.Caracteristica.nomeCaracteristica</td>
+                                                                    <td>@d.nomeDoenca</td>
+                                                                    <td><form action="~/Relaciona/IndexCaracteristica" method="post"><button class="btn btn-success col-lg-12" name="idDoenca" value="@d.idDoenca" type="submit" >Caracteristicas</button></form></td>
 
 
                                                                 </tr>

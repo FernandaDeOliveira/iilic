@@ -141,7 +141,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RelacionaController.cs" />
     <Compile Include="Controllers\TerapeutaController.cs" />
@@ -165,14 +164,14 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Administrador\IndexADM.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Terapeuta\IndexTer.cshtml" />
-    <Content Include="Views\Login\CriarLogin.cshtml" />
+    <Content Include="Views\Administrador\IndexTer.cshtml" />
+    <Content Include="Views\Login\CriarLoginADM.cshtml" />
     <Content Include="Views\Administrador\Criar.cshtml" />
     <Content Include="Views\Login\teste.cshtml" />
     <Content Include="Views\Shared\_LayoutIndex.cshtml" />
     <Content Include="Views\Shared\_LayoutIndexADM.cshtml" />
     <Content Include="Views\Shared\_LayoutIndexTer.cshtml" />
-    <Content Include="Views\Terapeuta\CriarTerapeuta.cshtml" />
+    <Content Include="Views\Administrador\CriarTerapeuta.cshtml" />
     <Content Include="Views\Relaciona\IndexDoença.cshtml" />
     <Content Include="Views\Shared\_LayoutIndexDoença.cshtml" />
     <Content Include="Views\Terapeuta\Index2.cshtml" />
@@ -180,6 +179,8 @@
     <Content Include="Views\Administrador\Dados.cshtml" />
     <Content Include="Views\Relaciona\Pergunta.cshtml" />
     <Content Include="Views\Relaciona\Caracteristica.cshtml" />
+    <Content Include="Views\Login\CriarLoginTER.cshtml" />
+    <Content Include="Views\Relaciona\IndexCaracteristica.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

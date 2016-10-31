@@ -13,7 +13,7 @@ namespace iilic.Repositorio
     public class adminRepositorio
     {
         //abrir os outros projetos pra olhar o crud
-
+        loginRepositorio loginMetodo = new loginRepositorio();
         // private Conexao.Conexao.Wamp.Conexao Projet.Conexao.MySqlDb.Connection conn;
          Conexao.ConexaoBD conn = new Conexao.ConexaoBD();
             
@@ -25,13 +25,13 @@ namespace iilic.Repositorio
             MySqlCommand cmd = new MySqlCommand();
             StringBuilder sql = new StringBuilder();
 
-            sql.Append("INSERT INTO administrador (nome, cpf, dataNasc, sexo, telefone,email, idLogin) ");
-            sql.Append("VALUES(@nome, @cpf, @dataNasc, @sexo, @telefone, @email, @idLogin) ");
+            sql.Append("INSERT INTO administrador (nome, cpf, dataNasc, sexo, telefone, email) ");
+            sql.Append("VALUES(@nome, @cpf, @dataNasc, @sexo, @telefone, @email) ");
     
 
 
             cmd.CommandText = sql.ToString();
-            cmd.Parameters.AddWithValue("@idLogin", pAdmin.idLogin);
+            
 
             cmd.Parameters.AddWithValue("@nome", pAdmin.nomeAdmin);
             cmd.Parameters.AddWithValue("@cpf", pAdmin.cpf);
@@ -39,10 +39,23 @@ namespace iilic.Repositorio
             cmd.Parameters.AddWithValue("@sexo", pAdmin.sexo);
             cmd.Parameters.AddWithValue("@telefone", pAdmin.telefone);
             cmd.Parameters.AddWithValue("@email", pAdmin.email);
-          
 
-            
+
             conn.executeCommand(cmd);
+            sql.Clear();
+
+            sql.Append("SELECT num from administrador");
+
+
+            cmd.CommandText = sql.ToString();
+
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            dr.Read();
+            pAdmin.idAdmin = (int)dr["num"];
+            pAdmin.acesso.adm = pAdmin;
+            
+            loginMetodo.CriarADM(pAdmin.acesso);
         }
 
     /*    public Administrador getOne(int pId)

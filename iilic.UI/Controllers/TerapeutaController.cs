@@ -23,7 +23,7 @@ namespace iilic.UI.Controllers
         /// <returns></returns>
 
         
-        public ActionResult IndexTer()
+        public ActionResult IndexTerapeuta()
         {
             id = (int)TempData.Peek("valorLog");
             ViewBag.id = id;
@@ -45,9 +45,9 @@ namespace iilic.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult CriarTerapeuta(Terapeuta pT)
+        public ActionResult CriarTerapeuta(Terapeuta pTerapeuta)
         {
-            terapeutaRepositorio.criar(pT);
+            terapeutaRepositorio.criarTer(pTerapeuta);
             return RedirectToAction("IndexTer");
         }
     }

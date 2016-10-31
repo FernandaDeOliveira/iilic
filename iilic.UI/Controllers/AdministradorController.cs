@@ -11,6 +11,7 @@ namespace iilic.UI.Controllers
     public class AdministradorController : Controller
     {
         adminRepositorio adminRepositorio = new adminRepositorio();
+        terapeutaRepositorio terapeutaRepositorio = new terapeutaRepositorio();
         private string nome;
         private int id;
         // GET: Administrador
@@ -18,12 +19,13 @@ namespace iilic.UI.Controllers
         {
             nome = (string)TempData.Peek("login");
             ViewBag.nome = nome;
+            //fazer carregar o id aqui
             return View();
         }
 
         public ActionResult Criar()
         {
-
+            //pegar o id aqui e testar se eh null
             if (id != null)
             {
                 //vai carregar um getOne pra exibir os dados de quem ta logado
@@ -50,5 +52,41 @@ namespace iilic.UI.Controllers
 
             return RedirectToAction("IndexADM");
         }
-}
+
+
+        public ActionResult CriarTerapeuta()
+        {
+
+            
+            return View();
+
+
+        }
+
+
+        [HttpPost]
+        public ActionResult CriarTerapeuta(Terapeuta pTerapeuta)
+        {
+
+            terapeutaRepositorio.criarTer(pTerapeuta);
+
+            return RedirectToAction("IndexTer");
+        }
+
+        public ActionResult IndexTer()
+        {
+         //   id = (int)TempData.Peek("valorLog");
+         //   ViewBag.id = id;
+//if (ViewBag.id == 1)
+         //   {
+                var tera = terapeutaRepositorio.getAll();
+                return View(tera);
+       //     }
+       //     else
+      //      {
+
+      //      }
+//return View("Index2");
+        }
+    }
 }

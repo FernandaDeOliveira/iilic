@@ -11,40 +11,44 @@ namespace iilic.UI.Controllers
     public class RelacionaController : Controller
     {
         relacionaRepositorio relacionaRepositorio = new relacionaRepositorio();
+        doencaRepositorio doencaRepositorio = new doencaRepositorio();
         private int id;
+        public  int idDoenca2;
     
         // GET: Relaciona
         public ActionResult IndexDoença()
         {
-            var lista = relacionaRepositorio.getAll();
+            var lista = doencaRepositorio.getAll();
             return View(lista);
+        }
+
+        [HttpPost]
+        public ActionResult IndexCaracteristica(int idDoenca)
+        {
+            var listaCarac = doencaRepositorio.getAllCaracteristica(idDoenca);
+            return View(listaCarac);
         }
 
         public ActionResult Criar()
         {
-            // int idLogin = (int)TempData.Peek("idLogin");
+          
             return View();
         }
 
 
         [HttpPost]
         public ActionResult Criar(Relaciona pRelaciona)
-        {
-            //int idLogin = (int)TempData.Peek("idLogin");
-        
-
+        {                 
             relacionaRepositorio.criar(pRelaciona);
            
             TempData["idDoenca"] = pRelaciona.Doenca.idDoenca;
             TempData.Keep("idDoenca");  
 
             return RedirectToAction("Pergunta");
-        }
+            }
 
         public ActionResult Pergunta()
-        {
-          //  id = (int)TempData.Peek("idDoenca");
-//ViewBag.idDoenca = id;// int idLogin = (int)TempData.Peek("idLogin");
+        {   
             return View();
         }
 
@@ -65,17 +69,22 @@ namespace iilic.UI.Controllers
 
         public ActionResult Caracteristica()
         {
-            id = (int)TempData.Peek("idDoenca");
-            ViewBag.idDoenca = id;
+            idDoenca2 = (int)TempData.Peek("idDoenca");
+            ViewBag.idDoenca = idDoenca2;
+            //   var idCerto = id;
+             //  pRelaciona.Doenca.idDoenca = idDoenca2;
             return View();
         }
 
-        [HttpPost]
-        public ActionResult salvarCaracteristica(Relaciona pRelaciona)
-        {
-            relacionaRepositorio.criarCaracteristica(pRelaciona);
+            [HttpPost]
+            public ActionResult salvarCaracteristica(Relaciona pRelaciona)
+            {
+              //  idDoenca2 = (int)TempData.Peek("idDoenca");
+             //   var idCerto = id;
+         //   pRelaciona.Doenca.idDoenca = idDoenca2;
+                relacionaRepositorio.criarCaracteristica(pRelaciona);
             
-                return View("IndexDoença");
+                    return View("IndexDoença");
 
 
         }

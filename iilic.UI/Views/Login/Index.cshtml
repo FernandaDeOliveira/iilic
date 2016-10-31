@@ -29,7 +29,7 @@
                         <h3>@ViewBag.errouLogin</h3>
                     </div>
                     }
-                    <form action="Autentica" method="post">
+                    <form action="~/Login/Autentica" method="post">
                       
                       
                         <fieldset>
@@ -37,17 +37,17 @@
                                 <div class="form-group">
                              
                                     <il>
-                                        <label><input type="radio" name="valorLog" checked="true" value="1">Administrador</label>
+                                        <label><input type="radio" name="valorLog" checked="    " value="1">Administrador</label>
                                         <label><input type="radio" name="valorLog" value="2">Terapeuta</label>
                                     </il>
                                 </div>
                                 <div class="col-md-20">
-                                    <input placeholder="Digite sua credencial" name="login" class="form-control input-md" type="text">
+                                    <input placeholder="Digite sua credencial" name="login" class="form-control input-md" type="text" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-20">
-                                    <input placeholder="Digite sua senha" name="senha" class="form-control input-md" type="password">
+                                    <input placeholder="Digite sua senha" name="senha" class="form-control input-md" type="password" required>
                                 </div>
                             </div>
                             <div class="form-group">

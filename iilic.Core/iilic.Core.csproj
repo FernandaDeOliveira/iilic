@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Administrador.cs" />
     <Compile Include="CaracterisTica.cs" />
-    <Compile Include="Doença.cs" />
+    <Compile Include="Doenca.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

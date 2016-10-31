@@ -11,6 +11,7 @@ namespace iilic.Repositorio
 {
     public class terapeutaRepositorio
     {
+        loginRepositorio loginMetodo = new loginRepositorio();
         ConexaoBD conn = new ConexaoBD();
 
         public void criarTer(Terapeuta pTerapeuta)
@@ -26,12 +27,26 @@ namespace iilic.Repositorio
             cmd.Parameters.AddWithValue("@cpfMed", pTerapeuta.cpfMed);
             cmd.Parameters.AddWithValue("@telefone", pTerapeuta.telefone);
             cmd.Parameters.AddWithValue("@email", pTerapeuta.email);
-            cmd.Parameters.AddWithValue("@dataNascMed", pTerapeuta.dataNascMed.ToString("yyyy - MM - dd"));
+            cmd.Parameters.AddWithValue("@dataNascMed", pTerapeuta.dataNascMed.ToString("yyyy-MM-dd"));
             cmd.Parameters.AddWithValue("@crm", pTerapeuta.crmM);
             cmd.Parameters.AddWithValue("@sexo", pTerapeuta.sexo);
 
             cmd.CommandText = sql.ToString();
             conn.executeCommand(cmd);
+            sql.Clear();
+
+            sql.Append("SELECT numMed from terapeuta");
+
+
+            cmd.CommandText = sql.ToString();
+
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            dr.Read();
+            pTerapeuta.numMed = (int)dr["numMed"];
+            pTerapeuta.acesso.terapeuta = pTerapeuta;
+
+            loginMetodo.CriarTER(pTerapeuta.acesso);
         }
 
         public IEnumerable<Terapeuta> getAll()
@@ -63,7 +78,7 @@ namespace iilic.Repositorio
             return terapeutas;
         }
 
-        public void criar(Terapeuta pTerapeuta)
+       /* public void criar(Terapeuta pTerapeuta)
         {
 
             MySqlCommand cmd = new MySqlCommand();
@@ -85,6 +100,6 @@ namespace iilic.Repositorio
 
             conn.executeSqlReader(cmd);
 
-        }
+        }*/
     }
 }

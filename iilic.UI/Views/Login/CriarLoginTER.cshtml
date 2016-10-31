@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "CriarLoginTER";
+}
+<div style="padding-top:120px">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 ">
+        <div class="login-panel panel panel-info">
+            <div class="panel-heading" style="font-size:medium">Digite seus dados</div>
+            <div class="panel-body">
+                <form action="CriarLogTER" method="post">
+                    <fieldset>
+                        <div class="form-group">
+
+                            <div class="form-group ">
+                                <label>Nome *</label>
+                                <input class="form-control" type="text" name="nomeMed" required>
+                            </div>
+
+                            <div class="form-group  col-lg-4">
+                                <label>CPF  *</label>
+                                <input class="form-control" type="text" name="cpfMed" required>
+                            </div>
+                            <div class="form-group  col-lg-4">
+                                <label>Data de nascimento *</label>
+                                <input class="form-control" type="date" name="dataNascMed" required>
+                            </div>
+
+                            <div class="form-group  col-lg-4">
+                                <label>Sexo *</label>
+                                <div class="form-group">
+
+                                    <label><input type="radio" name="sexo" value="masculino" required>Masculino</label>
+                                    <label><input type="radio" name="sexo" value="feminino" required>Feminino</label>
+
+                                </div>
+                            </div>
+                            <div class="form-group  col-lg-4">
+                                <label>Telefone *</label>
+                                <input class="form-control" type="text" name="telefone" required>
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label> Email</label>
+                                <input class="form-control" type="text" name="email" required>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label> CRM</label>
+                                <input class="form-control" type="text" name="crmM" required>
+                            </div>
+                            <div class="col-md-20">
+                                <input placeholder="Digite sua credencial" name="acesso.login" class="form-control input-md" type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-20">
+                                <input placeholder="Digite sua senha" name="acesso.senha" class="form-control input-md" type="password" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div style="padding-left:300px">
+                                <button type="submit" class="btn btn-primary btn-lg" aria-label="Salvar">
+                                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

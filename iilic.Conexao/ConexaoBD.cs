@@ -27,9 +27,9 @@ namespace iilic.Conexao
         {
             return "Server=localhost" +
                 ";Port=3306" +
-                ";Database=iilicDB" +
+                ";Database=iilic" +
                 ";Uid=root" +
-                ";Pwd= ";
+                ";Pwd=root ";
         }
     }
 
@@ -68,6 +68,7 @@ namespace iilic.Conexao
 
     public MySqlDataReader executeSqlReader(MySqlCommand cmd)
     {
+            close();
         open();
         cmd.Connection = conn;
         dr = cmd.ExecuteReader();

@@ -13,6 +13,8 @@ namespace iilic.Core
         public string senha { get; set; }
         public int valorLog
         { get; set; }
+        public Administrador adm { get; set; }
+        public Terapeuta terapeuta { get; set; }
         //instanciar obj de adm e terapeuta
 
         public Login()

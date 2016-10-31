@@ -27,7 +27,21 @@ namespace iilic.Repositorio
             
             conn.executeCommand(cmd);
 
+            sql.Clear();               
+
+            sql.Append("SELECT idDoenca from doenca ");
+            sql.Append("WHERE nomeDoenca = @nomeDoenca ");
+            cmd.CommandText = sql.ToString();
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            dr.Read();
+            pRelaciona.Doenca.idDoenca = (int)dr["idDoenca"];
+            
             sql.Clear();
+            dr.Close();
+            dr.Dispose();
+
+            //   pRelaciona.Doenca.idDoenca = pRelaciona;
 
             sql.Append("INSERT INTO caracteristica (nomeCaracteristica) VALUES (@nomeCaracteristica)");
 
@@ -37,15 +51,29 @@ namespace iilic.Repositorio
 
             sql.Clear();
 
-            sql.Append("INSERT INTO relaciona (idDoenca,idCaracteristica) VALUES (@idDoenca,@idCaracteristica)");
+            sql.Append("SELECT idCaracteristica from caracteristica ");
+            sql.Append("WHERE nomeCaracteristica = @nomeCaracteristica ");
 
-            cmd.Parameters.AddWithValue("@idDoenca", pRelaciona.Doenca.idDoenca);
-            cmd.Parameters.AddWithValue("@idCaracteristica", pRelaciona.Caracteristica.idCarac);
+            cmd.CommandText = sql.ToString();
+
+
+             dr = conn.executeSqlReader(cmd);
+            dr.Read();
+            pRelaciona.Caracteristica.idCarac = (int)dr["idCaracteristica"];
+            sql.Clear();
+            dr.Close();
+            dr.Dispose();
+
+
+            sql.Append("INSERT INTO relaciona (doenca_idDoenca,caracteristica_idCaracteristica) VALUES (@doenca_idDoenca,@caracteristica_idCaracteristica)");
+
+            cmd.Parameters.AddWithValue("@doenca_idDoenca", pRelaciona.Doenca.idDoenca);
+            cmd.Parameters.AddWithValue("@caracteristica_idCaracteristica", pRelaciona.Caracteristica.idCarac);
             cmd.CommandText = sql.ToString();
             conn.executeCommand(cmd);
         }
 
-        public List<Relaciona> getAll()
+      /*  public List<Relaciona> getAll()
         {
             ConexaoBD conn = new ConexaoBD();
 
@@ -74,7 +102,7 @@ namespace iilic.Repositorio
                        // idRelaciona = (int)dr["id"],
                         idDoença = (int)dr["idDoenca"],
                         idCaracteristica = (int)dr["idCaracteristica"],
-                        Doenca = new Doença
+                        Doenca = new Doenca
                         {
                             nomeDoenca = (string)dr["nomeDoenca"],
                         },
@@ -90,27 +118,44 @@ namespace iilic.Repositorio
             dr.Dispose();
 
             return listaDoenças;
-        }
+        }*/
     
         public void criarCaracteristica(Relaciona pRelaciona)
         {
             ConexaoBD conn = new ConexaoBD();
 
             MySqlCommand cmd = new MySqlCommand();
-            StringBuilder sql = new StringBuilder();
+            StringBuilder sql = new StringBuilder();         
 
             sql.Append("INSERT INTO caracteristica (nomeCaracteristica) VALUES (@nomeCaracteristica)");
 
             cmd.Parameters.AddWithValue("@nomeCaracteristica", pRelaciona.Caracteristica.nomeCaracteristica);
             cmd.CommandText = sql.ToString();
+            
             conn.executeCommand(cmd);
 
+                sql.Clear();
+
+                sql.Append("SELECT idCaracteristica from caracteristica ");
+                sql.Append("WHERE nomeCaracteristica = @nomeCarac ");
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@nomeCarac", pRelaciona.Caracteristica.nomeCaracteristica);
+               
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd); 
+            dr = conn.executeSqlReader(cmd);
+            dr.Read();
+            pRelaciona.Caracteristica.idCarac = (int)dr["idCaracteristica"];
             sql.Clear();
+            dr.Close();
+            dr.Dispose();
 
-            sql.Append("INSERT INTO relaciona (idDoença,idCaracteristica) VALUES (@idDoença,@idCaracteristica)");
+       //     pRelaciona.Doenca.idDoenca = pRelaciona.idDoença;
 
-            cmd.Parameters.AddWithValue("@idDoença", pRelaciona.Doenca.idDoenca);
-            cmd.Parameters.AddWithValue("@idCaracteristica", pRelaciona.Caracteristica.idCarac);
+            sql.Append("INSERT INTO relaciona (doenca_idDoenca,caracteristica_idCaracteristica) VALUES (@doenca_idDoenca,@caracteristica_idCaracteristica)");
+
+            cmd.Parameters.AddWithValue("@doenca_idDoenca", pRelaciona.Doenca.idDoenca);
+            cmd.Parameters.AddWithValue("@caracteristica_idCaracteristica", pRelaciona.Caracteristica.idCarac);
             cmd.CommandText = sql.ToString();
             conn.executeCommand(cmd);
         }

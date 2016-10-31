@@ -12,7 +12,8 @@ namespace iilic.UI.Controllers
 {
     public class LoginController : Controller
     {
-        AdministradorController adm = new AdministradorController();
+        adminRepositorio adm = new adminRepositorio();
+        terapeutaRepositorio ter = new terapeutaRepositorio();
         loginRepositorio log = new loginRepositorio();
         // GET: Login
         public ActionResult Index()
@@ -71,7 +72,7 @@ namespace iilic.UI.Controllers
             }
             if (pLogin.valorLog == 2)
             {
-                var userTryLogin = log.Busca(pLogin);
+                var userTryLogin = log.BuscaTera(pLogin);
 
                 if (userTryLogin != null)
                 {
@@ -98,29 +99,30 @@ namespace iilic.UI.Controllers
             return View("Index");
         }
 
-        public ActionResult CriarLogin()
+        public ActionResult CriarLoginADM()
             ///ver se nao tem q passar id
         {
-            return View("CriarLogin");
+            return View("CriarLoginADM");
         }
 
         [HttpPost]
-        public ActionResult CriarLog(Login pLogin)
+        public ActionResult CriarLogADM(Administrador pAdministrador)
         {
-            if (pLogin.valorLog == 1)
-            {
-                log.Criar(pLogin);
-                RedirectToAction("Index");
-            }else
-            {
-               
-            }
-            if (pLogin.valorLog == 2)
-            {
-                log.Criar(pLogin);
-                RedirectToAction("Index");
-            }
-                return View("Index");
+            adm.criarADM(pAdministrador);
+                return RedirectToAction("Index");
+        }
+
+        public ActionResult CriarLoginTER()
+        ///ver se nao tem q passar id
+        {
+            return View("CriarLoginTER");
+        }
+
+        [HttpPost]
+        public ActionResult CriarLogTER(Terapeuta pTerapeuta)
+        {
+            ter.criarTer(pTerapeuta);
+            return RedirectToAction("Index");
         }
     }
 }
