@@ -38,8 +38,7 @@ namespace iilic.Repositorio
             {
                 idLogin = (int)dr["idLogin"],
                 login = (string)dr["login"],
-                senha = (string)dr["senha"],
-                valorLog = (int)dr["log"]
+                senha = (string)dr["senha"]
             };
 
         }
@@ -71,8 +70,7 @@ namespace iilic.Repositorio
             {
                 idLogin = (int)dr["idLoginTer"],
                 login = (string)dr["login"],
-                senha = (string)dr["senha"],
-                valorLog = (int)dr["log"]
+                senha = (string)dr["senha"]
             };
 
         }
@@ -85,7 +83,7 @@ namespace iilic.Repositorio
             StringBuilder sql = new StringBuilder();
 
 
-            sql.Append("INSERT INTO logindb(login, senha,  administrador_num ) VALUES (@login, @senha, @log, @administrador_num) ");
+            sql.Append("INSERT INTO logindb(login, senha,  administrador_num ) VALUES (@login, @senha, @administrador_num) ");
 
             cmd.Parameters.AddWithValue("@login", pLogin.login);
             cmd.Parameters.AddWithValue("@senha", pLogin.senha);
@@ -107,7 +105,7 @@ namespace iilic.Repositorio
             StringBuilder sql = new StringBuilder();
 
 
-            sql.Append("INSERT INTO loginter(login, senha,  terapeuta_numMed ) VALUES (@login, @senha, @terapeuta_numMed) ");
+            sql.Append("INSERT INTO loginTera(login, senha,  terapeuta_numMed ) VALUES (@login, @senha, @terapeuta_numMed) ");
 
             cmd.Parameters.AddWithValue("@login", pLogin.login);
             cmd.Parameters.AddWithValue("@senha", pLogin.senha);
@@ -117,5 +115,7 @@ namespace iilic.Repositorio
 
             conn.executeCommand(cmd);
         }
+
+        //fazer um metodo q pega o id admin q ta logado
     }
 }

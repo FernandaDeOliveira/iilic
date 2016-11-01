@@ -55,10 +55,7 @@ namespace iilic.UI.Controllers
                     TempData["login"] = userTryLogin.login;
                     TempData.Keep("login");
 
-                    int id;
-                    TempData["valorLog"] = userTryLogin.valorLog;
-                    TempData.Keep("valorLog");
-
+                    
                     //redireciona para a mainpage
                     return RedirectToAction("IndexADM", "Administrador");
                     
@@ -82,9 +79,6 @@ namespace iilic.UI.Controllers
                     TempData["login"] = userTryLogin.login;
                     TempData.Keep("login");
 
-                    int id;
-                    TempData["valorLog"] = userTryLogin.valorLog;
-                    TempData.Keep("valorLog");
 
                     //redireciona para a mainpage
                     return RedirectToAction("IndexTer", "Terapeuta");

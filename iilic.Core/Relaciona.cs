@@ -13,7 +13,7 @@ namespace iilic.Core
         public int idCaracteristica { get; set; }
         public Doenca Doenca { get; set; }
         public CaracterisTica Caracteristica { get; set; }
-        public int pId { get; set; }
+        public int pId {    get; set; }
 
 
         public Relaciona()

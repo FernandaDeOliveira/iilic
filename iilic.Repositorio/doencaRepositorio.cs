@@ -18,9 +18,15 @@ namespace iilic.Repositorio
 
             MySqlCommand cmd = new MySqlCommand();
             StringBuilder sql = new StringBuilder();
-            List<Doenca> listaDoenças = new List<Doenca>();
+            List<Doenca> listaDoencas = new List<Doenca>();
 
-            sql.Append("SELECT * from doenca");
+            sql.Append("SELECT d.idDoenca, d.nomeDoenca, c.idCaracteristica, c.nomeCaracteristica " +
+                "FROM doenca d " +
+                "INNER JOIN relaciona r ON r.IdDoenca= d.idDoenca " +
+                "INNER JOIN caracteristica c " +
+                "ON r.idCaracteristica = c.idCaracteristica " +
+                "WHERE d.idDoenca = d.idDoenca " +
+                "group by d.nomeDoenca");
 
             cmd.CommandText = sql.ToString();
 
@@ -31,12 +37,11 @@ namespace iilic.Repositorio
 
                 while (dr.Read())
                 {
-                    listaDoenças.Add(new Doenca
+                    listaDoencas.Add(new Doenca
                     {
                         // idRelaciona = (int)dr["id"],
                         idDoenca = (int)dr["idDoenca"],
                         nomeDoenca = (string)dr["nomeDoenca"]
-
                     });
                 }
             }
@@ -44,30 +49,28 @@ namespace iilic.Repositorio
             dr.Close();
             dr.Dispose();
 
-            return listaDoenças;
+            return listaDoencas;
+
         }
 
         public List<CaracterisTica> getAllCaracteristica(int pIdDoenca)
         {
+
             ConexaoBD conn = new ConexaoBD();
 
             MySqlCommand cmd = new MySqlCommand();
             StringBuilder sql = new StringBuilder();
-            List<CaracterisTica> listaCaracteristica = new List<CaracterisTica>();
-
+            List<CaracterisTica> listacaracteristica = new List<CaracterisTica>();
 
             sql.Append("SELECT d.idDoenca, d.nomeDoenca, c.idCaracteristica, c.nomeCaracteristica " +
                 "FROM doenca d " +
-                "INNER JOIN relaciona r ON r.doenca_idDoenca = d.idDoenca " +
+                "INNER JOIN relaciona r ON r.IdDoenca= d.idDoenca " +
                 "INNER JOIN caracteristica c " +
-                "ON r.caracteristica_idCaracteristica = c.idCaracteristica " +
-                "WHERE d.idDoenca = @pIdDoenca " +
-                "group by d.nomeDoenca");
-
+                "ON r.idCaracteristica = c.idCaracteristica " +
+                "WHERE d.idDoenca = @idDoenca");
 
             cmd.CommandText = sql.ToString();
-            cmd.Parameters.AddWithValue("@pIdDoenca", pIdDoenca);
-
+            cmd.Parameters.AddWithValue("@idDoenca", pIdDoenca);
 
             MySqlDataReader dr = conn.executeSqlReader(cmd);
 
@@ -76,12 +79,10 @@ namespace iilic.Repositorio
 
                 while (dr.Read())
                 {
-                    listaCaracteristica.Add(new CaracterisTica
+                    listacaracteristica.Add(new CaracterisTica
                     {
                         // idRelaciona = (int)dr["id"],
-                        idCarac = (int)dr["idCaracteristica"],
                         nomeCaracteristica = (string)dr["nomeCaracteristica"]
-
                     });
                 }
             }
@@ -89,10 +90,11 @@ namespace iilic.Repositorio
             dr.Close();
             dr.Dispose();
 
-            return listaCaracteristica;
+            return listacaracteristica;
+
         }
 
-       public void criarDoenca(Doenca pDoenca)
+        public void criarDoenca(Doenca pDoenca)
         {
             ConexaoBD conn = new ConexaoBD();
 

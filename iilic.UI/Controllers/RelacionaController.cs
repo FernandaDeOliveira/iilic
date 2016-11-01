@@ -67,27 +67,31 @@ namespace iilic.UI.Controllers
           
         }
 
+
         public ActionResult Caracteristica()
         {
-            idDoenca2 = (int)TempData.Peek("idDoenca");
-            ViewBag.idDoenca = idDoenca2;
-            //   var idCerto = id;
-             //  pRelaciona.Doenca.idDoenca = idDoenca2;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Caracteristica(Doenca Doenca)
+        {
+            TempData["idD"] = Doenca.idDoenca;
+            TempData.Keep("idD");
             return View();
         }
 
-            [HttpPost]
-            public ActionResult salvarCaracteristica(Relaciona pRelaciona)
-            {
-              //  idDoenca2 = (int)TempData.Peek("idDoenca");
-             //   var idCerto = id;
-         //   pRelaciona.Doenca.idDoenca = idDoenca2;
-                relacionaRepositorio.criarCaracteristica(pRelaciona);
-            
-                    return View("IndexDoença");
 
 
+        [HttpPost]
+        public ActionResult salvarCaracteristica(string nDoenca)
+        {
+            var ident = (int)TempData.Peek("idD");
+            relacionaRepositorio.criarCaracteristica(nDoenca, ident);
+            TempData.Remove("idD");
+            return View("Pergunta");
         }
-       
+
+
     }
+
 }

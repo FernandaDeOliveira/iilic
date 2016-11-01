@@ -19,6 +19,7 @@ namespace iilic.UI.Controllers
         {
             nome = (string)TempData.Peek("login");
             ViewBag.nome = nome;
+
             //fazer carregar o id aqui
             return View();
         }
@@ -75,18 +76,10 @@ namespace iilic.UI.Controllers
 
         public ActionResult IndexTer()
         {
-         //   id = (int)TempData.Peek("valorLog");
-         //   ViewBag.id = id;
-//if (ViewBag.id == 1)
-         //   {
+     
                 var tera = terapeutaRepositorio.getAll();
                 return View(tera);
-       //     }
-       //     else
-      //      {
 
-      //      }
-//return View("Index2");
         }
     }
 }

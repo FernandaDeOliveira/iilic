@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,19 +10,14 @@ namespace iilic.Conexao
 {
     public class ConexaoBD { 
 
-          #region Construtor
-    public ConexaoBD()
-    {
-        conn = new MySqlConnection(strConnection);
-    }
-    #endregion
+    
 
     #region Atributos
-    MySqlConnection conn;
+    MySqlConnection conn = new MySqlConnection();
     MySqlCommand cmd;
     MySqlDataReader dr;
 
-    public string strConnection
+    public string connString
     {
         get
         {
@@ -39,16 +35,25 @@ namespace iilic.Conexao
 
     public void open()
     {
-        if (conn.State == System.Data.ConnectionState.Closed)
-            conn.Open();
-    }
+            conn.ConnectionString = connString;
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
 
-    public void close()
+        }
+
+        public void close()
     {
-        conn.Close();
-    }
 
-    public void executeSQL(string pSql)
+            if (conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+            }
+
+        }
+
+        public void executeSQL(string pSql)
     {
         open();
         cmd = new MySqlCommand();
@@ -62,18 +67,39 @@ namespace iilic.Conexao
     {
         open();
         cmd.Connection = conn;
-        cmd.ExecuteNonQuery();
-        close();
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+            
+
+            close();
     }
 
     public MySqlDataReader executeSqlReader(MySqlCommand cmd)
     {
-            close();
-        open();
-        cmd.Connection = conn;
-        dr = cmd.ExecuteReader();
 
-        return dr;
+            open();
+            cmd.Connection = conn;
+
+            try
+            {
+
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (MySqlException ex)
+            {
+                dr.Dispose();
+                throw ex;
+            }
+
+            return dr;
+
     }
     #endregion
 }

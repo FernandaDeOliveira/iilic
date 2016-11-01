@@ -1,0 +1,73 @@
+﻿@model iilic.Core.Paciente
+@{
+    ViewBag.Title = "CriarPaciente";
+}
+
+<h2>CriarPaciente</h2>
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+          Iilic
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> LOCAL</a></li>
+            <li class="active">Novo paciente</li>
+        </ol>
+    </section>
+    <section class="content">
+
+        <!-- Principal -->
+        <div class="box box-solid">
+            <div class="box-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Mudando essa area muda o conteudo do site -->
+                        <form action="~/Paciente/CriarPaciente" method="Post">
+                            <div class="form-group">
+
+                                <div class="container-fluid">
+
+                                    <div class="col-lg-12">
+                                        <h2>Dados do paciente</h2>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label>Nome *</label>
+                                        <input class="form-control" type="text" name="nomePaciente" required>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label>Telefone *</label>
+                                        <input class="form-control" type="text" name="telefone" required>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label>Email *</label>
+                                        <input class="form-control" type="email" name="email" required>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                        <label>Data de nascimento *</label>
+                                        <input class="form-control" type="date" name="dataNascPac">
+                                    </div>
+
+                                    <!--VALIDARCPF-->
+                                    <div class="form-group  col-lg-4">
+                                        <label>CPF  *</label>
+                                        <input class="form-control" type="text" name="cpfPac" required>
+                                    </div>
+                                  
+                                    <div class="form-group col-lg-6">
+                                        <button class="btn btn-success form-group" type="submit">Cadastrar</button>
+                                        <button class="btn btn-danger form-group" type="reset">Limpar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+                        <!-- Mudando essa area muda o conteudo do site -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

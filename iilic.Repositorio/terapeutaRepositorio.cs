@@ -35,8 +35,11 @@ namespace iilic.Repositorio
             conn.executeCommand(cmd);
             sql.Clear();
 
-            sql.Append("SELECT numMed from terapeuta");
+            sql.Append("SELECT * from terapeuta");
+            sql.Append("WHERE nomeMed = @nomeM");
 
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@nomeM", pTerapeuta.nomeMed);
 
             cmd.CommandText = sql.ToString();
 

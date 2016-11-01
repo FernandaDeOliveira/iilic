@@ -141,7 +141,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\ConsultaController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\RelacionaController.cs" />
     <Compile Include="Controllers\TerapeutaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -181,6 +183,9 @@
     <Content Include="Views\Relaciona\Caracteristica.cshtml" />
     <Content Include="Views\Login\CriarLoginTER.cshtml" />
     <Content Include="Views\Relaciona\IndexCaracteristica.cshtml" />
+    <Content Include="Views\Paciente\Index.cshtml" />
+    <Content Include="Views\Paciente\CriarPaciente.cshtml" />
+    <Content Include="Views\Consulta\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

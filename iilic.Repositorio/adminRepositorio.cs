@@ -44,10 +44,12 @@ namespace iilic.Repositorio
             conn.executeCommand(cmd);
             sql.Clear();
 
-            sql.Append("SELECT num from administrador");
-
+            sql.Append("SELECT * from administrador ");
+            sql.Append("WHERE nome = @nomeA");
 
             cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@nomeA", pAdmin.nomeAdmin);
+           // cmd.CommandText = sql.ToString();
 
 
             MySqlDataReader dr = conn.executeSqlReader(cmd);
@@ -58,17 +60,17 @@ namespace iilic.Repositorio
             loginMetodo.CriarADM(pAdmin.acesso);
         }
 
-    /*    public Administrador getOne(int pId)
+   /*     public Administrador getOne(int pId)
         {
             Administrador adm = new Administrador();
             StringBuilder sql = new StringBuilder();
 
             sql.Append("SELECT * FROM administrador ");
-            sql.Append("WHERE cgu=@cgu");
+            sql.Append("WHERE num=@num");
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.CommandText = sql.ToString();
-            cmd.Parameters.AddWithValue("@cgu", pId);
+            cmd.Parameters.AddWithValue("@num", pId);
 
             MySqlDataReader dr = conn.executeSqlReader(cmd);
             while (dr.Read())
