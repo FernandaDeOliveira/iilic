@@ -46,6 +46,7 @@
     <Compile Include="Doenca.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Paciente.cs" />
+    <Compile Include="Pagamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relaciona.cs" />
     <Compile Include="Terapeuta.cs" />

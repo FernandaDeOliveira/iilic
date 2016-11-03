@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace iilic.UI.Controllers
 {
@@ -12,16 +13,27 @@ namespace iilic.UI.Controllers
     {
         adminRepositorio adminRepositorio = new adminRepositorio();
         terapeutaRepositorio terapeutaRepositorio = new terapeutaRepositorio();
+        consultaRepositorio consulta = new consultaRepositorio();
         private string nome;
         private int id;
         // GET: Administrador
+
+    //    public ActionResult LogOut()
+    //    {
+//FormsAuthentication.SignOut();
+   //         Session.Abandon(); // it will clear the session at the end of request
+//return RedirectToAction("Index", "Login");
+//}
+
+
         public ActionResult IndexADM()
         {
             nome = (string)TempData.Peek("login");
             ViewBag.nome = nome;
-
-            //fazer carregar o id aqui
-            return View();
+            DateTime data = DateTime.Now;
+            var consultasData= consulta.getAllData(data);
+         
+            return View(consultasData);
         }
 
         public ActionResult Criar()

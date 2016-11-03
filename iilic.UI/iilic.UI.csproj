@@ -186,6 +186,8 @@
     <Content Include="Views\Paciente\Index.cshtml" />
     <Content Include="Views\Paciente\CriarPaciente.cshtml" />
     <Content Include="Views\Consulta\Index.cshtml" />
+    <Content Include="Views\Consulta\CriarConsulta.cshtml" />
+    <Content Include="Views\Consulta\Pagamento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

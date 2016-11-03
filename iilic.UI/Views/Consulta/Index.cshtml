@@ -26,7 +26,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <a class="btn btn-success btn-lg" href="~/Paciente/CriarPaciente" aria-label="Adicionar">
+                                    <a class="btn btn-success btn-lg" href="~/Consulta/CriarConsulta" aria-label="Adicionar">
                                         <span class="glyphicon glyphicon-plus-sign"></span>
                                     </a>
                                 </div>
@@ -41,42 +41,44 @@
                                     </div>
                                 </div>
                             </div>
+                    
+                          
 
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> Paciente</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            <table class="table table-hover">
-                                                <tr>
-                                                    <th>Nome </th>
-                                                    <th>Telefone</th>
-                                                    <th>Email</th>
-                                                    <th>CPF</th>
-                                                    <th>Data de nascimento</th>
-                                                </tr>
-                                                @foreach (var paciente in Model)
-                                                {
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> Consultas</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <table class="table table-hover">
                                                     <tr>
-                                                        <td>@paciente.nomePaciente</td>
-                                                        <td>@paciente.telefone</td>
-                                                        <td>@paciente.email</td>
-                                                        <td>@paciente.cpfPac</td>
-                                                        <td>@paciente.dataNascPac</td>
+                                                        <th>Dia da consulta </th>
+                                                        <th>Nome do paciente</th>
+                                                        <th>Nome do terapeuta</th>
+                                                     
                                                     </tr>
-                                                }
+                                                    @foreach (var consulta in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>@consulta.dia</td>
+                                                            <td>@consulta.paciente.nomePaciente</td>
+                                                           
+                                                            <td>@consulta.terapeuta.nomeMed</td>
+                                                            <td><form action="~/Consulta/Pagamento" method="post"><button class="btn btn-success btn-lg" name="idC" value="@consulta.idConsulta" aria-label="Adicionar" type="submit">Efetuar pagamento<span class="glyphicon glyphicon-plus-sign"></span></button></form></td>
 
-                                            </table>
+                                                          
+                                                    </tr>
+                                                    }
+
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Mudando essa area muda o conteudo do site -->
+                                <!-- Mudando essa area muda o conteudo do site -->
                             </div>
-                            <!-- Mudando essa area muda o conteudo do site -->
-                            <!-- Mudando essa area muda o conteudo do site -->
-                        </div>
                     </div>
                 </div>
             </div>
@@ -86,9 +88,4 @@
 
 
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
 
