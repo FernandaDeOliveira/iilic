@@ -10,6 +10,7 @@ namespace iilic.Core
     {
         public int idConsulta { get; set; }
         public DateTime dia { get; set; }
+        public string hora { get; set; }
         public Paciente paciente { get; set; }
         public Terapeuta terapeuta { get; set; }
         public int statusPagamento { get; set; }

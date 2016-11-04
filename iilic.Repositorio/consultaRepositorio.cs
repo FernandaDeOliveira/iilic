@@ -21,14 +21,15 @@ namespace iilic.Repositorio
         public int criar(Consulta pConsulta)
         {
            
-            sql.Append("INSERT INTO consulta (dia, statusPagamento, codPaciente, numMed ) " +
-              "VALUES (@dia, @statusPagamento, @codPaciente, @numMed )");
+            sql.Append("INSERT INTO consulta (dia, statusPagamento, codPaciente, numMed, hora ) " +
+              "VALUES (@dia, @statusPagamento, @codPaciente, @numMed, @hora )");
 
             cmd.CommandText = sql.ToString();/// ESSE AQUI É O DO INSERT Q DEVE VIR ANTES DOS ADD.VALLUE
             cmd.Parameters.AddWithValue("@dia", pConsulta.dia.ToString("yyyy-MM-dd"));
             cmd.Parameters.AddWithValue("@statusPagamento", pConsulta.statusPagamento);
             cmd.Parameters.AddWithValue("@codPaciente", pConsulta.paciente.codPaciente);
             cmd.Parameters.AddWithValue("@numMed", pConsulta.terapeuta.numMed);
+            cmd.Parameters.AddWithValue("@hora", pConsulta.hora);
 
 
             conn.executeCommand(cmd);
@@ -36,9 +37,8 @@ namespace iilic.Repositorio
             sql.Append("SELECT c.idConsulta " +
                 "from consulta c " +
                 "inner join paciente p on p.codPaciente = @cod " +
-                "order by idConsulta asc limit 1 ");
-          
-
+                "where c.codPaciente= @cod ");
+  
             cmd.CommandText = sql.ToString();//ESSE EH DO SELECT
             cmd.Parameters.AddWithValue("@cod", pConsulta.paciente.codPaciente);
 
@@ -78,10 +78,11 @@ namespace iilic.Repositorio
 
             List<Consulta> consultas = new List<Consulta>();
             StringBuilder sql = new StringBuilder();
-            sql.Append("SELECT c.idConsulta, c.dia, p.nomePaciente, t.nomeMed, c.statusPagamento " +
+            sql.Append("SELECT c.idConsulta, c.dia, c.hora, p.nomePaciente, t.nomeMed, c.statusPagamento " +
                 "from consulta c " +
                 "inner join paciente p on p.codPaciente = c.codPaciente " +
-                "inner join terapeuta t on t.numMed = c.numMed ");
+                "inner join terapeuta t on t.numMed = c.numMed " +
+                "group by p.nomePaciente");
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.CommandText = sql.ToString();
@@ -93,7 +94,8 @@ namespace iilic.Repositorio
                 {
 
                     idConsulta = (int)dr["idConsulta"],
-                    dia = (DateTime)dr["dia"],                   
+                    dia = (DateTime)dr["dia"],  
+                    hora=(string)dr["hora"],                 
                     paciente = new Paciente
                     {
                         nomePaciente = (string)dr["nomePaciente"]
@@ -114,15 +116,15 @@ namespace iilic.Repositorio
 
             List<Consulta> consultas = new List<Consulta>();
             StringBuilder sql = new StringBuilder();
-            sql.Append("SELECT  p.nomePaciente, t.nomeMed, c.statusPagamento " +
+            sql.Append("SELECT  p.nomePaciente, t.nomeMed, c.idConsulta, c.statusPagamento, c.hora " +
                 "from consulta c " +
                 "inner join paciente p on p.codPaciente = c.codPaciente " +
                 "inner join terapeuta t on t.numMed = c.numMed " +
-                "where c.dia=@dia ");
+                "where c.dia = @dia ");
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.CommandText = sql.ToString();
-            cmd.Parameters.AddWithValue("@dia", dia);
+            cmd.Parameters.AddWithValue("@dia", dia.ToString("yyyy-MM-dd"));
 
             MySqlDataReader dr = conn.executeSqlReader(cmd);
             while (dr.Read())
@@ -131,7 +133,7 @@ namespace iilic.Repositorio
                 {
 
                     idConsulta = (int)dr["idConsulta"],
-                  //  dia = (DateTime)dr["dia"],
+                    hora = (string)dr["hora"],
                     paciente = new Paciente
                     {
                         nomePaciente = (string)dr["nomePaciente"]
@@ -148,16 +150,16 @@ namespace iilic.Repositorio
             return consultas;
         }
 
-        public void efetuarPagamento(float pValor, int idC,int tipoV)
+        public void efetuarPagamento(float pValor, int tipoV,int idC)
         {
             //idpagamento bugando
 
-            sql.Append("INSERT INTO pagamento (valor, tipoValor, consulta_idConsulta) VALUES (@valor, @tipoValor, @consulta_idConsulta)");
+            sql.Append("INSERT INTO pagamento (valor, tipoValor, consulta_idConsulta) VALUES (@val, @tipoVal, @idConsulta)");
 
             cmd.CommandText = sql.ToString();
-            cmd.Parameters.AddWithValue("@valor", pValor);
-            cmd.Parameters.AddWithValue("@tipoValor", tipoV);
-            cmd.Parameters.AddWithValue("@consulta_idConsulta", idC);
+            cmd.Parameters.AddWithValue("@val", pValor);
+            cmd.Parameters.AddWithValue("@tipoVal", tipoV);
+            cmd.Parameters.AddWithValue("@idConsulta", idC);
             conn.executeCommand(cmd);
             sql.Clear();
 

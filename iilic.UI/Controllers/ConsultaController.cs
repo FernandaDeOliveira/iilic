@@ -49,8 +49,18 @@ namespace iilic.UI.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult PagamentoBotao(int pid)
+        {
+            TempData["idConsulta"] = pid;
+            TempData.Keep("idConsulta");
+
+            return View("Pagamento");
+        }
+
         public ActionResult Pagamento()
         {
+         
 
             return View();
         }
@@ -65,14 +75,33 @@ namespace iilic.UI.Controllers
             {
                 var desc = (pV * 10) / 100;
                 float pValor = pV - desc;
-                consultaRepositorio.efetuarPagamento(pValor, ident, tV);
+                consultaRepositorio.efetuarPagamento(pValor, tV,ident);
                 TempData.Remove("idConsulta");
-                return View("Pagamento");
+                return View("Index");
             }
             else
                 consultaRepositorio.efetuarPagamento(pV, ident, tV);
 
             return RedirectToAction("Index");
         }
+
+      /*  [HttpPost]
+        public ActionResult Botao(float pV, int tV)
+        {
+
+            var ident = (int)TempData.Peek("idConsulta");
+            if (tV == 1)
+            {
+                var desc = (pV * 10) / 100;
+                float pValor = pV - desc;
+                consultaRepositorio.efetuarPagamento(pValor, tV, ident);
+                TempData.Remove("idConsulta");
+                return View("Index");
+            }
+            else
+                consultaRepositorio.efetuarPagamento(pV, ident, tV);
+
+            return RedirectToAction("Index");
+        }*/
     }
 }

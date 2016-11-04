@@ -32,8 +32,11 @@ namespace iilic.UI.Controllers
             ViewBag.nome = nome;
             DateTime data = DateTime.Now;
             var consultasData= consulta.getAllData(data);
-         
-            return View(consultasData);
+            if (consultasData != null)
+            {
+                return View(consultasData);
+            }
+            return View("Dados");
         }
 
         public ActionResult Criar()
