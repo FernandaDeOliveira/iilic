@@ -1,0 +1,39 @@
+﻿@model iilic.Core.Consulta
+
+@{
+    var valor = @ViewBag.valor;
+}
+
+<h2>getPDF</h2>
+////BOTAR AS OUTRAS MODIFICAÇÕES DE VIEW
+<div class="form-horizontal">
+
+    
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Nome:@Model.paciente.nomePaciente</label>
+        
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">CPF:@Model.paciente.cpfPac</label>
+
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Nome do terapeuta:@Model.terapeuta.nomeMed</label>
+    
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">CRM:@Model.terapeuta.crmM</label>
+
+    </div>
+    <div class="form-group">
+        <label>Valor:@valor</label>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <a href="@Url.Action("GeneratePDF", "Consulta")">Gerar PDF</a>
+        </div>
+    </div>
+</div>

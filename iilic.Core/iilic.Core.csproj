@@ -44,12 +44,15 @@
     <Compile Include="CaracterisTica.cs" />
     <Compile Include="Consulta.cs" />
     <Compile Include="Doenca.cs" />
+    <Compile Include="financeiroMes.cs" />
+    <Compile Include="financeiroSessao.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Pagamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relaciona.cs" />
     <Compile Include="Terapeuta.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

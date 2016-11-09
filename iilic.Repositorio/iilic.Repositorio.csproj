@@ -49,9 +49,12 @@
     <Compile Include="consultaRepositorio.cs" />
     <Compile Include="doencaRepositorio.cs" />
     <Compile Include="loginRepositorio.cs" />
+    <Compile Include="mesRepositorio.cs" />
     <Compile Include="pacienteRepositorio.cs" />
+    <Compile Include="pagamentoRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="relacionaRepositorio.cs" />
+    <Compile Include="sessaoRepositorio.cs" />
     <Compile Include="terapeutaRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>

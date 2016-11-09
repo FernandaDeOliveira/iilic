@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "TesteRecibo";
+}
+
+<h2>TesteRecibo</h2>
+<a href="javascript:imprimePanel()">AQUI</a>
+<script language="javascript" type="text/jscript">
+
+function imprimePanel() {
+
+var printContent = document.getElementById("<%=pnlImpressao.ClientID%>");
+
+       var windowUrl = 'about:blank';
+
+       var uniqueName = new Date();
+
+       var windowName = 'Print' + uniqueName.getTime();
+
+       var printWindow = window.open(windowUrl, windowName, 'left=50000,top=50000,width=0,height=0');
+
+
+
+       printWindow.document.write(printContent.innerHTML);
+
+       printWindow.document.close();
+
+       printWindow.focus();
+
+       printWindow.print();
+
+       printWindow.close();
+
+}
+</script>
+<asp:Panel ID="pnlImpressao"  Width="690px" Height="350px" ScrollBars="Auto">
+
+    <br />
+
+    Meus dados, informações:
+
+    Data: 12/01/2013
+
+    Nome: Mauricio Junior
+
+    Site: www.mauriciojunior.org
+
+    Processado: Sim
+
+ </asp:Panel>
+
+
+    <button type="submit" ID="btnImprimir" runat="server" Text="Imprimir" OnClientClick="javascript:imprimePanel()" OnClick="btnImprimir_Click" </button>
+
+
+   

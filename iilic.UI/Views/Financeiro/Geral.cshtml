@@ -1,0 +1,14 @@
+﻿
+@{
+    var db = iilic.Conexao.ConexaoBD.
+        ..Open("iilic");
+    var dados = db.Query("SELECT Nome, Idade FROM Cliente");
+
+    var myChart = new Chart(width: 600, height: 400)
+       .AddTitle("Saldo dos Clientes")
+       .DataBindTable(dataSource: dados, xField: "Nome")
+       .Write();
+}
+
+
+
