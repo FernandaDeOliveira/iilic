@@ -56,7 +56,12 @@
                                                             <td>@consulta.terapeuta.nomeMed</td>
                                                             <td>@consulta.hora</td>
 
-                                                            <td><a href="~/Consulta/getPDF/@consulta.idConsulta" class="btn btn-warning btn-md"></a> Visualizar recibo<span class="glyphicon glyphicon-plus-sign"></span></td>
+                                                            <td>
+                                                                <a href="~/PDF/getPDF/@consulta.idConsulta" class="btn btn-warning btn-md">
+                                                                    Gerar recibo<span class="glyphicon glyphicon-plus-sign"></span>
+                                                                </a>
+                                                            </td>
+
 
                                                         </tr>
                                                     }

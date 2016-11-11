@@ -1,0 +1,39 @@
+﻿@model iilic.Core.Consulta
+
+@{
+    var valor = @ViewBag.valor.valor;
+}
+
+
+
+        <!-- Principal -->
+        <div class="box box">
+            <div class="box-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Mudando essa area muda o conteudo do site -->
+
+                        <div class="form-horizontal">
+                            <form>
+
+                                <p class="box-header"><h1>Recibo de pagamento</h1></p>
+                                                  <p class="text-right">R$ @valor ,00</p>            
+                               
+                                <p>Recebemos de(a) @Model.paciente.nomePaciente, portador (a) do CPF: @Model.paciente.cpfPac</p>
+                                <p>A quantia de R$ _______________________________________________________________________________________________________</p>
+                                <p>Ao destinatário @Model.terapeuta.nomeMed, portador do CRM:@Model.terapeuta.crmM</p>
+                                <p>Na data __/__/__</p>
+                        
+                                <p>Assinatura:___________________________________</p>
+
+                            </form>
+                        </div>
+                        
+                        <!-- Mudando essa area muda o conteudo do site -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+   

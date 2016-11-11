@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace iilic.UI.Controllers
 {
     public class ConsultaController : Controller
@@ -18,13 +19,13 @@ namespace iilic.UI.Controllers
         mesRepositorio mesRepositorio = new mesRepositorio();
         pagamentoRepositorio pagamentoRepositorio = new pagamentoRepositorio();
         public int idConsulta { get; set; }
-       
+
 
         // GET: Consulta
         public ActionResult Index()
         {
             var consulta = consultaRepositorio.getAll();
-           // if(consulta)
+            // if(consulta)
             return View(consulta);
         }
 
@@ -47,11 +48,11 @@ namespace iilic.UI.Controllers
         public ActionResult CriarConsulta(Consulta pConsulta)
         {
 
-           idConsulta=consultaRepositorio.criar(pConsulta);
+            idConsulta = consultaRepositorio.criar(pConsulta);
             if (pConsulta.statusPagamento == 1)
             {
                 //idConsulta = pConsulta.idConsulta;
-               TempData["idConsulta"] = idConsulta;
+                TempData["idConsulta"] = idConsulta;
                 TempData.Keep("idConsulta");
 
                 return View("Pagamento");
@@ -61,7 +62,7 @@ namespace iilic.UI.Controllers
             return RedirectToAction("Index");
         }
 
-      //  [HttpPost]
+        //  [HttpPost]
         public ActionResult PagamentoBotao(int id)
         {
             TempData["idConsulta"] = id;
@@ -82,12 +83,12 @@ namespace iilic.UI.Controllers
         public ActionResult Pagamento(float pV, int tV)
         {
 
-           var ident = (int)TempData.Peek("idConsulta");
+            var ident = (int)TempData.Peek("idConsulta");
             if (tV == 1)
             {
                 var desc = (pV * 20) / 100;
                 float pValor = pV - desc;
-                consultaRepositorio.efetuarPagamento(pValor, tV,ident);
+                consultaRepositorio.efetuarPagamento(pValor, tV, ident);
                 mesRepositorio.criarFinanMes(pValor);
                 consultaRepositorio.mudaStatusPagamento(ident);
                 TempData.Remove("idConsulta");
@@ -95,31 +96,14 @@ namespace iilic.UI.Controllers
             }
             else
                 consultaRepositorio.efetuarPagamento(pV, ident, tV);
-                sessaoRepositorio.criarFinanSessao(pV);
-                consultaRepositorio.mudaStatusPagamento(ident);
-                TempData.Remove("idConsulta");
+            sessaoRepositorio.criarFinanSessao(pV);
+            consultaRepositorio.mudaStatusPagamento(ident);
+            TempData.Remove("idConsulta");
             return RedirectToAction("Index");
         }
-        public ActionResult getPDF(int id)
-        {
-            
-            var consulta = consultaRepositorio.getOne(id);
-            ViewBag.valor = pagamentoRepositorio.getOne(id);
-            return View(consulta);
-        }
-        public ActionResult GeneratePDF()
-        {
-            return new ActionAsPdf("getPDF");
-        }
-     /*   public ActionResult PDFPadrao()
-        {
-            var ident = (int)TempData.Peek("idConsulta");
-            var pdf = new ViewAsPdf
-            {
-               
-            };
-            return pdf;
-        }*/
+
+      
 
     }
+    
 }

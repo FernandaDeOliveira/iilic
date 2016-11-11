@@ -25,7 +25,11 @@
     else if (controller == "Consulta")
     {
         cLayout = "~/Views/Shared/_LayoutIndexADM.cshtml";
-    }else
+    }else if (controller == "PDF")
+    {
+        cLayout = "~/Views/Shared/_LayoutPDF.cshtml";
+    }
+    else
     {
         cLayout = "~/Views/Shared/_Layout.cshtml";
     }

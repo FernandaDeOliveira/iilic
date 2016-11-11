@@ -152,6 +152,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\PagamentoController.cs" />
+    <Compile Include="Controllers\PDFController.cs" />
     <Compile Include="Controllers\RelacionaController.cs" />
     <Compile Include="Controllers\TerapeutaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,10 +198,9 @@
     <Content Include="Views\Consulta\CriarConsulta.cshtml" />
     <Content Include="Views\Consulta\Pagamento.cshtml" />
     <Content Include="Views\Financeiro\Geral.cshtml" />
-    <Content Include="Views\Financeiro\Modelo.cshtml" />
-    <Content Include="Views\Financeiro\TesteRecibo.cshtml" />
     <Content Include="Views\Consulta\IndexConsultasPagas.cshtml" />
-    <Content Include="Views\Consulta\getPDF.cshtml" />
+    <Content Include="Views\PDF\getPDF.cshtml" />
+    <Content Include="Views\Shared\_LayoutPDF.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

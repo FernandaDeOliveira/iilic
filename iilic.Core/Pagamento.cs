@@ -12,5 +12,12 @@ namespace iilic.Core
         public float valor { get; set; }
         public Consulta idCo { get; set; }
         public string tipoValor { get; set; }
+
+        public Pagamento()
+        {
+
+        }
     }
+
+   
 }
