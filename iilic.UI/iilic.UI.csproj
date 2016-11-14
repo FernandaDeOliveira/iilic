@@ -178,7 +178,6 @@
     <Content Include="Views\Administrador\IndexTer.cshtml" />
     <Content Include="Views\Login\CriarLoginADM.cshtml" />
     <Content Include="Views\Administrador\Criar.cshtml" />
-    <Content Include="Views\Login\teste.cshtml" />
     <Content Include="Views\Shared\_LayoutIndex.cshtml" />
     <Content Include="Views\Shared\_LayoutIndexADM.cshtml" />
     <Content Include="Views\Shared\_LayoutIndexTer.cshtml" />
@@ -201,6 +200,7 @@
     <Content Include="Views\Consulta\IndexConsultasPagas.cshtml" />
     <Content Include="Views\PDF\getPDF.cshtml" />
     <Content Include="Views\Shared\_LayoutPDF.cshtml" />
+    <Content Include="Views\Administrador\Editar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

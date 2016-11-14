@@ -61,6 +61,34 @@ namespace iilic.Repositorio
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.CommandText = sql.ToString();
+            
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            while (dr.Read())
+            {
+                terapeutas.Add(new Terapeuta
+                    (
+                        (int)dr["numMed"],
+                        (string)dr["nomeMed"],
+                        (string)dr["cpfMed"],
+                        (DateTime)dr["dataNascMed"],
+                        (string)dr["email"],
+                          (string)dr["sexo"],
+                        (string)dr["telefone"],
+                        (string)dr["crm"]
+
+                    ));
+            }
+            return terapeutas;
+        }
+
+        public IEnumerable<Terapeuta> pesquisar(string pNome) { 
+        List<Terapeuta> terapeutas = new List<Terapeuta>();
+        StringBuilder sql = new StringBuilder();
+        sql.Append("SELECT * FROM terapeuta where nomeMed=@pNome ");
+
+            MySqlCommand cmd = new MySqlCommand();
+        cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@pNome", pNome);
 
             MySqlDataReader dr = conn.executeSqlReader(cmd);
             while (dr.Read())
@@ -81,28 +109,31 @@ namespace iilic.Repositorio
             return terapeutas;
         }
 
-       /* public void criar(Terapeuta pTerapeuta)
-        {
 
-            MySqlCommand cmd = new MySqlCommand();
-            StringBuilder sql = new StringBuilder();
+        /* public void criar(Terapeuta pTerapeuta)
+         {
 
-            sql.Append("INSERT INTO terapeuta(nomeMed, cpfMed, dataNascMed, email, sexo, telefone, crm ) " +
-                "VALUES (@nomeMed, @cpfMed, @dataNascMed, @email, @sexo, @telefone, @crm) ");
+             MySqlCommand cmd = new MySqlCommand();
+             StringBuilder sql = new StringBuilder();
 
-            cmd.CommandText = sql.ToString();
-            cmd.Parameters.AddWithValue("@nomeMed", pTerapeuta.nomeMed);
-            cmd.Parameters.AddWithValue("@cpfMed",pTerapeuta.cpfMed);
-            cmd.Parameters.AddWithValue("@dataNascMed", pTerapeuta.dataNascMed.ToString("yyyy-MM-dd"));
-            cmd.Parameters.AddWithValue("@email", pTerapeuta.email);
-            cmd.Parameters.AddWithValue("@sexo", pTerapeuta.sexo);
-            cmd.Parameters.AddWithValue("@telefone", pTerapeuta.telefone);
-            cmd.Parameters.AddWithValue("@crm", pTerapeuta.crmM);
+             sql.Append("INSERT INTO terapeuta(nomeMed, cpfMed, dataNascMed, email, sexo, telefone, crm ) " +
+                 "VALUES (@nomeMed, @cpfMed, @dataNascMed, @email, @sexo, @telefone, @crm) ");
 
-            cmd.CommandText = sql.ToString();
+             cmd.CommandText = sql.ToString();
+             cmd.Parameters.AddWithValue("@nomeMed", pTerapeuta.nomeMed);
+             cmd.Parameters.AddWithValue("@cpfMed",pTerapeuta.cpfMed);
+             cmd.Parameters.AddWithValue("@dataNascMed", pTerapeuta.dataNascMed.ToString("yyyy-MM-dd"));
+             cmd.Parameters.AddWithValue("@email", pTerapeuta.email);
+             cmd.Parameters.AddWithValue("@sexo", pTerapeuta.sexo);
+             cmd.Parameters.AddWithValue("@telefone", pTerapeuta.telefone);
+             cmd.Parameters.AddWithValue("@crm", pTerapeuta.crmM);
 
-            conn.executeSqlReader(cmd);
+             cmd.CommandText = sql.ToString();
 
-        }*/
+             conn.executeSqlReader(cmd);
+
+         }*/
+
+        
     }
 }

@@ -15,6 +15,7 @@ namespace iilic.Repositorio
         private MySqlCommand cmd = new MySqlCommand();
         private StringBuilder sql = new StringBuilder();
         private MySqlDataReader dr;
+        public int contMes = 0;
 
         public void criarFinanMes(float pValor)
         {
@@ -28,7 +29,7 @@ namespace iilic.Repositorio
             sql.Clear();
         }
 
-        public IEnumerable<financeiroMes> totalMes()
+        public int totalMes()
         {
             List<financeiroMes> totalMes = new List<financeiroMes>();
             StringBuilder sql = new StringBuilder();
@@ -38,6 +39,7 @@ namespace iilic.Repositorio
             cmd.CommandText = sql.ToString();
 
             MySqlDataReader dr = conn.executeSqlReader(cmd);
+         //   contMes = dr.Read();
             while (dr.Read())
             {
                 totalMes.Add(new financeiroMes
@@ -47,8 +49,9 @@ namespace iilic.Repositorio
                     valorTotalMes = (float)dr["valorTotalMes"]                   
 
                 });
+                contMes++;
             }
-            return totalMes;
+            return contMes;
         }
     }
 }

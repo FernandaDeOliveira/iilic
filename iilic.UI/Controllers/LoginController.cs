@@ -24,11 +24,6 @@ namespace iilic.UI.Controllers
 
         }
 
-        public ActionResult teste()
-        {
-            return View();
-
-        }
         /// <summary>
         /// tentativa de imagem
         /// </summary>
@@ -92,6 +87,14 @@ namespace iilic.UI.Controllers
             }
             return View("Index");
         }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Login");
+        
+         }
 
         public ActionResult CriarLoginADM()
             ///ver se nao tem q passar id

@@ -18,6 +18,7 @@ namespace iilic.UI.Controllers
         public ActionResult Geral()
         {
             ViewBag.mes = mesRepositorio.totalMes();
+            ViewBag.sessao = sessaoRepositorio.totalSessao();
             return View();
         }
 

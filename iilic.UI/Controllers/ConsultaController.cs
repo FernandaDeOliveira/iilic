@@ -62,6 +62,21 @@ namespace iilic.UI.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult Editar(int id)
+        {
+            var consulta = consultaRepositorio.getEditar(id);
+
+            return View(consulta);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Consulta pConsulta)
+        {
+
+            //    AlunoRepository.Edit(pAluno);
+            return RedirectToAction("Index");
+        }
         //  [HttpPost]
         public ActionResult PagamentoBotao(int id)
         {

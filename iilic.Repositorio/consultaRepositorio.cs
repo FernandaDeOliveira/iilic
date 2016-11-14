@@ -17,6 +17,7 @@ namespace iilic.Repositorio
         private StringBuilder sql = new StringBuilder();
         private MySqlDataReader dr;
         public static int idCon;
+        public int cont = 0;
 
         public int criar(Consulta pConsulta)
         {
@@ -86,6 +87,46 @@ namespace iilic.Repositorio
             sql.Clear();
 
         }
+
+        /// <summary>
+        /// ta dando erro
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
+        public Consulta getEditar(int pId)
+        {
+            sql.Append("SELECT  p.nomePaciente, c.dia, c.hora, t.nomeMed " +
+                "FROM consulta c " +
+                "INNER JOIN paciente p on p.codPaciente = c.codPaciente " +
+                "INNER JOIN terapeuta t on t.numMed = c.numMed " +
+                "WHERE c.idConsulta  = @idC");
+
+            cmd.CommandText = sql.ToString();
+        //    cmd.Parameters.AddWithValue("@idC", pId);
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            dr.Read();
+            Consulta con = new Consulta
+            {
+                paciente = new Paciente
+                {
+                    nomePaciente = (string)dr["nomePaciente"]
+                },
+                dia=(DateTime)dr["dia"],
+                hora = (string)dr["hora"],
+                terapeuta = new Terapeuta
+                {
+                    nomeMed = (string)dr["nomeMed"]
+                }
+                
+            };
+
+            dr.Close();
+            dr.Dispose();
+            sql.Clear();
+
+            return con;
+        }
+
 
         public Consulta getOne(int pId)
         {
@@ -239,7 +280,10 @@ namespace iilic.Repositorio
 
 
                 });
+                cont++;
             }
+            //consultas.GetEnumerator();
+            
             return consultas;
         }
 

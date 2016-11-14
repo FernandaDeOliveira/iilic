@@ -25,13 +25,18 @@
     else if (controller == "Consulta")
     {
         cLayout = "~/Views/Shared/_LayoutIndexADM.cshtml";
-    }else if (controller == "PDF")
+    }
+    else if (controller == "PDF")
     {
         cLayout = "~/Views/Shared/_LayoutPDF.cshtml";
     }
-    else
+    else if (controller == "Financeiro")
     {
-        cLayout = "~/Views/Shared/_Layout.cshtml";
+        cLayout = "~/Views/Shared/_LayoutIndexTer.cshtml";
+
+    }
+    else { 
+      cLayout = "~/Views/Shared/_Layout.cshtml";
     }
 
     Layout = cLayout;
