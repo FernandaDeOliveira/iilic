@@ -35,13 +35,13 @@ namespace iilic.Repositorio
             conn.executeCommand(cmd);
             sql.Clear();
 
-            sql.Append("SELECT * from terapeuta");
-            sql.Append("WHERE nomeMed = @nomeM");
+            sql.Append("SELECT * from terapeuta ");
+            sql.Append("WHERE nomeMed = @nomeM ");
 
             cmd.CommandText = sql.ToString();
             cmd.Parameters.AddWithValue("@nomeM", pTerapeuta.nomeMed);
 
-            cmd.CommandText = sql.ToString();
+          //  cmd.CommandText = sql.ToString();
 
 
             MySqlDataReader dr = conn.executeSqlReader(cmd);

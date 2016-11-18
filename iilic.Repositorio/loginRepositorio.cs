@@ -68,7 +68,7 @@ namespace iilic.Repositorio
             sql.Clear();
             return new Login
             {
-                idLogin = (int)dr["idLoginTer"],
+                idLogin = (int)dr["idLogintera"],
                 login = (string)dr["login"],
                 senha = (string)dr["senha"]
             };
@@ -105,11 +105,11 @@ namespace iilic.Repositorio
             StringBuilder sql = new StringBuilder();
 
 
-            sql.Append("INSERT INTO loginTera(login, senha,  terapeuta_numMed ) VALUES (@login, @senha, @terapeuta_numMed) ");
+            sql.Append("INSERT INTO logintera(login, senha,  terapeuta_num ) VALUES (@login, @senha, @terapeuta_num ) ");
 
             cmd.Parameters.AddWithValue("@login", pLogin.login);
             cmd.Parameters.AddWithValue("@senha", pLogin.senha);
-            cmd.Parameters.AddWithValue("@terapeuta_numMed", pLogin.terapeuta.numMed);
+            cmd.Parameters.AddWithValue("@terapeuta_num", pLogin.terapeuta.numMed);
 
             cmd.CommandText = sql.ToString();
 
