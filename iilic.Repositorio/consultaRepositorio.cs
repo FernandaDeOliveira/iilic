@@ -162,7 +162,7 @@ namespace iilic.Repositorio
             return con;
         }
 
-        public IEnumerable<Consulta> getAll()
+        public IEnumerable<Consulta> getAllAbertas()
         {
             //2 get all
             ///um q exibe todas

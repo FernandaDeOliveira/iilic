@@ -23,7 +23,13 @@ namespace iilic.UI.Controllers
 
 
         }
+        public ActionResult teste()
+        {
 
+            return View();
+
+
+        }
         /// <summary>
         /// tentativa de imagem
         /// </summary>

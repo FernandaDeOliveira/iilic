@@ -21,10 +21,10 @@ namespace iilic.UI.Controllers
         public int idConsulta { get; set; }
 
 
-        // GET: Consulta
+        // FAZER OUTRO METODO PRA EXIBIR TODAS AS CONSULTAS
         public ActionResult Index()
-        {
-            var consulta = consultaRepositorio.getAll();
+        {//EXIBE AS Q ESTAO EM ABERTO
+            var consulta = consultaRepositorio.getAllAbertas();
             // if(consulta)
             return View(consulta);
         }

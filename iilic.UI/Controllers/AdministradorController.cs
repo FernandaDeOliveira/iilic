@@ -25,15 +25,15 @@ namespace iilic.UI.Controllers
             DateTime data = DateTime.Now;
             var consultasData= consultaRepositorio.getAllData(data);
           
-            for (int i = 0; i < consultasData.Count(); i++)
-            {
-                i = consultasData.Count();
+         //   for (int i = 0; i < consultasData.Count(); i++)
+          //  {
+               int i = consultasData.Count();
                 if (i == 0)
-                {
+                {//carregar aqui o get all de todas
                     return View("Dados");
                 }
               
-            }
+       //     }
            
 
             return View(consultasData);

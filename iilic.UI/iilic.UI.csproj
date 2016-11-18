@@ -131,6 +131,8 @@
     <Content Include="Global.asax" />
     <Content Include="Imagem\imag3.jpg" />
     <Content Include="Imagem\psi.jpg" />
+    <Content Include="Imagem\psico2.jpg" />
+    <Content Include="Imagem\Psicólogo_01.jpg" />
     <Content Include="Imagem\ual00012.jpg" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -201,6 +203,7 @@
     <Content Include="Views\PDF\getPDF.cshtml" />
     <Content Include="Views\Shared\_LayoutPDF.cshtml" />
     <Content Include="Views\Administrador\Editar.cshtml" />
+    <Content Include="Views\Login\teste.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
