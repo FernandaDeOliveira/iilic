@@ -16,29 +16,17 @@ namespace iilic.UI.Controllers
         pacienteRepositorio pacienteRepo = new pacienteRepositorio();
         caracteristicaRepositorio caracRepo = new caracteristicaRepositorio();
         private int id;
-        public  int idDoenca2;
+        private string nome; 
         private string nomeP;
     
         // GET: Relaciona
-        //esse aqui é o indexterapeuta 
-        //OK
-        public ActionResult IndexDoença()
-        {
-            var lista = doencaRepositorio.getAll();
-            return View(lista);
-        }
-
-        [HttpPost]
-        //index dos aspectos, passa o id do paciente
-        public ActionResult IndexCaracteristica(int idDoenca)
-        {
-            var listaCarac = doencaRepositorio.getAllCaracteristica(idDoenca);
-            return View(listaCarac);
-        }
+       
 
         [HttpPost]
         public ActionResult IndexAspectos(int idPaciente)
         {
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
             TempData["idPaciente"] = idPaciente;
             TempData.Keep("idPaciente");
             var listaAspectos = pacienteRepo.getAllAspectos(idPaciente);
@@ -48,9 +36,10 @@ namespace iilic.UI.Controllers
             return View(listaAspectos);
         }
 
-        public ActionResult Editar(int idCarac)
+
+        public ActionResult Editar(int id)
         {
-            var caracteristica = caracRepo.getOne(idCarac);
+            var caracteristica = caracRepo.getOne(id);
            
             return View(caracteristica);
         }
@@ -78,26 +67,12 @@ namespace iilic.UI.Controllers
             return RedirectToAction("IndexTerapeuta", "Terapeuta");
         }
 
-        public ActionResult Criar()
-        {
-          
-            return View();
-        }
+      
 
-
-        [HttpPost]
-        public ActionResult Criar(Relaciona pRelaciona)
-        {                 
-            relacionaRepositorio.criar(pRelaciona);
-           
-            TempData["idDoenca"] = pRelaciona.Doenca.idDoenca;
-            TempData.Keep("idDoenca");  
-
-            return RedirectToAction("Pergunta");
-            }
+      
 
         public ActionResult Pergunta()
-        {   
+        {
             return View();
         }
 
@@ -105,40 +80,40 @@ namespace iilic.UI.Controllers
         [HttpPost]
         public ActionResult Pergunta(int pId)
         {
-            
+            //sim ou não
             if (pId == 1)
             {//puxa view de add caracteristica  
-                return RedirectToAction("Caracteristica");
+                return RedirectToAction("Aspecto");
             }
             else
-                return View("IndexDoença");
-
-          
+                return View("IndexTerapeuta");
         }
 
-
-        public ActionResult Caracteristica()
+        public ActionResult Aspecto()
         {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Caracteristica(Doenca Doenca)
-        {
-            TempData["idD"] = Doenca.idDoenca;
-            TempData.Keep("idD");
+            ViewBag.codP = TempData.Peek("idPaciente");
             return View();
         }
 
-
+        [HttpPost]
+        public ActionResult Aspecto(int idPaciente)
+        {
+            TempData["idP"] = idPaciente;
+            TempData.Keep("idP");
+            return View();
+        }
 
         [HttpPost]
-        public ActionResult salvarCaracteristica(string nDoenca)
+        public ActionResult salvarAspecto(string nomeAspecto)
         {
-            var ident = (int)TempData.Peek("idD");
-            relacionaRepositorio.criarCaracteristica(nDoenca, ident);
-            TempData.Remove("idD");
-            return View("Pergunta");
+            var ident = (int)TempData.Peek("idP");
+            relacionaRepositorio.criarCaracteristica(nomeAspecto, ident);
+            TempData.Remove("idP");
+            // return View("Pergunta");
+            return RedirectToAction("IndexTerapeuta", "Terapeuta");
         }
+
+    
 
 
     }

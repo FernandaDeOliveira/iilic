@@ -42,8 +42,13 @@
                                                     <td>@consulta.paciente.nomePaciente</td>
                                                     <td>@consulta.dia.ToShortDateString()</td>
                                                     <td>@consulta.hora</td>
-                                                    <td><form action="~/Relaciona/IndexAspectos" method="post"><button class="btn btn-success col-lg-12" name="idPaciente" value="@consulta.paciente.codPaciente" type="submit">Aspectos</button></form></td>
-                                                    <td><form action="~/Relaciona/Caracteristica" method="post"><button class="btn btn-success btn-lg" name="Paciente.idPaciente" value="@consulta.paciente.codPaciente" aria-label="Adicionar" type="submit"><span class="glyphicon glyphicon-plus-sign"></span></button></form></td>
+                                                    <td><form action="~/Relaciona/IndexAspectos" method="post"><button class="btn btn-primary col-lg-12" name="idPaciente" value="@consulta.paciente.codPaciente" type="submit">
+                                                        <span class="glyphicon glyphicon-info-sign"></span></button></form></td>
+                                                        
+                                                    <td><form action="~/Relaciona/Aspecto" method="post">
+                                                        <!--tava Paciente.idPaciente-->
+                                                        <button class="btn btn-success col-lg-6" name="idPaciente" value="@consulta.paciente.codPaciente" aria-label="Adicionar" type="submit">
+                                                        <span class="glyphicon glyphicon-plus-sign"></span></button></form></td>
 
                                                 </tr>
                                             }

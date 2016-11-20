@@ -150,7 +150,7 @@ namespace iilic.Repositorio
             return listaDoenças;
         }*/
     
-        public void criarCaracteristica(string nDoenca, int idD)
+        public void criarCaracteristica(string nAspecto, int idP)
         {
 
             int idCaracteristica = 0;
@@ -158,7 +158,7 @@ namespace iilic.Repositorio
             sql.Append("INSERT INTO caracteristica (nomeCaracteristica) VALUES (@nomeC)");
 
             cmd.CommandText = sql.ToString();
-            cmd.Parameters.AddWithValue("@nomeC", nDoenca);
+            cmd.Parameters.AddWithValue("@nomeC", nAspecto);
 
 
             conn.executeCommand(cmd);
@@ -167,7 +167,7 @@ namespace iilic.Repositorio
             sql.Append("SELECT * from caracteristica WHERE nomeCaracteristica = @nameCaracter");
 
             cmd.CommandText = sql.ToString();
-            cmd.Parameters.AddWithValue("@nameCaracter", nDoenca);
+            cmd.Parameters.AddWithValue("@nameCaracter", nAspecto);
 
             dr = conn.executeSqlReader(cmd);
 
@@ -193,12 +193,12 @@ namespace iilic.Repositorio
 
             //     pRelaciona.Doenca.idDoenca = pRelaciona.idDoença;
 
-            sql.Append("INSERT INTO relaciona (idDoenca,idCaracteristica) ");
-            sql.Append("VALUES (@idDoenca,@idCaracteristica)");
+            sql.Append("INSERT INTO relaciona (paciente_num,idCaracteristica) ");
+            sql.Append("VALUES (@paciente_num,@idCaracteristica)");
 
 
             cmd.CommandText = sql.ToString();
-            cmd.Parameters.AddWithValue("@idDoenca", idD);
+            cmd.Parameters.AddWithValue("@paciente_num", idP);
             cmd.Parameters.AddWithValue("@idCaracteristica", idCaracteristica);
 
 
