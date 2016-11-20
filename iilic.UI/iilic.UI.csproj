@@ -204,6 +204,9 @@
     <Content Include="Views\Shared\_LayoutPDF.cshtml" />
     <Content Include="Views\Administrador\Editar.cshtml" />
     <Content Include="Views\Login\teste.cshtml" />
+    <Content Include="Views\Terapeuta\IndexTerapeuta.cshtml" />
+    <Content Include="Views\Relaciona\IndexAspectos.cshtml" />
+    <Content Include="Views\Relaciona\Editar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -13,12 +13,22 @@ namespace iilic.Core
         public int idCaracteristica { get; set; }
         public Doenca Doenca { get; set; }
         public CaracterisTica Caracteristica { get; set; }
+        public Paciente Paciente { get; set; }
         public int pId {    get; set; }
 
 
         public Relaciona()
         {
 
+        }
+
+        public Relaciona(int id, int pIdD, int pIdC, Paciente pPaciente, CaracterisTica pCarac)
+        {
+            idRelaciona = id;
+            idDoença = pIdD;
+            idCaracteristica = pIdC;
+            Paciente = pPaciente;
+            Caracteristica = pCarac;
         }
 
         public Relaciona(int id, int pIdD, int pIdC, Doenca pDoença,CaracterisTica pCarac)

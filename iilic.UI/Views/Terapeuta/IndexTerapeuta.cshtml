@@ -1,0 +1,66 @@
+﻿@model IEnumerable<iilic.Core.Consulta>
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Iilic
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Minhas Consultas</li>
+        </ol>
+    </section>
+    <section class="content">
+
+        <!-- Principal -->
+        <div class="box box-solid">
+            <div class="box-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Mudando essa area muda o conteudo do site -->
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> Consultas</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>Nome do Paciente</th>
+                                                <th>Dia</th>
+                                                <th>Hora</th>
+                                                <th>Ver Aspectos</th>
+                                                <th>Adicionar Aspectos</th>
+
+                                            </tr>
+                                            @foreach (var consulta in Model)
+                                            {
+                                                <tr>
+                                                    <td>@consulta.paciente.nomePaciente</td>
+                                                    <td>@consulta.dia.ToShortDateString()</td>
+                                                    <td>@consulta.hora</td>
+                                                    <td><form action="~/Relaciona/IndexAspectos" method="post"><button class="btn btn-success col-lg-12" name="idPaciente" value="@consulta.paciente.codPaciente" type="submit">Aspectos</button></form></td>
+                                                    <td><form action="~/Relaciona/Caracteristica" method="post"><button class="btn btn-success btn-lg" name="Paciente.idPaciente" value="@consulta.paciente.codPaciente" aria-label="Adicionar" type="submit"><span class="glyphicon glyphicon-plus-sign"></span></button></form></td>
+
+                                                </tr>
+                                            }
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- Mudando essa area muda o conteudo do site -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+

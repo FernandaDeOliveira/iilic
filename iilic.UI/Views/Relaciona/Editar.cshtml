@@ -1,0 +1,52 @@
+﻿@model iilic.Core.CaracterisTica
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Iilic
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> LOCAL</a></li>
+            <li class="active">Editar característica</li>
+        </ol>
+    </section>
+    <section class="content">
+
+        <!-- Principal -->
+        <div class="box box-solid">
+            <div class="box-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Mudando essa area muda o conteudo do site -->
+                        <form action="~/Relaciona/Editar" method="Post">
+                            <div class="form-group">
+                                <div class="container-fluid">
+                                    <div class="col-lg-12">
+                                        <input type="hidden" name="idCarac" value="@Model.idCarac" />
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <label>Nome da característica*</label>
+                                        <input class="form-control" type="text" name="nomeCaracteristica" value="@Model.nomeCaracteristica">
+                                    </div>
+                                    <div class="col-lg-12">
+
+                                        <button class="btn btn-success form-group" type="submit">Salvar</button>
+                                        <button class="btn btn-danger form-group" type="reset">Limpar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+                        <!-- Mudando essa area muda o conteudo do site -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+

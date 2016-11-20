@@ -11,6 +11,7 @@ namespace iilic.Repositorio
 {
     public class loginRepositorio
     {
+        int numMed;
         public Login Busca(Login pLogin)
         {//fazer um atable so de login terapeuta
             ConexaoBD conn = new ConexaoBD();
@@ -116,6 +117,25 @@ namespace iilic.Repositorio
             conn.executeCommand(cmd);
         }
 
-        //fazer um metodo q pega o id admin q ta logado
+       public int buscaNumMed(string login)
+        {
+            ConexaoBD conn = new ConexaoBD();
+
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+
+            sql.Append("SELECT terapeuta_num from logintera ");
+            sql.Append("WHERE login= @login ");
+
+            cmd.Parameters.AddWithValue("@login", login);
+
+            cmd.CommandText = sql.ToString();
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            dr.Read();
+            numMed = (int)dr["terapeuta_num"];
+            return numMed;
+
+        }
     }
 }

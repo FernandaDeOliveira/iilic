@@ -21,7 +21,7 @@ namespace iilic.Repositorio
 
         public int criar(Consulta pConsulta)
         {
-           
+
             sql.Append("INSERT INTO consulta (dia, statusPagamento, codPaciente, numMed, hora ) " +
               "VALUES (@dia, @statusPagamento, @codPaciente, @numMed, @hora )");
 
@@ -39,7 +39,7 @@ namespace iilic.Repositorio
                 "from consulta c " +
                 "inner join paciente p on p.codPaciente = @cod " +
                 "where c.codPaciente= @cod ");
-  
+
             cmd.CommandText = sql.ToString();//ESSE EH DO SELECT
             cmd.Parameters.AddWithValue("@cod", pConsulta.paciente.codPaciente);
 
@@ -76,12 +76,12 @@ namespace iilic.Repositorio
             StringBuilder sql = new StringBuilder();
             sql.Append("update consulta " +
                   "set statusPagamento = 1 " +
-                  "where idConsulta = " + pId );
+                  "where idConsulta = " + pId);
 
 
             cmd.CommandText = sql.ToString();
-         //   cmd.Parameters.AddWithValue("@idConsulta", pId);
-            
+            //   cmd.Parameters.AddWithValue("@idConsulta", pId);
+
 
             conn.executeCommand(cmd);
             sql.Clear();
@@ -102,7 +102,7 @@ namespace iilic.Repositorio
                 "WHERE c.idConsulta  = @idC");
 
             cmd.CommandText = sql.ToString();
-        //    cmd.Parameters.AddWithValue("@idC", pId);
+            //    cmd.Parameters.AddWithValue("@idC", pId);
             MySqlDataReader dr = conn.executeSqlReader(cmd);
             dr.Read();
             Consulta con = new Consulta
@@ -111,13 +111,13 @@ namespace iilic.Repositorio
                 {
                     nomePaciente = (string)dr["nomePaciente"]
                 },
-                dia=(DateTime)dr["dia"],
+                dia = (DateTime)dr["dia"],
                 hora = (string)dr["hora"],
                 terapeuta = new Terapeuta
                 {
                     nomeMed = (string)dr["nomeMed"]
                 }
-                
+
             };
 
             dr.Close();
@@ -145,14 +145,14 @@ namespace iilic.Repositorio
                 paciente = new Paciente
                 {
                     nomePaciente = (string)dr["nomePaciente"],
-                    cpfPac=(string)dr["cpfPac"]
+                    cpfPac = (string)dr["cpfPac"]
                 },
                 terapeuta = new Terapeuta
                 {
                     nomeMed = (string)dr["nomeMed"],
                     crmM = (string)dr["crm"]
                 }
-               
+
             };
 
             dr.Close();
@@ -187,8 +187,8 @@ namespace iilic.Repositorio
                 {
 
                     idConsulta = (int)dr["idConsulta"],
-                    dia = (DateTime)dr["dia"],  
-                    hora=(string)dr["hora"],                 
+                    dia = (DateTime)dr["dia"],
+                    hora = (string)dr["hora"],
                     paciente = new Paciente
                     {
                         nomePaciente = (string)dr["nomePaciente"]
@@ -283,11 +283,11 @@ namespace iilic.Repositorio
                 cont++;
             }
             //consultas.GetEnumerator();
-            
+
             return consultas;
         }
 
-        public void efetuarPagamento(float pValor, int tipoV,int idC)
+        public void efetuarPagamento(float pValor, int tipoV, int idC)
         {
             //idpagamento bugando
 
@@ -300,10 +300,51 @@ namespace iilic.Repositorio
             conn.executeCommand(cmd);
             sql.Clear();
 
-           
-        
+
+
         }
 
+        public IEnumerable<Consulta> getAllTerapeuta(int numMed)
+        {
+            //2 get all
+            ///um q exibe todas
+            ///um q exibe as do dia
+
+            List<Consulta> consultas = new List<Consulta>();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT c.idConsulta, c.dia, c.hora, p.nomePaciente, p.codPaciente " +
+                "from consulta c " +
+                "inner join paciente p on p.codPaciente = c.codPaciente " +
+                "where c.numMed= @numMed ");
+
+        
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Parameters.AddWithValue("@numMed", numMed);
+
+            cmd.CommandText = sql.ToString();
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            while (dr.Read())
+            {
+                consultas.Add(new Consulta
+                {
+
+                    idConsulta = (int)dr["idConsulta"],
+                    dia = (DateTime)dr["dia"],
+                    hora = (string)dr["hora"],
+                    paciente = new Paciente
+                    {
+                        codPaciente = (int)dr["codPaciente"],
+                        nomePaciente = (string)dr["nomePaciente"]
+
+                    }
+
+
+
+                });
+            }
+            return consultas;
+        }
     }
 }
 

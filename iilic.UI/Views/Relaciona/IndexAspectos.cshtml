@@ -1,0 +1,63 @@
+﻿@model IEnumerable<iilic.Core.CaracterisTica>
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Iilic
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="~/Terapeuta/IndexTer"><i class="fa fa-dashboard"></i> Minhas Consultas</a></li>
+            <li class="active">Aspectos do paciente</li>
+        </ol>
+    </section>
+    <section class="content">
+
+        <!-- Principal -->
+        <div class="box box-solid">
+            <div class="box-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Mudando essa area muda o conteudo do site -->
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> Aspectos do paciente:<strong>@ViewBag.nomeP</strong></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>Aspectos</th>
+                                                <th>Ações</th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var c in Model)
+                                            {
+                                                <tr>
+                                                    <td>@c.nomeCaracteristica</td>
+                                                    <td><form action="~/Relaciona/Editar" >
+                                                        <button class="btn btn-success col-md-6" name="idCarac" value="@c.idCarac" type="submit">Editar aspecto</button></form>
+</td>
+                                                    <td><form action="~/Relaciona/Excluir" >
+                                                        <button class="btn btn-danger col-md-6" name="idCarac" value="@c.idCarac" type="submit">Excluir aspecto</button></form>
+</td>
+                                                </tr>
+                                                                                                
+                                            }
+                                            </table>
+
+                                    </div>
+                                </div>
+                            <!-- Mudando essa area muda o conteudo do site -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+
+

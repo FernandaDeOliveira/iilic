@@ -12,28 +12,30 @@ namespace iilic.UI.Controllers
     {
         AdministradorController adm = new AdministradorController();
         terapeutaRepositorio terapeutaRepositorio = new terapeutaRepositorio();
+        loginRepositorio loginrepo = new loginRepositorio();
+        consultaRepositorio consultaRepo = new consultaRepositorio();
         private string nome { get; set; }
         private int id;
+        private int numeroMed;
         // GET: Terapeuta
         
         public ActionResult IndexTerapeuta()
         {
             nome = (string)TempData.Peek("login");
             ViewBag.nome = nome;
-            id = (int)TempData.Peek("valorLog");
-            ViewBag.id = id;
-            if (ViewBag.id==1)
-            {
-                var tera = terapeutaRepositorio.getAll();
-                return View(tera);
-            }
-            else
-            {
+            //chamar um metodo q pega o login e puxa o id pra ca //salva o id numavariavel            
+            
+            numeroMed = loginrepo.buscaNumMed(nome);
+            //passa pra outro metodo q pega as consultas naquele id
+            var consultas=consultaRepo.getAllTerapeuta(numeroMed);
+       
 
-            }
-            return View("Index2");
+            return View(consultas);
         }
-
+/// <summary>
+/// é a de antes
+/// </summary>
+/// <returns></returns>
         public ActionResult CriarTerapeuta()
         {
             return View();

@@ -11,6 +11,7 @@ namespace iilic.Repositorio
 {
     public class pacienteRepositorio
     {
+        string nomePac;
         ConexaoBD conn = new ConexaoBD();
 
         public void criar(Paciente pPaciente)
@@ -65,6 +66,66 @@ namespace iilic.Repositorio
                     ));
             }
             return pacientes;
+        }
+
+        public List<CaracterisTica> getAllAspectos(int pIdPaciente)
+        {
+
+            ConexaoBD conn = new ConexaoBD();
+
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+            List<CaracterisTica> listaAspectos = new List<CaracterisTica>();
+            sql.Append("SELECT p.codPaciente, c.idCaracteristica, c.nomeCaracteristica " +
+                "FROM paciente p " +
+                "inner join relaciona r on r.paciente_num = p.codPaciente " +
+                "INNER JOIN caracteristica c " +
+                "ON r.idCaracteristica = c.idCaracteristica " +
+                "WHERE p.codPaciente= @pIdPaciente");
+
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@pIdPaciente", pIdPaciente);
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+
+            if (dr.HasRows)
+            {
+
+                while (dr.Read())
+                {
+                    listaAspectos.Add(new CaracterisTica
+                    {
+                        idCarac=(int)dr["idCaracteristica"],
+                        nomeCaracteristica = (string)dr["nomeCaracteristica"]
+                    });
+                }
+            }
+            sql.Clear();
+            dr.Close();
+            dr.Dispose();
+
+            return listaAspectos;
+
+        }
+
+        public string getNomePaciente(int pIdPac)
+        {
+            ConexaoBD conn = new ConexaoBD();
+
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+
+            sql.Append("SELECt nomePaciente from paciente ");
+            sql.Append("WHERE codPaciente= @pIdPac ");
+
+            cmd.Parameters.AddWithValue("@pIdPac", pIdPac);
+
+            cmd.CommandText = sql.ToString();
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            dr.Read();
+            nomePac = (string)dr["nomePaciente"];
+            return nomePac;
         }
     }
 }

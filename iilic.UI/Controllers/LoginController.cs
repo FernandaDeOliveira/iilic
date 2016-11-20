@@ -79,10 +79,10 @@ namespace iilic.UI.Controllers
                     string nome;
                     TempData["login"] = userTryLogin.login;
                     TempData.Keep("login");
-
+                 
 
                     //redireciona para a mainpage
-                    return RedirectToAction("IndexTer", "Terapeuta");
+                    return RedirectToAction("IndexTerapeuta", "Terapeuta");
                 }
                 else
                 {
