@@ -10,7 +10,7 @@
             <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="~/Administrador/IndexADM"><i class="fa fa-dashboard"></i> Index</a></li>
+            <li><a href="~/Administrador/IndexADM"><i class="fa fa-dashboard"></i> Página inicial</a></li>
             <li class="active">Lista de Terapeutas</li>
         </ol>
     </section>
@@ -26,12 +26,13 @@
                              
                                 <div class="form-inline">
                                     <div class="form-group col-xs-4">
-                                        <input class="form-control" type="text" name="pesquisa" placeholder="Pesquisar terapeuta" />
-                                        <a class="btn btn-success btn-lg" href="~/Administrador/Pesquisar" aria-label="Adicionar">
-                                           
+                                   
+                                    <form action="~/Administrador/Pesquisar" method="post">
+                                        <input class="form-control" type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar terapeuta" />
+                                        <button class="btn btn-primary btn-md" name="pesquisa"  type="submit">
                                             <span class="glyphicon glyphicon-search"></span>
-                                        </a>
-                                    </div>
+                                        </button>
+                                    </form>
                                   
                                 </div>
                             </div>

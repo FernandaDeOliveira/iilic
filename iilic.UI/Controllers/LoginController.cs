@@ -103,16 +103,33 @@ namespace iilic.UI.Controllers
          }
 
         public ActionResult CriarLoginADM()
-            ///ver se nao tem q passar id
         {
+          //  ViewBag.dados = TempData.Peek("dados");
             return View("CriarLoginADM");
         }
 
         [HttpPost]
         public ActionResult CriarLogADM(Administrador pAdministrador)
-        {
-            adm.criarADM(pAdministrador);
-                return RedirectToAction("Index");
+        {                      
+            var r= log.getAllAdm(pAdministrador.acesso.login);
+                if(r==true)
+                {
+                //dados não vao pra index
+                TempData["dados"] = log.salvaDadosAdm(pAdministrador);
+                TempData.Keep("dados");
+                ViewBag.dados = TempData.Peek("dados");
+                ViewBag.login = "Este login já existe";
+                    return View("CriarLoginADM");
+                }
+                else
+                {
+                TempData.Remove("dados");
+                adm.criarADM(pAdministrador);
+       
+            }                         
+     
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult CriarLoginTER()
@@ -124,7 +141,16 @@ namespace iilic.UI.Controllers
         [HttpPost]
         public ActionResult CriarLogTER(Terapeuta pTerapeuta)
         {
-            ter.criarTer(pTerapeuta);
+            var r = log.getAllTer(pTerapeuta.acesso.login);
+            if (r == true)
+            {
+                ViewBag.login = "Este login já existe";
+                return View("CriarLoginADM");
+            }
+            else
+            {
+                ter.criarTer(pTerapeuta);
+            }
             return RedirectToAction("Index");
         }
     }

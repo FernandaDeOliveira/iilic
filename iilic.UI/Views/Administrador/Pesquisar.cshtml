@@ -1,0 +1,65 @@
+﻿@model IEnumerable<iilic.Core.Terapeuta>
+@{
+    ViewBag.Title = "IndexTer";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Iilic
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="~/Administrador/IndexADM"><i class="fa fa-dashboard"></i> Página inicial</a></li>
+            <li class="active">Resultado da pesquisa</li>
+        </ol>
+    </section>
+    <section class="content">
+
+        <!-- Principal -->
+        <div class="box box-solid">
+            <div class="box-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="container-fluid">
+                            <div class="row">
+                         
+                                <!-- Mudando essa area muda o conteudo do site -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> Dados do terapeuta</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <table class="table table-hover">
+                                                    <tr>
+                                                        <th>Nome </th>
+                                                        <th>Telefone</th>
+                                                        <th>Email</th>
+                                                        <th>CRM</th>
+                                                    </tr>
+                                                    @foreach (var terapeuta in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>@terapeuta.nomeMed</td>
+                                                            <td>@terapeuta.telefone</td>
+                                                            <td>@terapeuta.email</td>
+                                                            <td>@terapeuta.crmM</td>
+
+                                                        </tr>
+                                                    }
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Mudando essa area muda o conteudo do site -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+</div>
+

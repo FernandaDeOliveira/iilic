@@ -21,6 +21,8 @@ namespace iilic.Repositorio
 
         public int criar(Consulta pConsulta)
         {
+            //antes de salvar testar se ja nao existe
+
 
             sql.Append("INSERT INTO consulta (dia, statusPagamento, codPaciente, numMed, hora ) " +
               "VALUES (@dia, @statusPagamento, @codPaciente, @numMed, @hora )");
@@ -345,7 +347,106 @@ namespace iilic.Repositorio
             }
             return consultas;
         }
+
+        public bool getConsultas(Consulta pCon)
+        {
+         
+            List<Consulta> consultas = new List<Consulta>();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT c.idConsulta, c.dia, c.hora, c.codPaciente, c.numMed " +
+                "from consulta c " +
+                "where c.dia=@data or c.hora=@hora or  c.codPaciente=@codP or c.numMed=@numM");
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@data", pCon.dia);
+            cmd.Parameters.AddWithValue("@hora", pCon.hora);
+            cmd.Parameters.AddWithValue("@codP", pCon.paciente.codPaciente);
+            cmd.Parameters.AddWithValue("@numM", pCon.terapeuta.numMed);
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            while (dr.Read())
+            {
+                consultas.Add(new Consulta
+                {
+
+                    idConsulta = (int)dr["idConsulta"],
+                    dia = (DateTime)dr["dia"],
+                    hora = (string)dr["hora"],
+                    paciente = new Paciente
+                    {
+                        codPaciente = (int)dr["codPaciente"]
+                    },
+                    terapeuta = new Terapeuta
+                    {
+                        numMed = (int)dr["numMed"]
+                    }
+
+
+                });
+                
+            }
+            if (consultas.Any(x => x.dia.ToString().Contains(pCon.dia.ToString())&&
+                  x.hora.Contains(pCon.hora)&&
+                  x.hora.Contains(pCon.hora) &&
+                  x.paciente.codPaciente.ToString().Contains(pCon.paciente.codPaciente.ToString()) &&
+                   x.terapeuta.numMed.ToString().Contains(pCon.terapeuta.numMed.ToString())))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
     }
+   /* public IEnumerable<Consulta> getConsultas2(Consulta pCon)
+    {
+        ConexaoBD conn = new ConexaoBD();
+        List<Consulta> consultas = new List<Consulta>();
+        StringBuilder sql = new StringBuilder();
+        sql.Append("SELECT c.idConsulta, c.dia, c.hora, c.codPaciente, c.numMed " +
+            "from consulta c " +
+            "where c.dia=@data or c.hora=@hora or  c.codPaciente=@codP or c.numMed=@numM ");
+
+        MySqlCommand cmd = new MySqlCommand();
+        cmd.CommandText = sql.ToString();
+        cmd.Parameters.AddWithValue("@data", pCon.dia);
+        cmd.Parameters.AddWithValue("@hora", pCon.hora);
+        cmd.Parameters.AddWithValue("@codP", pCon.paciente.codPaciente);
+        cmd.Parameters.AddWithValue("@numM", pCon.terapeuta.numMed);
+
+        MySqlDataReader dr = conn.executeSqlReader(cmd);
+        while (dr.Read())
+        {
+            consultas.Add(new Consulta
+            {
+
+                idConsulta = (int)dr["idConsulta"],
+                dia = (DateTime)dr["dia"],
+                hora = (string)dr["hora"],
+                paciente = new Paciente
+                {
+                    codPaciente = (int)dr["codPaciente"]
+                },
+                terapeuta = new Terapeuta
+                {
+                    numMed = (int)dr["numMed"]
+                }
+
+
+            });
+
+        }
+        if (consultas.Any(x => x.dia.ToString().Contains(pCon.dia.ToString()) &&
+              x.hora.Contains(pCon.hora) &&
+              x.hora.Contains(pCon.hora) &&
+              x.paciente.codPaciente.ToString().Contains(pCon.paciente.codPaciente.ToString()) &&
+               x.terapeuta.numMed.ToString().Contains(pCon.terapeuta.numMed.ToString())))
+        {
+            return consultas;
+        }
+        return consultas;
+    }*/
 }
 
 

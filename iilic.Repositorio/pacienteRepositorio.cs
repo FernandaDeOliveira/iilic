@@ -127,5 +127,38 @@ namespace iilic.Repositorio
             nomePac = (string)dr["nomePaciente"];
             return nomePac;
         }
+
+        public IEnumerable<Paciente> pesquisar(string pNome)
+        {
+            List<Paciente> paciente = new List<Paciente>();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT * FROM paciente where nomePaciente=@pNome ");
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@pNome", pNome);
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            while (dr.Read())
+            {
+                paciente.Add(new Paciente
+                    (
+                        (int)dr["codPaciente"],
+                        (string)dr["nomePaciente"],
+                        (string)dr["email"],
+
+                        (string)dr["telefone"],
+                    
+                        (DateTime)dr["dataNascPac"],
+                            (string)dr["cpfPac"]
+
+
+
+                    ));
+            }
+            return paciente;
+        }
+
     }
+
 }

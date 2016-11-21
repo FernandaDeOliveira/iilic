@@ -19,26 +19,32 @@ namespace iilic.UI.Controllers
         mesRepositorio mesRepositorio = new mesRepositorio();
         pagamentoRepositorio pagamentoRepositorio = new pagamentoRepositorio();
         public int idConsulta { get; set; }
+        public string nome;
 
-
-        // FAZER OUTRO METODO PRA EXIBIR TODAS AS CONSULTAS
         public ActionResult Index()
         {//EXIBE AS Q ESTAO EM ABERTO
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
             var consulta = consultaRepositorio.getAllAbertas();
             // if(consulta)
             return View(consulta);
         }
-
+        //EXIBE AS QUE ESTÃO PAGAS
         public ActionResult IndexConsultasPagas()
         {
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
             var consulta = consultaRepositorio.getAllPagas();
-            // if(consulta)
+           
             return View(consulta);
         }
 
         public ActionResult CriarConsulta()
         {
-            ViewBag.pacientes = pacienteRepositorio.getAll();
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
+           
+                ViewBag.pacientes = pacienteRepositorio.getAll();
             ViewBag.terapeutas = terapeutaRepositorio.getAll();
             return View();
         }
@@ -47,8 +53,24 @@ namespace iilic.UI.Controllers
         [HttpPost]
         public ActionResult CriarConsulta(Consulta pConsulta)
         {
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
 
-            idConsulta = consultaRepositorio.criar(pConsulta);
+               var r = consultaRepositorio.getConsultas(pConsulta);
+            // var r = consultaRepositorio.
+            if (r == true)
+            {
+                ViewBag.consulta = "Já existe uma consulta com esses dados";
+
+                ViewBag.pacientes = pacienteRepositorio.getAll();
+                ViewBag.terapeutas = terapeutaRepositorio.getAll();
+                return View("CriarConsulta");
+            }
+            else
+            {
+                idConsulta = consultaRepositorio.criar(pConsulta);
+            }
+            //se o status é igual a sim
             if (pConsulta.statusPagamento == 1)
             {
                 //idConsulta = pConsulta.idConsulta;
@@ -77,7 +99,7 @@ namespace iilic.UI.Controllers
             //    AlunoRepository.Edit(pAluno);
             return RedirectToAction("Index");
         }
-        //  [HttpPost]
+        // EFETUA PAGAMNETO ASSIM Q MARCA CONSULTA  
         public ActionResult PagamentoBotao(int id)
         {
             TempData["idConsulta"] = id;

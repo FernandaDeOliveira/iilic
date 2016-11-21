@@ -8,33 +8,36 @@ using System.Threading.Tasks;
 
 namespace iilic.Conexao
 {
-    public class ConexaoBD { 
-
-    
-
-    #region Atributos
-    MySqlConnection conn = new MySqlConnection();
-    MySqlCommand cmd;
-    MySqlDataReader dr;
-
-    public string connString
+    public class ConexaoBD
     {
-        get
+
+
+
+        #region Atributos
+        MySqlConnection conn = new MySqlConnection();
+        MySqlCommand cmd;
+        MySqlDataReader dr;
+
+        public string connString
         {
-            return "Server=localhost" +
-                ";Port=3306" +
-                ";Database=iilic" +
-                ";Uid=root" +
-                ";Pwd=root ";
+            get
+            {
+                return "Server=localhost" +
+                    ";Port=3306" +
+                    ";Database=iilic" +
+                    ";Uid=root" +
+                    ";Pwd=root ";
+            }
         }
-    }
 
-    #endregion
+        #endregion
 
-    #region Metodos
+        #region Metodos
 
-    public void open()
-    {
+        public void open()
+        {
+
+            close();
             conn.ConnectionString = connString;
             if (conn.State != ConnectionState.Open)
             {
@@ -44,7 +47,7 @@ namespace iilic.Conexao
         }
 
         public void close()
-    {
+        {
 
             if (conn.State == ConnectionState.Open)
             {
@@ -54,19 +57,19 @@ namespace iilic.Conexao
         }
 
         public void executeSQL(string pSql)
-    {
-        open();
-        cmd = new MySqlCommand();
-        cmd.CommandText = pSql;
-        cmd.Connection = conn;
-        cmd.ExecuteNonQuery();
-        close();
-    }
+        {
+            open();
+            cmd = new MySqlCommand();
+            cmd.CommandText = pSql;
+            cmd.Connection = conn;
+            cmd.ExecuteNonQuery();
+            close();
+        }
 
-    public void executeCommand(MySqlCommand cmd)
-    {
-        open();
-        cmd.Connection = conn;
+        public void executeCommand(MySqlCommand cmd)
+        {
+            open();
+            cmd.Connection = conn;
 
             try
             {
@@ -76,13 +79,13 @@ namespace iilic.Conexao
             {
                 throw ex;
             }
-            
+
 
             close();
-    }
+        }
 
-    public MySqlDataReader executeSqlReader(MySqlCommand cmd)
-    {
+        public MySqlDataReader executeSqlReader(MySqlCommand cmd)
+        {
 
             open();
             cmd.Connection = conn;
@@ -100,7 +103,7 @@ namespace iilic.Conexao
 
             return dr;
 
+        }
+        #endregion
     }
-    #endregion
-}
 }

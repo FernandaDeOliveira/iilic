@@ -11,6 +11,7 @@ namespace iilic.UI.Controllers
     public class PacienteController : Controller
     {
         pacienteRepositorio pacienteRepositorio = new pacienteRepositorio();
+        public string nome;
         // GET: Paciente
         public ActionResult Index()
         {
@@ -33,5 +34,14 @@ namespace iilic.UI.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult Pesquisar(string pesquisa)
+        {
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
+            var pac = pacienteRepositorio.pesquisar(pesquisa);
+            return View(pac);
+
+        }
     }
 }

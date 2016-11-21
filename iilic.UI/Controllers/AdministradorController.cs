@@ -14,7 +14,7 @@ namespace iilic.UI.Controllers
         adminRepositorio adminRepositorio = new adminRepositorio();
         terapeutaRepositorio terapeutaRepositorio = new terapeutaRepositorio();
         consultaRepositorio consultaRepositorio = new consultaRepositorio();
-        private string nome;
+        public string nome;
         private int id;
       
      
@@ -23,38 +23,33 @@ namespace iilic.UI.Controllers
             nome = (string)TempData.Peek("login");
             ViewBag.nome = nome;
             DateTime data = DateTime.Now;
-            var consultasData= consultaRepositorio.getAllData(data);
-          
-         //   for (int i = 0; i < consultasData.Count(); i++)
-          //  {
+            var consultasData= consultaRepositorio.getAllData(data);         
+      
                int i = consultasData.Count();
                 if (i == 0)
-                {//carregar aqui o get all de todas
+                {
                     return View("Dados");
-                }
-              
-       //     }
-           
+                }          
 
             return View(consultasData);
-            
-
         }
 
 
 
         public ActionResult IndexTer()
         {
-     
-                var tera = terapeutaRepositorio.getAll();
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
+            var tera = terapeutaRepositorio.getAll();
                 return View(tera);
 
         }
 
-
+        [HttpPost]
         public ActionResult Pesquisar(string pesquisa)
         {
-
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
             var tera = terapeutaRepositorio.pesquisar(pesquisa);
             return View(tera);
 

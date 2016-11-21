@@ -117,7 +117,7 @@ namespace iilic.Repositorio
             conn.executeCommand(cmd);
         }
 
-       public int buscaNumMed(string login)
+        public int buscaNumMed(string login)
         {
             ConexaoBD conn = new ConexaoBD();
 
@@ -136,6 +136,90 @@ namespace iilic.Repositorio
             numMed = (int)dr["terapeuta_num"];
             return numMed;
 
+        }
+
+        public bool getAllAdm(string log)
+        {
+            ConexaoBD conn = new ConexaoBD();
+            List<Login> logins = new List<Login>();
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+
+            sql.Append("SELECT * from logindb ");
+            sql.Append("WHERE login= @login ");
+
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@login", log);
+
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+
+            while (dr.Read())
+            {
+                logins.Add(new Login
+
+                {
+                    idLogin = (int)dr["idLogin"],
+                    login = (string)dr["login"],
+                    senha = (string)dr["senha"]
+                });
+            }
+            if (logins.Any(x => x.login.Contains(log)))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public bool getAllTer(string log)
+        {
+            ConexaoBD conn = new ConexaoBD();
+            List<Login> logins = new List<Login>();
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+
+            sql.Append("SELECT * from logintera ");
+            sql.Append("WHERE login= @login ");
+
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@login", log);
+
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+
+            while (dr.Read())
+            {
+                logins.Add(new Login
+
+                {
+                    idLogin = (int)dr["idLogintera"],
+                    login = (string)dr["login"],
+                    senha = (string)dr["senha"]
+                });
+            }
+            if (logins.Any(x => x.login.Contains(log)))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public IEnumerable<Administrador> salvaDadosAdm(Administrador adm)
+        {
+            List<Administrador> dados = new List<Administrador>();
+
+            dados.Add(new Administrador
+            {
+                nomeAdmin = adm.nomeAdmin,
+                cpf=adm.cpf,
+                dataNasc=adm.dataNasc,
+                sexo=adm.sexo,
+                telefone=adm.telefone,
+                email=adm.email
+            });
+            return dados;
         }
     }
 }

@@ -208,6 +208,8 @@
     <Content Include="Views\Relaciona\IndexAspectos.cshtml" />
     <Content Include="Views\Relaciona\Editar.cshtml" />
     <Content Include="Views\Relaciona\Aspecto.cshtml" />
+    <Content Include="Views\Administrador\Pesquisar.cshtml" />
+    <Content Include="Views\Paciente\Pesquisar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

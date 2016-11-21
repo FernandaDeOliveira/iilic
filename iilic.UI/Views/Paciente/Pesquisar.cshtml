@@ -1,9 +1,7 @@
-﻿@model IEnumerable<iilic.Core.Consulta>
+﻿@model IEnumerable<iilic.Core.Paciente>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexTer";
 }
-
-<h2>Index</h2>
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -13,7 +11,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="~/Administrador/IndexADM"><i class="fa fa-dashboard"></i> Página inicial</a></li>
-            <li class="active">Consultas pagas</li>
+            <li class="active">Resultado da pesquisa</li>
         </ol>
     </section>
     <section class="content">
@@ -25,44 +23,34 @@
                     <div class="col-lg-12">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="form-group col-xs-4">
-                                    <a class="btn btn-success btn-lg" href="~/Consulta/CriarConsulta" aria-label="Adicionar">
-                                        <span class="glyphicon glyphicon-plus-sign"></span>
-                                    </a>
-                                </div>
 
-
-
+                                <!-- Mudando essa area muda o conteudo do site -->
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> Consultas</h3>
+                                                <h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> Dados do paciente</h3>
                                             </div>
                                             <div class="panel-body">
                                                 <table class="table table-hover">
                                                     <tr>
-                                                        <th>Dia da consulta </th>
-                                                        <th>Nome do paciente</th>
-                                                        <th>Nome do terapeuta</th>
-                                                        <th>Hora da consulta</th>
+                                                        <th>Nome </th>
+                                                        <th>CPF</th>
+                                                        <th>Telefone</th>
+                                                        <th>Email</th>
+                                                        <th>data de nascimento</th>
+                                                    
                                                     </tr>
-                                                    @foreach (var consulta in Model)
+                                                    @foreach (var paciente in Model)
                                                     {
                                                         <tr>
-                                                            <td>@consulta.dia.ToShortDateString()</td>
-                                                            <td>@consulta.paciente.nomePaciente</td>
-
-                                                            <td>@consulta.terapeuta.nomeMed</td>
-                                                            <td>@consulta.hora</td>
-
+                                                            <td>@paciente.nomePaciente</td>
+                                                            <td>@paciente.cpfPac</td>
+                                                            <td>@paciente.telefone</td>
+                                                            <td>@paciente.email</td>
                                                             <td>
-                                                                <a href="~/PDF/getPDF/@consulta.idConsulta" class="btn btn-warning btn-md">
-                                                                    Gerar recibo<span class="glyphicon glyphicon-plus-sign"></span>
-                                                                </a>
-                                                            </td>
-
-
+                                                                @paciente.dataNascPac.ToShortDateString()
+                                                        </td>
                                                         </tr>
                                                     }
 
@@ -72,12 +60,10 @@
                                     </div>
                                 </div>
                                 <!-- Mudando essa area muda o conteudo do site -->
-                                <!-- Mudando essa area muda o conteudo do site -->
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
     </section>
 </div>
 
