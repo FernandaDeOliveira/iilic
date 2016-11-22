@@ -189,7 +189,6 @@
     <Content Include="Views\Shared\_LayoutIndexTer.cshtml" />
     <Content Include="Views\Administrador\CriarTerapeuta.cshtml" />
     <Content Include="Views\Shared\_LayoutIndexDoença.cshtml" />
-    <Content Include="Views\Terapeuta\Index2.cshtml" />
     <Content Include="Views\Administrador\Dados.cshtml" />
     <Content Include="Views\Relaciona\Pergunta.cshtml" />
     <Content Include="Views\Login\CriarLoginTER.cshtml" />
@@ -210,6 +209,10 @@
     <Content Include="Views\Relaciona\Aspecto.cshtml" />
     <Content Include="Views\Administrador\Pesquisar.cshtml" />
     <Content Include="Views\Paciente\Pesquisar.cshtml" />
+    <Content Include="Views\Paciente\Editar.cshtml" />
+    <Content Include="Views\Consulta\Editar.cshtml" />
+    <Content Include="Views\Consulta\IndexConsultas.cshtml" />
+    <Content Include="Views\Consulta\Pesquisar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -43,5 +43,20 @@ namespace iilic.UI.Controllers
             return View(pac);
 
         }
+
+        public ActionResult Editar(int id)
+        {
+            var paciente = pacienteRepositorio.getOne(id);
+
+            return View(paciente);
+        }
+
+
+        [HttpPost]
+        public ActionResult Editar(Paciente pPac)
+        {
+            pacienteRepositorio.editarPaciente(pPac);
+            return RedirectToAction("Index");
+        }
     }
 }

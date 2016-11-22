@@ -1,0 +1,111 @@
+﻿@model IEnumerable<iilic.Core.Consulta>
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <meta charset="utf-8" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    <script src="~/scripts/jquery.js"></script>
+    <script src="~/scripts/jquery-ui.js"></script>
+</head>
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Iilic
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="~/Administrador/IndexADM"><i class="fa fa-dashboard"></i> Página inicial</a></li>
+            <li class="active">Resultado da pesquisa</li>
+        </ol>
+    </section>
+    <section class="content">
+
+        <!-- Principal -->
+        <div class="box box-solid">
+            <div class="box-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Mudando essa area muda o conteudo do site -->
+                      
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> Consultas marcadas:</h3>
+                                    </div>
+                                    <div class="panel-body">
+
+
+
+                                        @foreach (var c in Model)
+                                        {
+                                            <div class="panel-heading row">
+
+                                                <div class="row">
+                                                    <div class="col-lg-10 col-md-8 col-sm-8 col-xs-6">
+                                                        <h4>Dia: @c.dia.ToString("yyyy-MM-dd")</h4>
+                                                    </div>
+                                                    <div class="col-lg-10 col-md-8 col-sm-8 col-xs-6">
+                                                        <h4>Nome do terapeuta: @c.terapeuta.nomeMed</h4>
+                                                    </div>
+                                                    <div class="col-lg-10 col-md-8 col-sm-8 col-xs-6">
+                                                        <h4>Hora: @c.hora</h4>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <a class="btn btn-warning" href="~/Consulta/Editar/@c.idConsulta" name="idConsulta">
+                                                            <i class="glyphicon glyphicon-edit"></i>
+                                                        </a>
+
+                                                        <a class="btn btn-danger" data-toggle="modal" data-target="#myModal" data-id="@c.idConsulta">
+                                                            <i class="glyphicon glyphicon-trash"></i>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal fade" tabindex="-1" role="dialog" id="myModal" data-id="@c.idConsulta">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header" style="background-color:coral">
+
+                                                            <h4 class="modal-title">Atenção</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Você tem certeza que deseja excluir essa consulta?</p>
+                                                            
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="col-md-6">
+                                                                <form action="~/Consulta/Excluir" method="post">
+                                                                    <button class="btn btn-success " name="idConsulta" value="@c.idConsulta" type="submit">Sim</button>
+                                                                </form>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <button type="button" class="btn btn-danger " data-dismiss="modal">Não</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+                                        }
+
+
+                                    </div>
+                                </div>
+                                <!-- Mudando essa area muda o conteudo do site -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

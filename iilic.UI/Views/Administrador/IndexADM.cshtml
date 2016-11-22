@@ -19,10 +19,6 @@
                     <div class="container">
                         <div class="row ">
 
-                            <!--  <div class="col-lg-8 col-lg-offset-2 text-center">-->
-                            <!-- Principal -->
-                            <!--  <div style="padding-top:120px">   <div class="col-xs-12 col-xs-offset-1 col-sm-10 col-sm-offset-2 col-md-4 col-md-offset-4 ">-->
-
                             @foreach (var consulta in Model)
                             {
             <!-- Mudando essa area muda o conteudo do site -->
@@ -48,11 +44,11 @@
                                                     <label>Nome do terapeuta: @consulta.terapeuta.nomeMed</label>
 
                                                 </div>
+                                                <div>
+                                                    <a href="~/Consulta/Editar/@consulta.idConsulta" class="btn btn-primary btn-md glyphicon glyphicon-pencil"></a>
+                                                </div>
 
-                                                <!--    <a href="~/Consulta/Editar/@consulta.idConsulta" class="btn btn-primary btn-md glyphicon glyphicon-pencil">
 
-                                                                                                        </a>
-                                                -->
 
                                             </div>
 

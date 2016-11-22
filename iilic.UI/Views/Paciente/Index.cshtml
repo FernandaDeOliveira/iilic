@@ -9,10 +9,10 @@
     <section class="content-header">
         <h1>
             Iilic
-            <small>texto menor</small>
+            <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> LOCAL</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Página inicial</a></li>
             <li class="active">Pacientes</li>
         </ol>
     </section>
@@ -60,6 +60,8 @@
                                                     <th>Email</th>
                                                     <th>CPF</th>
                                                     <th>Data de nascimento</th>
+                                                    <th>Ações</th>
+                                                    <th></th>
                                                 </tr>
                                                 @foreach (var paciente in Model)
                                                 {
@@ -69,6 +71,11 @@
                                                         <td>@paciente.email</td>
                                                         <td>@paciente.cpfPac</td>
                                                         <td>@paciente.dataNascPac.ToShortDateString()</td>
+                                                        <td>
+                                                            <a href="~/Paciente/Editar/@paciente.codPaciente" class="btn btn-warning btn-md">
+                                                                Editar <span class="glyphicon glyphicon-edit"></span>
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 }
 

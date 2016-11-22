@@ -17,7 +17,7 @@ namespace iilic.UI
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            );//so voltar para Home
         }
     }
 }

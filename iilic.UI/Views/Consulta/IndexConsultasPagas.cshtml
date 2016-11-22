@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<iilic.Core.Consulta>
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -56,12 +52,12 @@
                                                             <td>@consulta.terapeuta.nomeMed</td>
                                                             <td>@consulta.hora</td>
 
+                                                         
                                                             <td>
-                                                                <a href="~/PDF/getPDF/@consulta.idConsulta" class="btn btn-warning btn-md">
-                                                                    Gerar recibo<span class="glyphicon glyphicon-plus-sign"></span>
-                                                                </a>
+                                                                <form action="~/PDF/getPDF/@consulta.idConsulta" >
+                                                                    <button class="btn btn-warning " type="submit" onsubmit="return this.btn.disabled=true">Gerar recibo</button>
+                                                                </form>
                                                             </td>
-
 
                                                         </tr>
                                                     }

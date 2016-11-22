@@ -90,31 +90,27 @@ namespace iilic.Repositorio
 
         }
 
-        /// <summary>
-        /// ta dando erro
-        /// </summary>
-        /// <param name="pId"></param>
-        /// <returns></returns>
         public Consulta getEditar(int pId)
         {
-            sql.Append("SELECT  p.nomePaciente, c.dia, c.hora, t.nomeMed " +
+            sql.Append("SELECT c.dia, c.hora, p.nomePaciente,p.cpfPac, t.nomeMed " +
                 "FROM consulta c " +
                 "INNER JOIN paciente p on p.codPaciente = c.codPaciente " +
                 "INNER JOIN terapeuta t on t.numMed = c.numMed " +
                 "WHERE c.idConsulta  = @idC");
 
             cmd.CommandText = sql.ToString();
-            //    cmd.Parameters.AddWithValue("@idC", pId);
+            cmd.Parameters.AddWithValue("@idC", pId);
             MySqlDataReader dr = conn.executeSqlReader(cmd);
             dr.Read();
             Consulta con = new Consulta
             {
+                dia=(DateTime)dr["dia"],
+                hora=(string)dr["hora"],
                 paciente = new Paciente
                 {
-                    nomePaciente = (string)dr["nomePaciente"]
+                    nomePaciente = (string)dr["nomePaciente"],
+                    cpfPac = (string)dr["cpfPac"]
                 },
-                dia = (DateTime)dr["dia"],
-                hora = (string)dr["hora"],
                 terapeuta = new Terapeuta
                 {
                     nomeMed = (string)dr["nomeMed"]
@@ -176,9 +172,9 @@ namespace iilic.Repositorio
                 "from consulta c " +
                 "inner join paciente p on p.codPaciente = c.codPaciente " +
                 "inner join terapeuta t on t.numMed = c.numMed " +
-                "where c.statusPagamento = 2 " +
-                "group by p.nomePaciente");
-
+                "where c.statusPagamento = 2  order by c.dia desc ");
+            //retirar o grouby e ver o q retorna
+            //rerirar o groupby!!!!
             MySqlCommand cmd = new MySqlCommand();
             cmd.CommandText = sql.ToString();
 
@@ -218,8 +214,7 @@ namespace iilic.Repositorio
                 "from consulta c " +
                 "inner join paciente p on p.codPaciente = c.codPaciente " +
                 "inner join terapeuta t on t.numMed = c.numMed " +
-                "where c.statusPagamento = 1 " +
-                "group by p.nomePaciente");
+                "where c.statusPagamento = 1 order by c.dia desc ");
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.CommandText = sql.ToString();
@@ -286,6 +281,48 @@ namespace iilic.Repositorio
             }
             //consultas.GetEnumerator();
 
+            return consultas;
+        }
+
+        public IEnumerable<Consulta> getAllMarcadas()
+        {
+            //2 get all
+            ///um q exibe todas
+            ///um q exibe as do dia
+
+            List<Consulta> consultas = new List<Consulta>();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT c.idConsulta, c.dia, c.hora, p.nomePaciente, t.nomeMed, c.statusPagamento " +
+                "from consulta c " +
+                "inner join paciente p on p.codPaciente = c.codPaciente " +
+                "inner join terapeuta t on t.numMed = c.numMed " +
+                "order by c.dia desc ");
+            //retirar o grouby e ver o q retorna
+            //rerirar o groupby!!!!
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = sql.ToString();
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            while (dr.Read())
+            {
+                consultas.Add(new Consulta
+                {
+
+                    idConsulta = (int)dr["idConsulta"],
+                    dia = (DateTime)dr["dia"],
+                    hora = (string)dr["hora"],
+                    paciente = new Paciente
+                    {
+                        nomePaciente = (string)dr["nomePaciente"]
+                    },
+                    terapeuta = new Terapeuta
+                    {
+                        nomeMed = (string)dr["nomeMed"]
+                    }
+
+
+                });
+            }
             return consultas;
         }
 
@@ -398,6 +435,80 @@ namespace iilic.Repositorio
                 return false;
         }
 
+        public IEnumerable<Consulta> pesquisar(string pNome)
+        {
+            List<Consulta> consultas = new List<Consulta>();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT c.idConsulta, c.dia, c.hora, p.nomePaciente, t.nomeMed, c.statusPagamento " +
+               "from consulta c " +
+               "inner join paciente p on p.codPaciente = c.codPaciente " +
+               "inner join terapeuta t on t.numMed = c.numMed " +
+               "where p.nomePaciente=@pNome order by c.dia desc ");
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@pNome", pNome);
+
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+            while (dr.Read())
+            {
+                consultas.Add(new Consulta
+                {
+
+                    idConsulta = (int)dr["idConsulta"],
+                    dia = (DateTime)dr["dia"],
+                    hora = (string)dr["hora"],
+                    paciente = new Paciente
+                    {
+                        nomePaciente = (string)dr["nomePaciente"]
+                    },
+                    terapeuta = new Terapeuta
+                    {
+                        nomeMed = (string)dr["nomeMed"]
+                    }
+
+                }
+
+                    );
+            }
+            return consultas;
+        }
+
+        public void excluir(int pIdCon)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("DELETE from consulta where idConsulta=@pIdCon");
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Parameters.AddWithValue("@pIdCon", pIdCon);
+            cmd.CommandText = sql.ToString();
+            conn.executeCommand(cmd);
+        }
+
+        public void editar(Consulta pCon)
+        {
+            ConexaoBD conn = new ConexaoBD();
+
+          /*  MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("UPDATE consulta ");
+            sql.Append("SET nomePaciente=@nomePaciente, telefone=@telefone, email=@email, dataNascPac=@dataN, cpfPac=@cpf ");
+            sql.Append("WHERE codPaciente=@codPaciente");
+
+            cmd.Parameters.AddWithValue("@codPaciente", pPac.codPaciente);
+
+            cmd.Parameters.AddWithValue("@nomePaciente", pPac.nomePaciente);
+            cmd.Parameters.AddWithValue("@telefone", pPac.telefone);
+            cmd.Parameters.AddWithValue("@email", pPac.email);
+            cmd.Parameters.AddWithValue("@dataN", pPac.dataNascPac);
+            cmd.Parameters.AddWithValue("@cpf", pPac.cpfPac);
+            cmd.CommandText = sql.ToString();
+            conn.executeCommand(cmd);
+
+            sql.Clear();*/
+
+
+
+        }
     }
    /* public IEnumerable<Consulta> getConsultas2(Consulta pCon)
     {

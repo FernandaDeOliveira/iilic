@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace iilic.UI.Controllers
 {
+    
     public class AdministradorController : Controller
     {
         adminRepositorio adminRepositorio = new adminRepositorio();

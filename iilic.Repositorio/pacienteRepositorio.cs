@@ -159,6 +159,58 @@ namespace iilic.Repositorio
             return paciente;
         }
 
+        public Paciente getOne(int pIdPac)
+        {
+            Paciente paciente = new Paciente();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select * from paciente where codPaciente=@pIdPac ");
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = sql.ToString();
+            cmd.Parameters.AddWithValue("@pIdPac", pIdPac);
+            MySqlDataReader dr = conn.executeSqlReader(cmd);
+
+            while (dr.Read())
+            {
+                paciente = (new Paciente
+                {
+                   codPaciente = (int)dr["codPaciente"],
+                    nomePaciente = (string)dr["nomePaciente"],
+                    telefone=(string)dr["telefone"],
+                    email=(string)dr["email"],
+                    dataNascPac=(DateTime)dr["dataNascPac"],
+                    cpfPac=(string)dr["cpfPac"]
+
+                });
+            }
+            return paciente;
+        }
+        public void editarPaciente(Paciente pPac)
+        {
+            ConexaoBD conn = new ConexaoBD();
+
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("UPDATE paciente ");
+            sql.Append("SET nomePaciente=@nomePaciente, telefone=@telefone, email=@email, dataNascPac=@dataN, cpfPac=@cpf ");
+            sql.Append("WHERE codPaciente=@codPaciente");
+
+            cmd.Parameters.AddWithValue("@codPaciente", pPac.codPaciente);
+
+            cmd.Parameters.AddWithValue("@nomePaciente", pPac.nomePaciente);
+            cmd.Parameters.AddWithValue("@telefone", pPac.telefone);
+            cmd.Parameters.AddWithValue("@email", pPac.email);
+            cmd.Parameters.AddWithValue("@dataN", pPac.dataNascPac);
+            cmd.Parameters.AddWithValue("@cpf", pPac.cpfPac);
+            cmd.CommandText = sql.ToString();
+            conn.executeCommand(cmd);
+
+            sql.Clear();
+
+
+
+        }
+
+
     }
 
 }

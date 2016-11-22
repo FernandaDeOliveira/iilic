@@ -1,0 +1,91 @@
+﻿@model IEnumerable<iilic.Core.Consulta>
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Iilic
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="~/Administrador/IndexADM"><i class="fa fa-dashboard"></i> Página inicial</a></li>
+            <li class="active">Todas as consultas</li>
+        </ol>
+    </section>
+    <section class="content">
+
+        <!-- Principal -->
+        <div class="box box-solid">
+            <div class="box-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="container-fluid">
+                            <div class="row">
+
+                                <div class="form-inline">
+                                    <div class="form-group col-xs-4">
+
+                                        <form action="~/Consulta/Pesquisar" method="post">
+                                            <input class="form-control" size="35" type="text" name="pesquisa" id="pesquisa" placeholder="Digite o nome do paciente" />
+                                            <button class="btn btn-primary btn-lg" name="pesquisa" type="submit">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </form>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> Consultas</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <table class="table table-hover">
+                                                        <tr>
+                                                            <th>Dia da consulta </th>
+                                                            <th>Nome do paciente</th>
+                                                            <th>Nome do terapeuta</th>
+                                                            <th>Hora da consulta</th>
+                                                        </tr>
+                                                        @foreach (var consulta in Model)
+                                                        {
+                                                            <tr>
+                                                                <td>@consulta.dia.ToShortDateString()</td>
+                                                                <td>@consulta.paciente.nomePaciente</td>
+
+                                                                <td>@consulta.terapeuta.nomeMed</td>
+                                                                <td>@consulta.hora</td>
+
+
+
+                                                            </tr>
+                                                        }
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Mudando essa area muda o conteudo do site -->
+                                    <!-- Mudando essa area muda o conteudo do site -->
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</div>
+
+
+
+
+
+@{
+    ViewBag.Title = "IndexConsultas";
+}
+
+<h2>IndexConsultas</h2>
+

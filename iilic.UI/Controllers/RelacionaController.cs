@@ -29,6 +29,7 @@ namespace iilic.UI.Controllers
             ViewBag.nome = nome;
             TempData["idPaciente"] = idPaciente;
             TempData.Keep("idPaciente");
+            ViewBag.codP = TempData.Peek("idPaciente");
             var listaAspectos = pacienteRepo.getAllAspectos(idPaciente);
             //metodo que busca o nomedo paciente pelo id e salva numa viewbag
             nomeP = pacienteRepo.getNomePaciente(idPaciente);
@@ -91,22 +92,24 @@ namespace iilic.UI.Controllers
 
         public ActionResult Aspecto()
         {
-            ViewBag.codP = TempData.Peek("idPaciente");
             return View();
         }
 
         [HttpPost]
+        //terapeuta
         public ActionResult Aspecto(int idPaciente)
         {
             TempData["idP"] = idPaciente;
             TempData.Keep("idP");
+         //   ViewBag.idp = TempData.Peek("idP");
             return View();
         }
 
         [HttpPost]
         public ActionResult salvarAspecto(string nomeAspecto)
         {
-            var ident = (int)TempData.Peek("idP");
+          //  int ident = ViewBag.idp;
+           var ident = (int)TempData.Peek("idP");
             relacionaRepositorio.criarCaracteristica(nomeAspecto, ident);
             TempData.Remove("idP");
             // return View("Pergunta");

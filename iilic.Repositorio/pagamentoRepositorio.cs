@@ -21,7 +21,7 @@ namespace iilic.Repositorio
         {
             sql.Append("SELECT valor " +
                 "FROM pagamento " +
-                "WHERE  pagamento.consulta_idConsulta = @idC");
+                "WHERE  consulta_idConsulta = @idC");
 
             cmd.CommandText = sql.ToString();
             cmd.Parameters.AddWithValue("@idC", pId);

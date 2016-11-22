@@ -16,10 +16,10 @@ namespace iilic.UI.Controllers
       
         public ActionResult getPDF(int id)
         {
-
+            //é chamado nas consultas pagas pra gerar recibo
             var consulta = consultaRepositorio.getOne(id);
             ViewBag.valor = pagamentoRepositorio.getOne(id);
-            //   ViewData["valor"] = pagamentoRepositorio.getOne(id);
+          
             return new ViewAsPdf(consulta);
         }
 
