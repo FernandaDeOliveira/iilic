@@ -92,7 +92,7 @@ namespace iilic.Repositorio
 
         public Consulta getEditar(int pId)
         {
-            sql.Append("SELECT c.dia, c.hora, p.nomePaciente,p.cpfPac, t.nomeMed " +
+            sql.Append("SELECT c.idConsulta,c.dia, c.hora,p.codPaciente, p.nomePaciente,p.cpfPac, t.nomeMed, t.numMed " +
                 "FROM consulta c " +
                 "INNER JOIN paciente p on p.codPaciente = c.codPaciente " +
                 "INNER JOIN terapeuta t on t.numMed = c.numMed " +
@@ -104,15 +104,18 @@ namespace iilic.Repositorio
             dr.Read();
             Consulta con = new Consulta
             {
+                idConsulta=(int)dr["idConsulta"],
                 dia=(DateTime)dr["dia"],
                 hora=(string)dr["hora"],
                 paciente = new Paciente
                 {
+                    codPaciente=(int)dr["codPaciente"],
                     nomePaciente = (string)dr["nomePaciente"],
                     cpfPac = (string)dr["cpfPac"]
                 },
                 terapeuta = new Terapeuta
                 {
+                    numMed=(int)dr["numMed"],
                     nomeMed = (string)dr["nomeMed"]
                 }
 
@@ -488,76 +491,28 @@ namespace iilic.Repositorio
         {
             ConexaoBD conn = new ConexaoBD();
 
-          /*  MySqlCommand cmd = new MySqlCommand();
+            MySqlCommand cmd = new MySqlCommand();
             StringBuilder sql = new StringBuilder();
             sql.Append("UPDATE consulta ");
-            sql.Append("SET nomePaciente=@nomePaciente, telefone=@telefone, email=@email, dataNascPac=@dataN, cpfPac=@cpf ");
-            sql.Append("WHERE codPaciente=@codPaciente");
+            sql.Append("SET dia=@dia, statusPagamento=@status, numMed=@numM, hora=@hora ");
+            sql.Append("WHERE idConsulta=@idConsulta");
 
-            cmd.Parameters.AddWithValue("@codPaciente", pPac.codPaciente);
+            cmd.Parameters.AddWithValue("@idConsulta", pCon.idConsulta);
 
-            cmd.Parameters.AddWithValue("@nomePaciente", pPac.nomePaciente);
-            cmd.Parameters.AddWithValue("@telefone", pPac.telefone);
-            cmd.Parameters.AddWithValue("@email", pPac.email);
-            cmd.Parameters.AddWithValue("@dataN", pPac.dataNascPac);
-            cmd.Parameters.AddWithValue("@cpf", pPac.cpfPac);
+            cmd.Parameters.AddWithValue("@dia", pCon.dia.ToString("yyyy-MM-dd"));
+            cmd.Parameters.AddWithValue("@status", pCon.statusPagamento);
+            cmd.Parameters.AddWithValue("@numM", pCon.terapeuta.numMed);
+            cmd.Parameters.AddWithValue("@hora", pCon.hora);
             cmd.CommandText = sql.ToString();
             conn.executeCommand(cmd);
-
-            sql.Clear();*/
+        
+            sql.Clear();
 
 
 
         }
     }
-   /* public IEnumerable<Consulta> getConsultas2(Consulta pCon)
-    {
-        ConexaoBD conn = new ConexaoBD();
-        List<Consulta> consultas = new List<Consulta>();
-        StringBuilder sql = new StringBuilder();
-        sql.Append("SELECT c.idConsulta, c.dia, c.hora, c.codPaciente, c.numMed " +
-            "from consulta c " +
-            "where c.dia=@data or c.hora=@hora or  c.codPaciente=@codP or c.numMed=@numM ");
-
-        MySqlCommand cmd = new MySqlCommand();
-        cmd.CommandText = sql.ToString();
-        cmd.Parameters.AddWithValue("@data", pCon.dia);
-        cmd.Parameters.AddWithValue("@hora", pCon.hora);
-        cmd.Parameters.AddWithValue("@codP", pCon.paciente.codPaciente);
-        cmd.Parameters.AddWithValue("@numM", pCon.terapeuta.numMed);
-
-        MySqlDataReader dr = conn.executeSqlReader(cmd);
-        while (dr.Read())
-        {
-            consultas.Add(new Consulta
-            {
-
-                idConsulta = (int)dr["idConsulta"],
-                dia = (DateTime)dr["dia"],
-                hora = (string)dr["hora"],
-                paciente = new Paciente
-                {
-                    codPaciente = (int)dr["codPaciente"]
-                },
-                terapeuta = new Terapeuta
-                {
-                    numMed = (int)dr["numMed"]
-                }
-
-
-            });
-
-        }
-        if (consultas.Any(x => x.dia.ToString().Contains(pCon.dia.ToString()) &&
-              x.hora.Contains(pCon.hora) &&
-              x.hora.Contains(pCon.hora) &&
-              x.paciente.codPaciente.ToString().Contains(pCon.paciente.codPaciente.ToString()) &&
-               x.terapeuta.numMed.ToString().Contains(pCon.terapeuta.numMed.ToString())))
-        {
-            return consultas;
-        }
-        return consultas;
-    }*/
+   
 }
 
 

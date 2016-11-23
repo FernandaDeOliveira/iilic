@@ -22,7 +22,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="form-group col-xs-4">
-                                    <a class="btn btn-success btn-lg" href="~/Consulta/CriarConsulta" aria-label="Adicionar">
+                                    <a class="btn btn-success btn-md" href="~/Consulta/CriarConsulta" aria-label="Adicionar">
                                         <span class="glyphicon glyphicon-plus-sign"></span>
                                     </a>
                                 </div>
@@ -42,6 +42,7 @@
                                                         <th>Nome do paciente</th>
                                                         <th>Nome do terapeuta</th>
                                                         <th>Hora da consulta</th>
+                                                        <th> Gerar recibo</th>
                                                     </tr>
                                                     @foreach (var consulta in Model)
                                                     {
@@ -50,12 +51,11 @@
                                                             <td>@consulta.paciente.nomePaciente</td>
 
                                                             <td>@consulta.terapeuta.nomeMed</td>
-                                                            <td>@consulta.hora</td>
-
-                                                         
+                                                            <td>@consulta.hora</td>                                                
                                                             <td>
                                                                 <form action="~/PDF/getPDF/@consulta.idConsulta" >
-                                                                    <button class="btn btn-warning " type="submit" onsubmit="return this.btn.disabled=true">Gerar recibo</button>
+                                                                    <button class="btn btn-warning " type="submit" onsubmit="return this.btn.disabled=true" onfocus="this.style.backgroundColor='#ff0000';">
+                                                                        <i class="glyphicon glyphicon-file"></i></button>
                                                                 </form>
                                                             </td>
 

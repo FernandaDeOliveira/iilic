@@ -24,12 +24,18 @@ namespace iilic.UI.Controllers
        
         public ActionResult Index()
         {//EXIBE AS Q ESTAO EM ABERTO
-          //  FormsAuthentication.
+          
             nome = (string)TempData.Peek("login");
                 ViewBag.nome = nome;
+            if (nome == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
                 var consulta = consultaRepositorio.getAllAbertas();
                 return View(consulta);
-          
+            }
         }
         //EXIBE AS QUE ESTÃO PAGAS
       
@@ -38,10 +44,16 @@ namespace iilic.UI.Controllers
             
                 nome = (string)TempData.Peek("login");
                 ViewBag.nome = nome;
+            if (nome == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
                 var consulta = consultaRepositorio.getAllPagas();
 
                 return View(consulta);
-            
+            }
             
         }
 
@@ -62,9 +74,16 @@ namespace iilic.UI.Controllers
 
         nome = (string)TempData.Peek("login");
         ViewBag.nome = nome;
-        var consulta = consultaRepositorio.getAllMarcadas();
-        // if(consulta)
-        return View(consulta);
+            if (nome == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                var consulta = consultaRepositorio.getAllMarcadas();
+                // if(consulta)
+                return View(consulta);
+            }
     }
     
 
@@ -124,9 +143,12 @@ namespace iilic.UI.Controllers
 
     public ActionResult Editar(int id)
     {//ta sendo chamado na index do admin
-        var consulta = consultaRepositorio.getEditar(id);
 
-                ViewBag.pacientes = pacienteRepositorio.getAll();
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
+
+            var consulta = consultaRepositorio.getEditar(id);
+
                 ViewBag.terapeutas = terapeutaRepositorio.getAll();
                 return View(consulta);
     }
@@ -160,7 +182,7 @@ namespace iilic.UI.Controllers
 
                 return View("Pagamento");
             }
-        return RedirectToAction("Index");
+        return RedirectToAction("IndexADM","Administrador");
     }
     // EFETUA PAGAMNETO ASSIM Q MARCA CONSULTA  
     public ActionResult PagamentoBotao(int id)

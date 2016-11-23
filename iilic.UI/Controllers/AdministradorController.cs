@@ -21,18 +21,26 @@ namespace iilic.UI.Controllers
      
         public ActionResult IndexADM()
         {
+//FormsAuthentication.FormsCookieName();
             nome = (string)TempData.Peek("login");
             ViewBag.nome = nome;
             DateTime data = DateTime.Now;
-            var consultasData= consultaRepositorio.getAllData(data);         
-      
-               int i = consultasData.Count();
+            if (nome == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                var consultasData = consultaRepositorio.getAllData(data);
+
+                int i = consultasData.Count();
                 if (i == 0)
                 {
                     return View("Dados");
-                }          
+                }
 
-            return View(consultasData);
+                return View(consultasData);
+            }
         }
 
 

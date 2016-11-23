@@ -148,6 +148,7 @@
     <Content Include="scripts\jquery-ui.js" />
     <Content Include="scripts\jquery-ui.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\ValidaCPF.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

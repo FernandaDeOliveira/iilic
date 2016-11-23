@@ -23,14 +23,19 @@ namespace iilic.UI.Controllers
         {
             nome = (string)TempData.Peek("login");
             ViewBag.nome = nome;
-            //chamar um metodo q pega o login e puxa o id pra ca //salva o id numavariavel            
-            
-            numeroMed = loginrepo.buscaNumMed(nome);
-            //passa pra outro metodo q pega as consultas naquele id
-            var consultas=consultaRepo.getAllTerapeuta(numeroMed);
-       
+            if (nome == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                //chamar um metodo q pega o login e puxa o id pra ca //salva o id numavariavel            
 
-            return View(consultas);
+                numeroMed = loginrepo.buscaNumMed(nome);
+                //passa pra outro metodo q pega as consultas naquele id
+                var consultas = consultaRepo.getAllTerapeuta(numeroMed);
+                return View(consultas);
+            }
         }
 /// <summary>
 /// é a de antes

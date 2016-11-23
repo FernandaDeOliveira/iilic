@@ -15,12 +15,17 @@ namespace iilic.UI.Controllers
         // GET: Paciente
         public ActionResult Index()
         {
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
             var pac = pacienteRepositorio.getAll();
             return View(pac);
         }
 
         public ActionResult CriarPaciente()
         {
+
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
             return View();
         }
 
@@ -46,6 +51,9 @@ namespace iilic.UI.Controllers
 
         public ActionResult Editar(int id)
         {
+
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
             var paciente = pacienteRepositorio.getOne(id);
 
             return View(paciente);
