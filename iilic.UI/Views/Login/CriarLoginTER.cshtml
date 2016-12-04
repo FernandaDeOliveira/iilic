@@ -1,4 +1,9 @@
-﻿
+﻿@{
+    ViewBag.Title = "Cadastro Terapeuta";
+}
+}
+ &lt;
+<script language="JavaScript" type="text/javascript" src="~/scripts/MascaraValidacao.js"></script>
 <script type="text/javascript">
    $(function(){
       $(".close").click(function(){
@@ -16,6 +21,7 @@
     <script src="~/scripts/jquery.js"></script>
     <script src="~/scripts/jquery-ui.js"></script>
 </head>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -33,7 +39,7 @@
             <div class="login panel panel-primary">
                 <div class="panel-heading" style="font-size:medium">Digite seus dados para cadastro</div>
                 <div class="panel-body">
-                    <form action="CriarLogTER" method="post">
+                    <form action="CriarLogTER" method="post" name="form1">
                         <fieldset>
                             <div class="form-group">
 
@@ -44,7 +50,8 @@
 
                                 <div class="form-group  col-lg-12">
                                     <label>CPF  *</label>
-                                    <input class="form-control" type="text" name="cpfMed" maxlength="11" required>
+                                    <input class="form-control" type="text" name="cpfMed" onBlur="ValidarCPF(form1.cpfMed);"
+                                               onKeyPress="MascaraCPF(form1.cpfMed);" maxlength="14" required>
                                 </div>
                                 <div class="form-group  col-lg-4">
                                     <label>Data de nascimento *</label>
@@ -62,7 +69,7 @@
                                 </div>
                                 <div class="form-group  col-lg-12">
                                     <label>Telefone *</label>
-                                    <input class="form-control" type="text" name="telefone" required>
+                                    <input class="form-control" type="text" name="telefone" onKeyPress="MascaraTelefone(form1.telefone);" maxlength="15" required>
                                 </div>
 
                                 <div class="form-group col-lg-12">

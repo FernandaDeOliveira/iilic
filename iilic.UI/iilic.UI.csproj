@@ -147,8 +147,23 @@
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\jquery-ui.js" />
     <Content Include="scripts\jquery-ui.min.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.date.extensions.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.date.extensions.min.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.extensions.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.extensions.min.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.min.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.numeric.extensions.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.numeric.extensions.min.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.phone.extensions.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.phone.extensions.min.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.regex.extensions.js" />
+    <Content Include="scripts\jquery.inputmask\inputmask.regex.extensions.min.js" />
+    <Content Include="scripts\jquery.inputmask\jquery.inputmask.bundle.js" />
+    <Content Include="scripts\jquery.inputmask\jquery.inputmask.js" />
+    <Content Include="scripts\jquery.inputmask\jquery.inputmask.min.js" />
+    <Content Include="scripts\MascaraValidacao.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
-    <Content Include="scripts\ValidaCPF.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

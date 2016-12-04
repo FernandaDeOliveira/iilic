@@ -27,6 +27,7 @@ namespace iilic.Repositorio
             cmd.Parameters.AddWithValue("@idC", pId);
             MySqlDataReader dr = conn.executeSqlReader(cmd);
             dr.Read();
+
             Pagamento pag = new Pagamento
             {
                 valor=(float)dr["valor"]             

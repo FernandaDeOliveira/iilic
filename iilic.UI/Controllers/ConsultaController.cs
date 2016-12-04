@@ -218,7 +218,7 @@ namespace iilic.UI.Controllers
             return RedirectToAction("Index");
         }
         else
-            consultaRepositorio.efetuarPagamento(pV, ident, tV);
+            consultaRepositorio.efetuarPagamento(pV,tV, ident);
         sessaoRepositorio.criarFinanSessao(pV);
         consultaRepositorio.mudaStatusPagamento(ident);
         TempData.Remove("idConsulta");

@@ -26,7 +26,14 @@ namespace iilic.UI.Controllers
 
             nome = (string)TempData.Peek("login");
             ViewBag.nome = nome;
-            return View();
+            if (nome == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
 

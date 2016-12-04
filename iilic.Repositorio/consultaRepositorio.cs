@@ -40,7 +40,7 @@ namespace iilic.Repositorio
             sql.Append("SELECT c.idConsulta " +
                 "from consulta c " +
                 "inner join paciente p on p.codPaciente = @cod " +
-                "where c.codPaciente= @cod ");
+                "where c.codPaciente= @cod order by c.idConsulta desc limit 1 ");
 
             cmd.CommandText = sql.ToString();//ESSE EH DO SELECT
             cmd.Parameters.AddWithValue("@cod", pConsulta.paciente.codPaciente);
@@ -341,8 +341,6 @@ namespace iilic.Repositorio
             cmd.Parameters.AddWithValue("@idConsulta", idC);
             conn.executeCommand(cmd);
             sql.Clear();
-
-
 
         }
 
