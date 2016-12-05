@@ -109,6 +109,7 @@ namespace iilic.Repositorio
             return terapeutas;
         }
 
+       
 
         /* public void criar(Terapeuta pTerapeuta)
          {
@@ -134,6 +135,6 @@ namespace iilic.Repositorio
 
          }*/
 
-        
+
     }
 }

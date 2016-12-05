@@ -14,9 +14,12 @@ namespace iilic.UI.Controllers
     {
         mesRepositorio mesRepositorio = new mesRepositorio();
         sessaoRepositorio sessaoRepositorio = new sessaoRepositorio();
+        private string nome;
         // GET: Financeiro
         public ActionResult Geral()
         {
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
             ViewBag.mes = mesRepositorio.totalMes();
             ViewBag.sessao = sessaoRepositorio.totalSessao();
             return View();

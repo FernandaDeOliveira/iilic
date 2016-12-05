@@ -69,7 +69,42 @@ namespace iilic.UI.Controllers
             
            
         }
-    public ActionResult IndexConsultas()
+
+        [HttpPost]
+        public ActionResult CriarConsulta(Consulta pConsulta)
+        {
+            nome = (string)TempData.Peek("login");
+            ViewBag.nome = nome;
+
+            var r = consultaRepositorio.getConsultas(pConsulta);
+            // var r = consultaRepositorio.
+            if (r == true)
+            {
+                ViewBag.consulta = "Já existe uma consulta com esses dados";
+
+                ViewBag.pacientes = pacienteRepositorio.getAll();
+                ViewBag.terapeutas = terapeutaRepositorio.getAll();
+                return View("CriarConsulta");
+            }
+            else
+            {
+                idConsulta = consultaRepositorio.criar(pConsulta);
+            }
+            //se o status é igual a sim
+            if (pConsulta.statusPagamento == 1)
+            {
+                //idConsulta = pConsulta.idConsulta;
+                TempData["idConsulta"] = idConsulta;
+                TempData.Keep("idConsulta");
+
+                return View("Pagamento");
+            }
+
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult IndexConsultas()
     {//EXIBE AS Q ESTAO marcadas
 
         nome = (string)TempData.Peek("login");
@@ -106,40 +141,7 @@ namespace iilic.UI.Controllers
                 return RedirectToAction("IndexConsultas");
             }
 
-        [HttpPost]
-        public ActionResult CriarConsulta(Consulta pConsulta)
-        {
-            nome = (string)TempData.Peek("login");
-            ViewBag.nome = nome;
-
-            var r = consultaRepositorio.getConsultas(pConsulta);
-            // var r = consultaRepositorio.
-            if (r == true)
-            {
-                ViewBag.consulta = "Já existe uma consulta com esses dados";
-
-                ViewBag.pacientes = pacienteRepositorio.getAll();
-                ViewBag.terapeutas = terapeutaRepositorio.getAll();
-                return View("CriarConsulta");
-            }
-            else
-            {
-                idConsulta = consultaRepositorio.criar(pConsulta);
-            }
-                    //se o status é igual a sim
-            if (pConsulta.statusPagamento == 1)
-            {
-                //idConsulta = pConsulta.idConsulta;
-                TempData["idConsulta"] = idConsulta;
-                TempData.Keep("idConsulta");
-
-                return View("Pagamento");
-            }
-
-
-    return RedirectToAction("Index");
-}
-
+      
 
     public ActionResult Editar(int id)
     {//ta sendo chamado na index do admin
@@ -156,6 +158,7 @@ namespace iilic.UI.Controllers
     [HttpPost]
     public ActionResult Editar(Consulta pConsulta)
     {
+            //nesse aqui nao ta passadndo idpac
             nome = (string)TempData.Peek("login");
             ViewBag.nome = nome;
 
@@ -215,14 +218,14 @@ namespace iilic.UI.Controllers
             mesRepositorio.criarFinanMes(pValor);
             consultaRepositorio.mudaStatusPagamento(ident);
             TempData.Remove("idConsulta");
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexConsultasPagas");
         }
         else
             consultaRepositorio.efetuarPagamento(pV,tV, ident);
         sessaoRepositorio.criarFinanSessao(pV);
         consultaRepositorio.mudaStatusPagamento(ident);
         TempData.Remove("idConsulta");
-        return RedirectToAction("Index");
+        return RedirectToAction("IndexConsultasPagas");
     }
 
       

@@ -68,7 +68,7 @@ namespace iilic.Repositorio
             return pacientes;
         }
 
-        public List<CaracterisTica> getAllAspectos(int pIdPaciente)
+        public List<CaracterisTica> getAllAspectos(int pIdPaciente,int codMed)
         {
 
             ConexaoBD conn = new ConexaoBD();
@@ -76,15 +76,16 @@ namespace iilic.Repositorio
             MySqlCommand cmd = new MySqlCommand();
             StringBuilder sql = new StringBuilder();
             List<CaracterisTica> listaAspectos = new List<CaracterisTica>();
-            sql.Append("SELECT p.codPaciente, c.idCaracteristica, c.nomeCaracteristica " +
+            sql.Append("SELECT p.codPaciente, c.idCaracteristica, c.nomeCaracteristica, r.terapeutaNum " +
                 "FROM paciente p " +
                 "inner join relaciona r on r.paciente_num = p.codPaciente " +
                 "INNER JOIN caracteristica c " +
                 "ON r.idCaracteristica = c.idCaracteristica " +
-                "WHERE p.codPaciente= @pIdPaciente");
+                "WHERE p.codPaciente= @pIdPaciente and r.terapeutaNum= @idTerapeuta");
 
             cmd.CommandText = sql.ToString();
             cmd.Parameters.AddWithValue("@pIdPaciente", pIdPaciente);
+            cmd.Parameters.AddWithValue("@idTerapeuta", codMed);
 
             MySqlDataReader dr = conn.executeSqlReader(cmd);
 

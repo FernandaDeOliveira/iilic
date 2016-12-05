@@ -20,7 +20,7 @@ namespace iilic.UI.Controllers
         // GET: Terapeuta
         
         public ActionResult IndexTerapeuta()
-        {
+        {//exibe as concultas do terapeuta
             nome = (string)TempData.Peek("login");
             ViewBag.nome = nome;
             if (nome == null)
